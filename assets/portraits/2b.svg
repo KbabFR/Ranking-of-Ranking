@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.34"/>
+      <stop offset="55%" stop-color="#08121e" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#05070e" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="320" height="320" fill="url(#bgGrad)"/>
+  <rect width="320" height="320" fill="url(#grid)"/>
+  <g transform="rotate(1 160 155)"><line x1="160" y1="155" x2="349.5371695493666" y2="168.2537300113838" stroke="#06b6d4" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="317.5171387854579" y2="261.2466516594419" stroke="#c084fc" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="243.29051788992473" y2="325.77086879684174" stroke="#06b6d4" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="146.74626998861618" y2="344.5371695493666" stroke="#c084fc" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="53.753348340558134" y2="312.5171387854579" stroke="#06b6d4" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-10.77086879684174" y2="238.29051788992467" stroke="#c084fc" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-29.53716954936661" y2="141.7462699886163" stroke="#06b6d4" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="2.482861214542055" y2="48.753348340558134" stroke="#c084fc" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="76.70948211007523" y2="-15.770868796841683" stroke="#06b6d4" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="173.2537300113838" y2="-34.53716954936661" stroke="#c084fc" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="266.2466516594418" y2="-2.517138785458002" stroke="#06b6d4" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="330.7708687968418" y2="71.70948211007537" stroke="#c084fc" stroke-width="1.2" opacity="0.14"/></g>
+  <circle cx="160" cy="155" r="95" fill="url(#glow)" opacity="0.35"/>
+  
+        <g transform="rotate(4 160 155)">
+          <polygon points="160,78 225,116 225,194 160,232 95,194 95,116" fill="none" stroke="#06b6d4" stroke-width="2.5" opacity="0.65"/>
+          <circle cx="160" cy="155" r="56" fill="none" stroke="#c084fc" stroke-width="2" stroke-dasharray="8 6" opacity="0.75"/>
+        </g>
+      
+  <circle cx="160" cy="155" r="46" fill="#090c16" fill-opacity="0.82" stroke="url(#badgeGrad)" stroke-width="3.5"/>
+  <text x="160" y="170" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="900" font-size="38" letter-spacing="1" fill="#ffffff">2B</text>
+  <rect x="24" y="18" width="272" height="26" rx="13" fill="#000000" fill-opacity="0.45" stroke="#06b6d4" stroke-opacity="0.5"/>
+  <text x="160" y="35" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="700" font-size="11" letter-spacing="1.4" fill="#c084fc">JEUX PLAYSTATION &amp; SQUARE</text>
+  <circle cx="139" cy="264" r="3.2" fill="#c084fc" opacity="0.9"/><circle cx="153" cy="264" r="3.2" fill="#c084fc" opacity="0.9"/><circle cx="167" cy="264" r="3.2" fill="#c084fc" opacity="0.9"/><circle cx="181" cy="264" r="3.2" fill="#c084fc" opacity="0.9"/>
+</svg>

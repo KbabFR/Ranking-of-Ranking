@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#ff5500" stop-opacity="0.34"/>
+      <stop offset="55%" stop-color="#160908" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#05070e" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff1e42" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#ff5500" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff5500"/>
+      <stop offset="100%" stop-color="#ff1e42"/>
+    </linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="320" height="320" fill="url(#bgGrad)"/>
+  <rect width="320" height="320" fill="url(#grid)"/>
+  <g transform="rotate(5 160 155)"><line x1="160" y1="155" x2="349.27699263743165" y2="171.55959112205505" stroke="#ff5500" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="315.6388884149085" y2="263.9795229066988" stroke="#ff1e42" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="240.2974697307329" y2="327.1984795369635" stroke="#ff5500" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="143.44040887794495" y2="344.27699263743165" stroke="#ff1e42" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="51.020477093301295" y2="310.6388884149085" stroke="#ff5500" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-12.198479536963475" y2="235.2974697307329" stroke="#ff1e42" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-29.276992637431647" y2="138.440408877945" stroke="#ff5500" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="4.361111585091521" y2="46.020477093301295" stroke="#ff1e42" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="79.70253026926702" y2="-17.198479536963447" stroke="#ff5500" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="176.559591122055" y2="-34.27699263743165" stroke="#ff1e42" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="268.9795229066988" y2="-0.6388884149084504" stroke="#ff5500" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="332.1984795369634" y2="74.702530269267" stroke="#ff1e42" stroke-width="1.2" opacity="0.14"/></g>
+  <circle cx="160" cy="155" r="95" fill="url(#glow)" opacity="0.35"/>
+  
+        <circle cx="160" cy="155" r="70" fill="none" stroke="#ff1e42" stroke-width="3" opacity="0.65"/>
+        <circle cx="160" cy="155" r="44" fill="none" stroke="#ff5500" stroke-width="2" stroke-dasharray="10 8" opacity="0.8"/>
+        <circle cx="160" cy="111" r="7" fill="#ff1e42" opacity="0.85"/>
+        <circle cx="198" cy="177" r="7" fill="#ff1e42" opacity="0.85"/>
+        <circle cx="122" cy="177" r="7" fill="#ff1e42" opacity="0.85"/>
+      
+  <circle cx="160" cy="155" r="46" fill="#090c16" fill-opacity="0.82" stroke="url(#badgeGrad)" stroke-width="3.5"/>
+  <text x="160" y="170" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="900" font-size="38" letter-spacing="1" fill="#ffffff">GA</text>
+  <rect x="24" y="18" width="272" height="26" rx="13" fill="#000000" fill-opacity="0.45" stroke="#ff5500" stroke-opacity="0.5"/>
+  <text x="160" y="35" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="700" font-size="11" letter-spacing="1.4" fill="#ff1e42">NARUTO</text>
+  <circle cx="146" cy="264" r="3.2" fill="#ff1e42" opacity="0.9"/><circle cx="160" cy="264" r="3.2" fill="#ff1e42" opacity="0.9"/><circle cx="174" cy="264" r="3.2" fill="#ff1e42" opacity="0.9"/>
+</svg>
