@@ -568,16 +568,26 @@ button:disabled {
 }
 
 /* Hierarchical Medium & Licence Tree */
+.setup-licences-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+  max-height: calc(100vh - 115px);
+}
+
 .medium-tree {
+  flex: 1;
+  min-height: 240px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-height: 64vh;
   overflow-y: auto;
-  padding-right: 4px;
+  padding-right: 6px;
 }
 
 .medium-group {
+  flex-shrink: 0;
+  min-height: 46px;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   background: var(--bg-surface-2);
@@ -588,7 +598,8 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 11px 14px;
+  min-height: 46px;
+  padding: 10px 14px;
   background: rgba(255, 255, 255, 0.03);
 }
 
@@ -641,6 +652,8 @@ button:disabled {
   padding: 6px 12px 10px 38px;
   gap: 4px;
   border-top: 1px solid var(--border-subtle);
+  max-height: 260px;
+  overflow-y: auto;
 }
 
 .medium-group.is-collapsed .licence-list {
@@ -648,6 +661,8 @@ button:disabled {
 }
 
 .licence-row {
+  flex-shrink: 0;
+  min-height: 34px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1466,6 +1481,11 @@ button:disabled {
   color: #a7f3d0;
 }
 
+.overview-card-filled {
+  cursor: pointer;
+  user-select: none;
+}
+
 .overview-card-filled:hover {
   border-color: var(--border-strong);
   transform: translateY(-2px);
@@ -1513,6 +1533,7 @@ button:disabled {
 }
 
 .ov-img-wrap {
+  position: relative;
   width: 100%;
   height: 98px;
   border-radius: 10px;
@@ -1524,6 +1545,32 @@ button:disabled {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.ov-inspect-btn {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(8, 11, 20, 0.78);
+  backdrop-filter: blur(4px);
+  color: var(--text-main);
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.ov-inspect-btn:hover {
+  background: rgba(34, 211, 238, 0.28);
+  border-color: var(--accent-cyan);
+  transform: scale(1.08);
 }
 
 .ov-name {
@@ -1851,6 +1898,10 @@ button:disabled {
 @media (max-width: 1040px) {
   .setup-grid {
     grid-template-columns: 1fr;
+  }
+
+  .setup-licences-panel {
+    max-height: 560px;
   }
 
   .screen-game {

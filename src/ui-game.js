@@ -18,9 +18,11 @@
     const canDrawJoker = game.phase === 'playing' && game.activeCard !== null && game.jokerDeck.length > 0 && !game.isBurning;
     const canPlace = game.phase === 'playing' && game.activeCard !== null && game.isFlipped && !game.isBurning;
 
-    // Preserve scroll position of the ranking list across re-renders
+    // Preserve scroll positions across re-renders
     const prevList = container.querySelector('.ranking-list');
     const prevScrollTop = prevList ? prevList.scrollTop : 0;
+    const prevOverview = container.querySelector('.overview-overlay');
+    const prevOverviewScroll = prevOverview ? prevOverview.scrollTop : 0;
 
     container.innerHTML = `
       <div class="screen screen-game">
@@ -193,6 +195,10 @@
     if (newList && prevScrollTop > 0) {
       newList.scrollTop = prevScrollTop;
     }
+    const newOverview = container.querySelector('.overview-overlay');
+    if (newOverview && prevOverviewScroll > 0) {
+      newOverview.scrollTop = prevOverviewScroll;
+    }
 
     bindGameEvents(container, game);
   };
@@ -364,8 +370,9 @@
                 }
 
                 return `
-                  <button
-                    type="button"
+                  <div
+                    role="button"
+                    tabindex="0"
                     class="overview-card overview-card-filled ${rankClass} ${isSwapPhase ? 'is-swappable' : ''} ${isSelected ? 'is-swap-selected' : ''}"
                     data-overview-filled="${idx}"
                   >
@@ -375,10 +382,17 @@
                     </div>
                     <div class="ov-img-wrap">
                       <img src="${esc(ch.image)}" alt="${esc(ch.name)}" loading="lazy" onerror="this.style.display='none'"/>
+                      <button
+                        type="button"
+                        class="ov-inspect-btn"
+                        data-overview-inspect="${idx}"
+                        title="Voir les détails de ${esc(ch.name)}"
+                        aria-label="Voir les détails de ${esc(ch.name)}"
+                      >👁</button>
                     </div>
                     <div class="ov-name">${esc(ch.name)}</div>
                     ${isSelected ? '<span class="ov-selected-tag">Sélectionné</span>' : ''}
-                  </button>
+                  </div>
                 `;
               })
               .join('')}
@@ -529,34 +543,52 @@
       ROR.openBurnedModal(game.burnedCards);
     });
 
-    // Overview filled cards: swap during postgame_swap, or inspect otherwise
-    container.querySelectorAll('[data-overview-filled]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const idx = Number(btn.getAttribute('data-overview-filled'));
-        if (game.phase === 'postgame_swap') {
-          if (game.selectedSwapIndex === null) {
-            game.selectedSwapIndex = idx;
-          } else if (game.selectedSwapIndex === idx) {
-            game.selectedSwapIndex = null;
-          } else {
-            const a = game.selectedSwapIndex;
-            const b = idx;
-            const temp = game.slots[a];
-            game.slots[a] = game.slots[b];
-            game.slots[b] = temp;
-            game.selectedSwapIndex = null;
-            game.swapsRemaining -= 1;
-            game.swapsUsed += 1;
+    // Inspect button on overview cards (opens details without selecting for swap)
+    container.querySelectorAll('[data-overview-inspect]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = Number(btn.getAttribute('data-overview-inspect'));
+        const ch = game.slots[idx];
+        if (ch) ROR.openCharacterInspectModal(ch, idx + 1);
+      });
+    });
 
-            if (game.swapsRemaining <= 0) {
-              game.phase = 'finished';
-              ROR.saveGameToHistory(game);
-            }
-          }
-          ROR.renderGameScreen(container);
+    // Overview filled cards: swap during postgame_swap, or inspect otherwise
+    const handleOverviewCardActivate = (cardEl) => {
+      const idx = Number(cardEl.getAttribute('data-overview-filled'));
+      if (game.phase === 'postgame_swap') {
+        if (game.selectedSwapIndex === null) {
+          game.selectedSwapIndex = idx;
+        } else if (game.selectedSwapIndex === idx) {
+          game.selectedSwapIndex = null;
         } else {
-          const ch = game.slots[idx];
-          if (ch) ROR.openCharacterInspectModal(ch, idx + 1);
+          const a = game.selectedSwapIndex;
+          const b = idx;
+          const temp = game.slots[a];
+          game.slots[a] = game.slots[b];
+          game.slots[b] = temp;
+          game.selectedSwapIndex = null;
+          game.swapsRemaining -= 1;
+          game.swapsUsed += 1;
+
+          if (game.swapsRemaining <= 0) {
+            game.phase = 'finished';
+            ROR.saveGameToHistory(game);
+          }
+        }
+        ROR.renderGameScreen(container);
+      } else {
+        const ch = game.slots[idx];
+        if (ch) ROR.openCharacterInspectModal(ch, idx + 1);
+      }
+    };
+
+    container.querySelectorAll('[data-overview-filled]').forEach((cardEl) => {
+      cardEl.addEventListener('click', () => handleOverviewCardActivate(cardEl));
+      cardEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleOverviewCardActivate(cardEl);
         }
       });
     });

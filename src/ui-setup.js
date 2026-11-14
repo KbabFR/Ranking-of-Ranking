@@ -3,6 +3,124 @@
 
   const ROR = (global.ROR = global.ROR || {});
 
+  function updateSetupStateUI(container, tree) {
+    const { setup, characters } = ROR.AppState;
+    const steps = ROR.CARD_COUNT_STEPS;
+    const stepIndex = Math.max(0, steps.indexOf(setup.targetCount));
+
+    const availableCount = characters.filter((c) => setup.selectedLicences.has(c.licence)).length;
+    const jokerCount = ROR.computeJokerTarget(setup.targetCount, availableCount);
+    const idealJokerCount = Math.max(1, Math.round(setup.targetCount * 0.2));
+    const canStart = availableCount >= setup.targetCount;
+
+    // Update sliders & readouts without replacing DOM
+    const cardSlider = container.querySelector('#card-count-slider');
+    if (cardSlider && Number(cardSlider.value) !== stepIndex) {
+      cardSlider.value = String(stepIndex);
+    }
+    const cardReadout = container.querySelector('#card-count-readout');
+    if (cardReadout) cardReadout.textContent = String(setup.targetCount);
+
+    container.querySelectorAll('[data-step-index]').forEach((btn) => {
+      const idx = Number(btn.getAttribute('data-step-index'));
+      btn.classList.toggle('is-active', idx === stepIndex);
+    });
+
+    const jokerHint = container.querySelector('#joker-hint');
+    if (jokerHint) {
+      const capNotice =
+        jokerCount < idealJokerCount && canStart
+          ? ` <span class="warn-inline">(plafonné par les ${availableCount} persos sélectionnés)</span>`
+          : '';
+      jokerHint.innerHTML = `
+        De 5 en 5 jusqu'à 50, puis par dizaines jusqu'à 100.
+        <br/>
+        Deck Joker (~20%) : <strong id="joker-preview">${jokerCount}</strong> carte${jokerCount > 1 ? 's' : ''} Joker${capNotice}
+      `;
+    }
+
+    const swapSlider = container.querySelector('#swap-count-slider');
+    if (swapSlider && Number(swapSlider.value) !== setup.maxSwaps) {
+      swapSlider.value = String(setup.maxSwaps);
+    }
+    const swapReadout = container.querySelector('#swap-count-readout');
+    if (swapReadout) swapReadout.textContent = String(setup.maxSwaps);
+
+    container.querySelectorAll('[data-swap-val]').forEach((btn) => {
+      const val = Number(btn.getAttribute('data-swap-val'));
+      btn.classList.toggle('is-active', val === setup.maxSwaps);
+    });
+
+    const swapHint = container.querySelector('#swap-hint');
+    if (swapHint) {
+      swapHint.innerHTML = `Une fois toutes les cases remplies, vous pourrez échanger jusqu'à <strong>${setup.maxSwaps}</strong> paire${setup.maxSwaps > 1 ? 's' : ''} de cartes.`;
+    }
+
+    // Update summary & launch button
+    const summaryCard = container.querySelector('#summary-card');
+    if (summaryCard) {
+      summaryCard.classList.toggle('is-valid', canStart);
+      summaryCard.classList.toggle('is-invalid', !canStart);
+    }
+    const availEl = container.querySelector('#available-count');
+    if (availEl) availEl.textContent = String(availableCount);
+    const reqEl = container.querySelector('#required-count');
+    if (reqEl) reqEl.textContent = `${setup.targetCount} + ${jokerCount} = ${setup.targetCount + jokerCount}`;
+
+    const summaryMsg = container.querySelector('#summary-message');
+    if (summaryMsg) {
+      if (!canStart) {
+        summaryMsg.className = 'summary-error';
+        const diff = setup.targetCount - availableCount;
+        summaryMsg.textContent = `Sélectionnez plus de licences ou réduisez le nombre de personnages (manque ${diff} perso${diff > 1 ? 's' : ''}).`;
+      } else {
+        summaryMsg.className = 'summary-ok';
+        summaryMsg.textContent = `Les personnages les plus marquants (indice de priorité) seront sélectionnés en premier si le pool dépasse ${setup.targetCount + jokerCount}.`;
+      }
+    }
+
+    const launchBtn = container.querySelector('[data-action="launch-game"]');
+    if (launchBtn) {
+      launchBtn.disabled = !canStart;
+      launchBtn.textContent = `🎴 Lancer la partie (${setup.targetCount} rangs)`;
+    }
+
+    // Update Medium & Licence checkboxes + counts in place
+    const escAttr = (s) => (global.CSS && typeof global.CSS.escape === 'function' ? global.CSS.escape(s) : String(s).replace(/["\\]/g, '\\$&'));
+    for (const group of tree) {
+      const groupEl = container.querySelector(`.medium-group[data-medium="${escAttr(group.medium)}"]`);
+      if (!groupEl) continue;
+
+      const selectedInGroup = group.licences.filter((l) => setup.selectedLicences.has(l.name));
+      const allChecked = selectedInGroup.length === group.licences.length && group.licences.length > 0;
+      const someChecked = selectedInGroup.length > 0 && !allChecked;
+      const selectedCharsInGroup = selectedInGroup.reduce((s, l) => s + l.count, 0);
+
+      const medCb = groupEl.querySelector('.medium-checkbox');
+      if (medCb) {
+        medCb.checked = allChecked;
+        medCb.indeterminate = someChecked;
+      }
+
+      const badge = groupEl.querySelector('.group-count-badge');
+      if (badge) {
+        badge.textContent = `${selectedInGroup.length}/${group.licences.length} • ${selectedCharsInGroup} persos`;
+      }
+
+      const isCollapsed = setup.collapsedMediums.has(group.medium);
+      groupEl.classList.toggle('is-collapsed', isCollapsed);
+      const collapseBtn = groupEl.querySelector('.collapse-btn');
+      if (collapseBtn) collapseBtn.textContent = isCollapsed ? '▸' : '▾';
+
+      groupEl.querySelectorAll('.licence-checkbox').forEach((cb) => {
+        const lic = cb.getAttribute('data-licence-check');
+        const checked = setup.selectedLicences.has(lic);
+        cb.checked = checked;
+        cb.closest('.licence-row')?.classList.toggle('is-checked', checked);
+      });
+    }
+  }
+
   ROR.renderSetupScreen = function renderSetupScreen(container) {
     const esc = ROR.escapeHtml;
     const { setup, characters } = ROR.AppState;
@@ -14,12 +132,6 @@
       stepIndex = 3; // 20
       setup.targetCount = steps[stepIndex];
     }
-
-    const availableChars = characters.filter((c) => setup.selectedLicences.has(c.licence));
-    const availableCount = availableChars.length;
-    const jokerCount = ROR.computeJokerTarget(setup.targetCount, availableCount);
-    const idealJokerCount = Math.max(1, Math.round(setup.targetCount * 0.2));
-    const canStart = availableCount >= setup.targetCount;
 
     container.innerHTML = `
       <div class="screen screen-setup">
@@ -64,12 +176,7 @@
                   )
                   .join('')}
               </div>
-              <p class="slider-hint">
-                De 5 en 5 jusqu'à 50, puis par dizaines jusqu'à 100.
-                <br/>
-                Deck Joker (~20%) : <strong id="joker-preview">${jokerCount}</strong> carte${jokerCount > 1 ? 's' : ''} Joker
-                ${jokerCount < idealJokerCount && canStart ? `<span class="warn-inline">(plafonné par les ${availableCount} persos sélectionnés)</span>` : ''}
-              </p>
+              <p class="slider-hint" id="joker-hint"></p>
             </div>
 
             <div class="slider-block">
@@ -99,34 +206,23 @@
                   )
                   .join('')}
               </div>
-              <p class="slider-hint">
-                Une fois toutes les cases remplies, vous pourrez échanger jusqu'à <strong>${setup.maxSwaps}</strong> paires de cartes.
-              </p>
+              <p class="slider-hint" id="swap-hint"></p>
             </div>
 
-            <div class="summary-card ${canStart ? 'is-valid' : 'is-invalid'}">
+            <div class="summary-card" id="summary-card">
               <div class="summary-row">
                 <span>Personnages disponibles (licences cochées)</span>
-                <strong id="available-count">${availableCount}</strong>
+                <strong id="available-count">0</strong>
               </div>
               <div class="summary-row">
                 <span>Cartes requises (Deck + Jokers)</span>
-                <strong>${setup.targetCount} + ${jokerCount} = ${setup.targetCount + jokerCount}</strong>
+                <strong id="required-count">0</strong>
               </div>
-              ${
-                !canStart
-                  ? `<div class="summary-error">Sélectionnez plus de licences ou réduisez le nombre de personnages (manque ${setup.targetCount - availableCount} perso${setup.targetCount - availableCount > 1 ? 's' : ''}).</div>`
-                  : `<div class="summary-ok">Les personnages les plus marquants (indice de priorité) seront sélectionnés en premier si le pool dépasse ${setup.targetCount + jokerCount}.</div>`
-              }
+              <div id="summary-message"></div>
             </div>
 
-            <button
-              type="button"
-              class="btn btn-primary btn-launch"
-              data-action="launch-game"
-              ${canStart ? '' : 'disabled'}
-            >
-              🎴 Lancer la partie (${setup.targetCount} rangs)
+            <button type="button" class="btn btn-primary btn-launch" data-action="launch-game">
+              🎴 Lancer la partie
             </button>
           </section>
 
@@ -145,12 +241,7 @@
             <div class="medium-tree">
               ${tree
                 .map((group) => {
-                  const selectedInGroup = group.licences.filter((l) => setup.selectedLicences.has(l.name));
-                  const allChecked = selectedInGroup.length === group.licences.length && group.licences.length > 0;
-                  const someChecked = selectedInGroup.length > 0 && !allChecked;
                   const isCollapsed = setup.collapsedMediums.has(group.medium);
-                  const selectedCharsInGroup = selectedInGroup.reduce((s, l) => s + l.count, 0);
-
                   return `
                     <div class="medium-group ${isCollapsed ? 'is-collapsed' : ''}" data-medium="${esc(group.medium)}">
                       <div class="medium-row">
@@ -162,12 +253,10 @@
                             type="checkbox"
                             class="medium-checkbox"
                             data-medium-check="${esc(group.medium)}"
-                            ${allChecked ? 'checked' : ''}
-                            data-indeterminate="${someChecked ? 'true' : 'false'}"
                           />
                           <span class="medium-name">${esc(group.medium)}</span>
                         </label>
-                        <span class="group-count-badge">${selectedInGroup.length}/${group.licences.length} • ${selectedCharsInGroup} persos</span>
+                        <span class="group-count-badge"></span>
                       </div>
 
                       <div class="licence-list">
@@ -199,10 +288,7 @@
       </div>
     `;
 
-    // Set DOM indeterminate state on medium checkboxes
-    container.querySelectorAll('.medium-checkbox[data-indeterminate="true"]').forEach((cb) => {
-      cb.indeterminate = true;
-    });
+    updateSetupStateUI(container, tree);
 
     container.querySelector('[data-action="back-home"]')?.addEventListener('click', () => {
       ROR.navigateTo('home');
@@ -212,38 +298,38 @@
     cardSlider?.addEventListener('input', (e) => {
       const idx = Number(e.target.value);
       setup.targetCount = steps[idx] ?? 20;
-      ROR.renderSetupScreen(container);
+      updateSetupStateUI(container, tree);
     });
 
     container.querySelectorAll('[data-step-index]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const idx = Number(btn.getAttribute('data-step-index'));
         setup.targetCount = steps[idx] ?? 20;
-        ROR.renderSetupScreen(container);
+        updateSetupStateUI(container, tree);
       });
     });
 
     const swapSlider = container.querySelector('#swap-count-slider');
     swapSlider?.addEventListener('input', (e) => {
       setup.maxSwaps = Number(e.target.value);
-      ROR.renderSetupScreen(container);
+      updateSetupStateUI(container, tree);
     });
 
     container.querySelectorAll('[data-swap-val]').forEach((btn) => {
       btn.addEventListener('click', () => {
         setup.maxSwaps = Number(btn.getAttribute('data-swap-val'));
-        ROR.renderSetupScreen(container);
+        updateSetupStateUI(container, tree);
       });
     });
 
     container.querySelector('[data-action="select-all"]')?.addEventListener('click', () => {
       setup.selectedLicences = new Set(characters.map((c) => c.licence));
-      ROR.renderSetupScreen(container);
+      updateSetupStateUI(container, tree);
     });
 
     container.querySelector('[data-action="deselect-all"]')?.addEventListener('click', () => {
       setup.selectedLicences.clear();
-      ROR.renderSetupScreen(container);
+      updateSetupStateUI(container, tree);
     });
 
     container.querySelectorAll('[data-toggle-collapse]').forEach((btn) => {
@@ -254,7 +340,7 @@
         } else {
           setup.collapsedMediums.add(med);
         }
-        ROR.renderSetupScreen(container);
+        updateSetupStateUI(container, tree);
       });
     });
 
@@ -268,7 +354,7 @@
         } else {
           group.licences.forEach((l) => setup.selectedLicences.delete(l.name));
         }
-        ROR.renderSetupScreen(container);
+        updateSetupStateUI(container, tree);
       });
     });
 
@@ -280,12 +366,13 @@
         } else {
           setup.selectedLicences.delete(lic);
         }
-        ROR.renderSetupScreen(container);
+        updateSetupStateUI(container, tree);
       });
     });
 
     container.querySelector('[data-action="launch-game"]')?.addEventListener('click', () => {
-      if (!canStart) return;
+      const availableCount = characters.filter((c) => setup.selectedLicences.has(c.licence)).length;
+      if (availableCount < setup.targetCount) return;
       ROR.startNewGame();
     });
   };
