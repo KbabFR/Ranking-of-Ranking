@@ -255,13 +255,27 @@
 
     let searchTerm = '';
     let filterMedium = 'ALL';
+    let filterLicence = 'ALL';
 
     function render() {
       const chars = ROR.AppState.characters;
       const mediums = Array.from(new Set(chars.map((c) => c.medium)));
+      const availableLicences = Array.from(
+        new Set(
+          chars
+            .filter((c) => filterMedium === 'ALL' || c.medium === filterMedium)
+            .map((c) => c.licence)
+        )
+      ).sort((a, b) => a.localeCompare(b, 'fr'));
+
+      if (filterLicence !== 'ALL' && !availableLicences.includes(filterLicence)) {
+        filterLicence = 'ALL';
+      }
+
       const q = searchTerm.trim().toLowerCase();
       const filtered = chars.filter((c) => {
         if (filterMedium !== 'ALL' && c.medium !== filterMedium) return false;
+        if (filterLicence !== 'ALL' && c.licence !== filterLicence) return false;
         if (!q) return true;
         return (
           c.name.toLowerCase().includes(q) ||
@@ -274,7 +288,7 @@
         <div class="modal-panel modal-panel-wide">
           <div class="modal-header">
             <div>
-              <h2 class="modal-title">📚 Base de personnages (${chars.length})</h2>
+              <h2 class="modal-title">📚 Base de personnages (${filtered.length}${filtered.length !== chars.length ? ` / ${chars.length}` : ''})</h2>
               <p class="modal-subtitle">Chargée depuis <code>data/characters.json</code> — Vous pouvez aussi importer un fichier JSON ou CSV local</p>
             </div>
             <button type="button" class="btn-icon-close" data-close>✕</button>
@@ -282,9 +296,13 @@
 
           <div class="db-toolbar">
             <input type="search" class="db-search" placeholder="Rechercher un personnage ou une licence..." value="${esc(searchTerm)}" />
-            <select class="db-filter">
+            <select class="db-filter" data-filter-medium aria-label="Filtrer par médium">
               <option value="ALL">Tous les médiums</option>
               ${mediums.map((m) => `<option value="${esc(m)}" ${filterMedium === m ? 'selected' : ''}>${esc(m)}</option>`).join('')}
+            </select>
+            <select class="db-filter" data-filter-licence aria-label="Filtrer par licence">
+              <option value="ALL">Toutes les licences</option>
+              ${availableLicences.map((l) => `<option value="${esc(l)}" ${filterLicence === l ? 'selected' : ''}>${esc(l)}</option>`).join('')}
             </select>
             <label class="btn btn-sm btn-secondary db-upload-label">
               📂 Importer JSON / CSV
@@ -333,8 +351,14 @@
         }
       });
 
-      overlay.querySelector('.db-filter')?.addEventListener('change', (e) => {
+      overlay.querySelector('[data-filter-medium]')?.addEventListener('change', (e) => {
         filterMedium = e.target.value;
+        filterLicence = 'ALL';
+        render();
+      });
+
+      overlay.querySelector('[data-filter-licence]')?.addEventListener('change', (e) => {
+        filterLicence = e.target.value;
         render();
       });
 
@@ -353,6 +377,8 @@
           if (imported.length > 0) {
             ROR.AppState.characters = imported;
             ROR.AppState.setup.selectedLicences = new Set(imported.map((c) => c.licence));
+            filterMedium = 'ALL';
+            filterLicence = 'ALL';
             render();
             if (ROR.AppState.screen === 'home') {
               ROR.renderCurrentScreen();
