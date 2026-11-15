@@ -343,6 +343,36 @@
     return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
   };
 
+  ROR.getFallbackImage = function getFallbackImage(ch) {
+    if (!ch) return '';
+    if (!ch.isCustom && ch.id && !String(ch.id).startsWith('custom-')) {
+      return `assets/portraits/${ch.id}.svg`;
+    }
+    return ROR.generateInlinePortraitSvg(ch.name, ch.licence);
+  };
+
+  ROR.onImgError = function onImgError(imgEl) {
+    if (!imgEl) return;
+    const step = imgEl.dataset.fbStep || '0';
+    if (step === '0') {
+      imgEl.dataset.fbStep = '1';
+      const fallback = imgEl.dataset.fallback;
+      if (fallback && imgEl.getAttribute('src') !== fallback) {
+        imgEl.src = fallback;
+        return;
+      }
+    }
+    if (step === '1' || step === '0') {
+      imgEl.dataset.fbStep = '2';
+      const inline = ROR.generateInlinePortraitSvg(imgEl.alt || 'Perso', imgEl.dataset.licence || '');
+      if (imgEl.getAttribute('src') !== inline) {
+        imgEl.src = inline;
+        return;
+      }
+    }
+    imgEl.onerror = null;
+  };
+
   ROR.loadCustomCharacters = function loadCustomCharacters() {
     try {
       const raw = global.localStorage.getItem(ROR.CUSTOM_CHARS_KEY);

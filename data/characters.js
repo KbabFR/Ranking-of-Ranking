@@ -6,7 +6,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Dragon Ball",
     "description": "Guerrier Saiyan élevé sur Terre, animé par une soif infinie de combat et de dépassement de soi.",
-    "image": "assets/portraits/son-goku.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/246-wsRRr6z1kii8.png",
     "abilities": [
       "Ultra Instinct maîtrisé",
       "Kamehameha & Genkidama",
@@ -21,7 +21,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Dragon Ball",
     "description": "Prince fier des Saiyans et éternel rival de Goku, animé par un orgueil inébranlable.",
-    "image": "assets/portraits/vegeta.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b913-NIFkKazWM8VO.png",
     "abilities": [
       "Ultra Ego",
       "Final Flash & Big Bang Attack",
@@ -36,7 +36,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Dragon Ball",
     "description": "Fils aîné de Goku doté d'un potentiel latent colossal qui explose sous le coup de la colère.",
-    "image": "assets/portraits/son-gohan.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b2093-kdFZhqcNSsqW.png",
     "abilities": [
       "Forme Gohan Beast",
       "Masenko & Kamehameha père-fils",
@@ -51,7 +51,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Dragon Ball",
     "description": "Tyran galactique impitoyable capable de détruire des planètes d'un simple doigt.",
-    "image": "assets/portraits/freezer.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b3694-bDfOdSSdFfPv.png",
     "abilities": [
       "Black Freezer",
       "Death Beam & Supernova",
@@ -66,7 +66,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Dragon Ball",
     "description": "Dieu de la Destruction de l'Univers 7, aussi capricieux que dévastateur.",
-    "image": "assets/portraits/beerus.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b76348-pGWrznfxgPIV.png",
     "abilities": [
       "Hakai (effacement d'existence)",
       "Maîtrise partielle de l'Ultra Instinct",
@@ -81,7 +81,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Dragon Ball",
     "description": "Stratège Namek calme et mentor dévoué de Gohan, ancien démon devenu protecteur de la Terre.",
-    "image": "assets/portraits/piccolo.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b914-KuS8AWjqBrqa.jpg",
     "abilities": [
       "Orange Piccolo",
       "Makankosappo",
@@ -96,7 +96,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Dragon Ball",
     "description": "Saiyan légendaire à la puissance sauvage qui croît exponentiellement en plein combat.",
-    "image": "assets/portraits/broly.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b4945-iE59qIP7TxPu.png",
     "abilities": [
       "Super Saiyan Légendaire",
       "Adaptation fulgurante en combat",
@@ -111,7 +111,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Dragon Ball",
     "description": "Bio-androïde conçu à partir des cellules des plus grands combattants de l'univers.",
-    "image": "assets/portraits/cell.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/3908.jpg",
     "abilities": [
       "Régénération cellulaire",
       "Techniques de Goku, Vegeta et Freezer",
@@ -126,7 +126,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Dragon Ball",
     "description": "Épéiste venu d'un futur apocalyptique pour sauver la ligne temporelle de l'humanité.",
-    "image": "assets/portraits/trunks-futur.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b2707-YKWmn4q87oF8.png",
     "abilities": [
       "Épée imprégnée de Ki",
       "Super Saiyan Rage",
@@ -141,7 +141,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Dragon Ball",
     "description": "Créature magique primordiale quasi indestructible aux pouvoirs aussi absurdes que terrifiants.",
-    "image": "assets/portraits/majin-boo.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/1012.jpg",
     "abilities": [
       "Régénération moléculaire",
       "Absorption d'adversaires",
@@ -156,7 +156,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Naruto",
     "description": "Septième Hokage de Konoha et hôte du démon renard à neuf queues Kurama.",
-    "image": "assets/portraits/naruto-uzumaki.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b17-phjcWCkRuIhu.png",
     "abilities": [
       "Mode Baryon & Mode Ermite",
       "Multiclonage supra",
@@ -171,7 +171,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Naruto",
     "description": "Dernier survivant du clan Uchiha de sa génération, maître des pupilles légendaires.",
-    "image": "assets/portraits/sasuke-uchiha.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b13-SISLEw1oAD7a.png",
     "abilities": [
       "Rinnegan & Mangekyou Sharingan",
       "Susanoo Parfait",
@@ -186,7 +186,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Naruto",
     "description": "Légende vivante du monde ninja et cofondateur de Konoha à la puissance cataclysmique.",
-    "image": "assets/portraits/madara-uchiha.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b53901-HnRKSoHMG5Vg.png",
     "abilities": [
       "Jinchuriki de Juubi",
       "Tsukuyomi Infini & Limbo",
@@ -201,7 +201,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Naruto",
     "description": "Prodige tragique du clan Uchiha, génie du genjutsu et protecteur de l'ombre.",
-    "image": "assets/portraits/itachi-uchiha.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b14-9Kb1E5oel1ke.png",
     "abilities": [
       "Tsukuyomi (illusion mortelle)",
       "Épée de Totsuka & Miroir de Yata",
@@ -216,7 +216,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Naruto",
     "description": "Le ninja copieur aux mille techniques et Sixième Hokage de Konoha.",
-    "image": "assets/portraits/kakashi-hatake.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b85-mkVBh2yjxjmx.png",
     "abilities": [
       "Kamui (dimension parallèle)",
       "Éclair Pourfendeur (Raikiri)",
@@ -231,7 +231,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Naruto",
     "description": "Chef de l'Akatsuki manipulant six corps grâce aux yeux divins du Rinnegan.",
-    "image": "assets/portraits/pain-nagato.svg",
+    "image": "https://static.wikia.nocookie.net/naruto/images/0/06/Nagato_Early_Akatsuki.png/revision/latest/scale-to-width-down/314?cb=20210226002003",
     "abilities": [
       "Shinra Tensei (répulsion massive)",
       "Chibaku Tensei (astre céleste)",
@@ -246,7 +246,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Naruto",
     "description": "L'Éclair Jaune de Konoha, Quatrième Hokage célèbre pour sa vitesse insurpassable.",
-    "image": "assets/portraits/minato-namikaze.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b2535-Xq9WKNPJQEt3.png",
     "abilities": [
       "Dieu du Tonnerre Volant (Hiraishin)",
       "Rasengan instantané",
@@ -261,7 +261,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Naruto",
     "description": "Maître absolu du taijutsu capable de rivaliser avec des dieux par la seule force de sa jeunesse.",
-    "image": "assets/portraits/might-guy.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b307-xieUEdhdTVwQ.png",
     "abilities": [
       "8ème Porte Céleste (Mort)",
       "Night Guy (distorsion de l'espace)",
@@ -276,7 +276,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Naruto",
     "description": "L'Ermite des Crapauds, l'un des trois Sannin légendaires et mentor de Naruto.",
-    "image": "assets/portraits/jiraya.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b2423-RO5MyoXSA9OL.png",
     "abilities": [
       "Mode Ermite des Crapauds",
       "Invocations géantes du Mont Myoboku",
@@ -291,7 +291,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Naruto",
     "description": "Cinquième Kazekage de Suna, maître absolu du sable protecteur.",
-    "image": "assets/portraits/gaara.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b1662-4E5J0LX9jZKZ.png",
     "abilities": [
       "Défense absolue automatique",
       "Tombeau du Désert",
@@ -306,7 +306,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Piece",
     "description": "Capitaine de l'équipage au Chapeau de Paille et Empereur des mers en quête du One Piece.",
-    "image": "assets/portraits/monkey-d-luffy.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b40-MNypXsxSRb1R.png",
     "abilities": [
       "Gear 5 (Éveil Nika)",
       "Les 3 Fluides (Haki des Rois avancé)",
@@ -321,7 +321,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Piece",
     "description": "Épéiste à trois lames visant le titre de meilleur sabreur du monde.",
-    "image": "assets/portraits/roronoa-zoro.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b62-S7oAeA9WInjV.png",
     "abilities": [
       "Style à trois sabres (Santoryu)",
       "Haki des Rois offensif (Enma)",
@@ -336,7 +336,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Piece",
     "description": "L'un des Quatre Empereurs les plus redoutés, légende vivante sans aucun fruit du démon.",
-    "image": "assets/portraits/shanks.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b727-wUJx7M1z5xON.png",
     "abilities": [
       "Haki des Rois dévastateur (Wi-Fi Haki)",
       "Vision du futur (10 secondes)",
@@ -351,7 +351,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Piece",
     "description": "Surnommé l'homme le plus fort du monde, capable de fissurer l'air et de soulever les océans.",
-    "image": "assets/portraits/barbe-blanche.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b2751-NnzW0N2vCTjX.jpg",
     "abilities": [
       "Gura Gura no Mi (séismes & tsunamis)",
       "Haki des Rois suprême",
@@ -366,7 +366,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Piece",
     "description": "Créature la plus puissante du monde capable de se transformer en dragon azur gigantesque.",
-    "image": "assets/portraits/kaido.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b46109-MT7Hm4Bk93In.png",
     "abilities": [
       "Fruit du Dragon Azur (Uo Uo no Mi)",
       "Peau quasi impénétrable",
@@ -381,7 +381,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Piece",
     "description": "Seul être connu à détenir deux fruits du démon parmi les plus destructeurs de l'histoire.",
-    "image": "assets/portraits/barbe-noire.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b3331-7ZJDc4BNv9Yp.jpg",
     "abilities": [
       "Yami Yami no Mi (annulation de fruits)",
       "Gura Gura no Mi (tremblements)",
@@ -396,7 +396,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Piece",
     "description": "Chirurgien de la Mort manipulant l'espace et la matière à l'intérieur de sa sphère.",
-    "image": "assets/portraits/trafalgar-law.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b13767-U604OJN9dxCn.jpg",
     "abilities": [
       "Ope Ope no Mi (Room & Shambles)",
       "K-Room & Puncture Wille",
@@ -411,7 +411,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Piece",
     "description": "Cuisinier des Chapeaux de Paille aux coups de pied enflammés et au corps génétiquement modifié.",
-    "image": "assets/portraits/vinsmoke-sanji.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b305-6lisPmHtCnLT.png",
     "abilities": [
       "Ifrit Jambe (flammes bleues)",
       "Exosquelette & régénération",
@@ -426,7 +426,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Piece",
     "description": "Commandant aux poings ardents capable de réduire des flottes entières en cendres.",
-    "image": "assets/portraits/portgas-d-ace.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b2072-Lc6jEdsueJUK.jpg",
     "abilities": [
       "Mera Mera no Mi (Logia du Feu)",
       "Intangibilité élémentaire",
@@ -441,7 +441,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Piece",
     "description": "L'Œil de Faucon, détenteur du titre de meilleur sabreur du monde.",
-    "image": "assets/portraits/mihawk.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/n2064-OpnF4nLi6bvL.png",
     "abilities": [
       "Lame Noire Yoru",
       "Coups capables de trancher un glacier",
@@ -456,7 +456,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Jujutsu Kaisen",
     "description": "L'exorciste le plus puissant de l'ère moderne, intouchable grâce à l'Infini.",
-    "image": "assets/portraits/gojo-satoru.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b127691-9zqh1xpIubn7.png",
     "abilities": [
       "Infini (barrière intouchable)",
       "Équation Imaginaire : Pourpre",
@@ -471,7 +471,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Jujutsu Kaisen",
     "description": "Le Roi des Fléaux, entité millénaire à la cruauté et à la maîtrise occulte inégalées.",
-    "image": "assets/portraits/ryomen-sukuna.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b133701-rCQuDpHr3UZL.png",
     "abilities": [
       "Autel Démoniaque (sans barrière)",
       "Entaille du Monde (tranche l'espace)",
@@ -486,7 +486,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Jujutsu Kaisen",
     "description": "Exorciste de classe S relié à la reine des fléaux Rika et capable de copier les sorts.",
-    "image": "assets/portraits/yuta-okkotsu.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b129571-GHJk7gviHOOw.jpg",
     "abilities": [
       "Manifestation de Rika",
       "Copie de techniques occultes",
@@ -501,7 +501,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Jujutsu Kaisen",
     "description": "Combattant au physique surhumain capable d'enchaîner les Rayons Noirs à volonté.",
-    "image": "assets/portraits/yuji-itadori.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b127212-FVm2tD0erQ5B.png",
     "abilities": [
       "Enchaînement de Rayons Noirs",
       "Force physique surhumaine",
@@ -516,7 +516,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Jujutsu Kaisen",
     "description": "Le Tueur d'Exorcistes, libéré de toute énergie occulte en échange d'un corps parfait.",
-    "image": "assets/portraits/toji-fushiguro.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b162722-btzdghBizxKS.jpg",
     "abilities": [
       "Serment Céleste physique absolu",
       "Invisibilité aux senseurs occultes",
@@ -531,7 +531,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Jujutsu Kaisen",
     "description": "Héritier de la technique des Dix Ombres et invocateur de familiers redoutables.",
-    "image": "assets/portraits/megumi-fushiguro.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b126635-L0y3I92JSUkN.png",
     "abilities": [
       "Technique des Dix Ombres",
       "Invocation de Mahoraga",
@@ -546,7 +546,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
     "description": "Détenteur du Titan Assaillant et du Titan Originel, prêt à tout pour sa vision de la liberté.",
-    "image": "assets/portraits/eren-yeager.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b40882-dsj7IP943WFF.jpg",
     "abilities": [
       "Titan Originel & Grand Terrassement",
       "Titan Assaillant & Marteau d'Armes",
@@ -561,7 +561,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
     "description": "Le soldat le plus fort de l'humanité, capable de découper des Titans en quelques secondes.",
-    "image": "assets/portraits/livai-ackerman.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b45627-CR68RyZmddGG.png",
     "abilities": [
       "Éveil génétique des Ackerman",
       "Maîtrise absolue de l'équipement tridimensionnel",
@@ -576,7 +576,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
     "description": "Guerrière d'élite du Bataillon d'exploration à la force et à l'agilité hors normes.",
-    "image": "assets/portraits/mikasa-ackerman.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b40881-F3gr1PkreDvj.png",
     "abilities": [
       "Force et réflexes d'Ackerman",
       "Précision mortelle aux lames",
@@ -591,7 +591,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
     "description": "Porteur du Titan Cuirassé, véritable forteresse vivante sur le champ de bataille.",
-    "image": "assets/portraits/reiner-braun.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b46484-P6A2GjNQn49F.png",
     "abilities": [
       "Armure intégrale de Titan Cuirassé",
       "Charge dévastatrice",
@@ -606,7 +606,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
     "description": "Fin stratège devenu détenteur du Titan Colossal à l'explosion nucléaire.",
-    "image": "assets/portraits/armin-arlert.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b46494-g7xYYuBtYPnO.png",
     "abilities": [
       "Transformation du Titan Colossal (60m)",
       "Explosion thermonucléaire",
@@ -621,7 +621,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Punch Man",
     "description": "Héros par passe-temps devenu si fort qu'il vainc n'importe quel monstre d'un seul coup de poing.",
-    "image": "assets/portraits/saitama.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b73935-ON5d0mAcrItd.jpg",
     "abilities": [
       "Coup de Poing Sérieux (One Punch)",
       "Invulnérabilité totale",
@@ -636,7 +636,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Punch Man",
     "description": "Le Chasseur de Héros capable d'imiter et de surpasser n'importe quel art martial ou force cosmique.",
-    "image": "assets/portraits/garou.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89277-xBGb4B5YISXg.png",
     "abilities": [
       "Mode Peur Cosmique",
       "Copie instantanée de puissance",
@@ -651,7 +651,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Punch Man",
     "description": "Numéro 2 de la Classe S et plus puissante télékinésiste de la planète.",
-    "image": "assets/portraits/tatsumaki.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b81929-WPVp2LQoWgkc.png",
     "abilities": [
       "Télékinésie à l'échelle d'une ville",
       "Barrière psychique permanente",
@@ -666,7 +666,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Punch Man",
     "description": "Cyborg démonique de Classe S et disciple dévoué de Saitama.",
-    "image": "assets/portraits/genos.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b73979-tVi9maPID881.jpg",
     "abilities": [
       "Canons à incinération massive",
       "Vitesse supersonique",
@@ -681,7 +681,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "One Punch Man",
     "description": "Conquérant galactique des Voleurs de Matière Noire ayant traversé l'univers pour un vrai combat.",
-    "image": "assets/portraits/boros.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/n89263-GPItRQ64F27D.png",
     "abilities": [
       "Meteoritic Burst",
       "Canon Rugissant d'Étoile Effondrée",
@@ -696,7 +696,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Hunter x Hunter",
     "description": "Roi des Fourmis Chimères, sommet absolu de l'évolution biologique et du Nen.",
-    "image": "assets/portraits/meruem.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b23277-EYmIxzL64Mji.png",
     "abilities": [
       "Aura de Nen monstrueuse",
       "Absorption de l'aura des vaincus",
@@ -711,7 +711,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Hunter x Hunter",
     "description": "Président de l'association des Hunters, capable de frapper plus vite que le mur du son.",
-    "image": "assets/portraits/isaac-netero.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b14489-WgGsdlQJka65.jpg",
     "abilities": [
       "Hyakushiki Kannon (100 paumes)",
       "Vitesse de prière supersonique",
@@ -726,7 +726,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Hunter x Hunter",
     "description": "Jeune Hunter au potentiel brut terrifiant capable de sacrifier tout son avenir pour une puissance absolue.",
-    "image": "assets/portraits/gon-freecss.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b30-lyFExKyDhefc.jpg",
     "abilities": [
       "Jajanken (Pierre, Feuille, Ciseaux)",
       "Serment Adulte (puissance du Roi)",
@@ -741,7 +741,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Hunter x Hunter",
     "description": "Prodige de la famille d'assassins Zoldyck transformant son Nen en foudre pure.",
-    "image": "assets/portraits/kirua-zoldyck.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b27-Z5O02kQUydpT.jpg",
     "abilities": [
       "Vitesse Divine (Kanmuru)",
       "Transformation d'aura en électricité",
@@ -756,7 +756,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Hunter x Hunter",
     "description": "Magicien imprévisible et sadique toujours à la recherche de duels à mort.",
-    "image": "assets/portraits/hisoka-morow.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b31-FZckOuu7L1un.png",
     "abilities": [
       "Bungee Gum (caoutchouc et colle)",
       "Texture Trompeuse",
@@ -771,7 +771,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Bleach",
     "description": "Shinigami remplaçant unissant les pouvoirs de Shinigami, Hollow, Quincy et Fullbringer.",
-    "image": "assets/portraits/ichigo-kurosaki.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b5-a7bkJgjhhigE.png",
     "abilities": [
       "Vrai Bankai Tensa Zangetsu",
       "Getsuga Tensho / Jujisho",
@@ -786,7 +786,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Bleach",
     "description": "Cerveau manipulateur immortel fusionné avec le Hogyoku.",
-    "image": "assets/portraits/sosuke-aizen.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b1086-qR9218BjZTC0.png",
     "abilities": [
       "Kyoka Suigetsu (Hypnose Absolue)",
       "Immortalité du Hogyoku",
@@ -801,7 +801,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Bleach",
     "description": "Capitaine de la 11e Division vivant uniquement pour le frisson du combat au sabre.",
-    "image": "assets/portraits/kenpachi-zaraki.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b909-slhoFBon7oiH.jpg",
     "abilities": [
       "Shikai Nozarashi (tranche les météores)",
       "Bankai démoniaque",
@@ -816,7 +816,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Bleach",
     "description": "Capitaine Commandant millénaire maniant les flammes les plus brûlantes de la Soul Society.",
-    "image": "assets/portraits/yamamoto-genryusai.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b5726-mO7kc8Abka9J.jpg",
     "abilities": [
       "Bankai Zanka no Tachi (15 millions °C)",
       "Armée de squelettes calcinés",
@@ -831,7 +831,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Bleach",
     "description": "Noble capitaine commandant des millions de pétales de lames mortelles.",
-    "image": "assets/portraits/byakuya-kuchiki.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b907-kgnDKeMtEN5y.png",
     "abilities": [
       "Senbonzakura Kageyoshi",
       "Senkei (arène de mille épées)",
@@ -846,7 +846,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Demon Slayer",
     "description": "Pourfendeur au cœur pur héritier de la légendaire Danse du Dieu du Feu.",
-    "image": "assets/portraits/tanjiro-kamado.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b126071-BTNEc1nRIv68.png",
     "abilities": [
       "Souffle du Soleil (Hinokami Kagura)",
       "Marque de Pourfendeur & Monde Transparent",
@@ -861,7 +861,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Demon Slayer",
     "description": "Roi et progéniteur de tous les démons, doté d'une régénération quasi instantanée.",
-    "image": "assets/portraits/muzan-kibutsuji.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b129132-4nIZakUZ1o8W.jpg",
     "abilities": [
       "Biokinésie & fouets mortels",
       "Régénération instantanée",
@@ -876,7 +876,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Demon Slayer",
     "description": "Le légendaire créateur de tous les Souffles, terreur absolue des démons.",
-    "image": "assets/portraits/yoriichi-tsugikuni.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b149220-OuBk7B3O6WD6.jpg",
     "abilities": [
       "Souffle du Soleil originel",
       "Monde Transparent permanent",
@@ -891,7 +891,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Demon Slayer",
     "description": "Pilier de la Flamme à l'enthousiasme ardent et au courage inébranlable.",
-    "image": "assets/portraits/kyojuro-rengoku.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b129133-VlTPowwt68rJ.png",
     "abilities": [
       "Souffle de la Flamme (9e Mouvement)",
       "Force physique explosive",
@@ -906,7 +906,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Demon Slayer",
     "description": "Démone ayant vaincu la lumière du soleil tout en préservant son humanité.",
-    "image": "assets/portraits/nezuko-kamado.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b127518-NRlq1CQ1v1ro.png",
     "abilities": [
       "Pouvoir Sanguinaire Explosif (flammes)",
       "Immunité au soleil",
@@ -921,7 +921,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux Nintendo",
     "description": "Plombier héroïque du Royaume Champignon capable d'exploiter des dizaines de transformations.",
-    "image": "assets/portraits/mario.svg",
+    "image": "https://static.wikia.nocookie.net/mario/images/0/0d/MarioAlternateJamboreeRender.png/revision/latest/scale-to-width-down/297?cb=20260203182408",
     "abilities": [
       "Étoile d'invincibilité & Fleur de Feu",
       "Force capable de soulever Bowser",
@@ -936,7 +936,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux Nintendo",
     "description": "Héros d'Hyrule choisi par la Triforce du Courage et porteur de la Lame Purificatrice.",
-    "image": "assets/portraits/link.svg",
+    "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/4/47/TLoZ_Series_Link_Render.png/revision/latest/scale-to-width-down/326?cb=20210220213135",
     "abilities": [
       "Épée de Légende (Master Sword)",
       "Bouclier Hylien & Flèches de Lumière",
@@ -951,7 +951,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux Nintendo",
     "description": "Petite boule rose trompeusement mignonne qui engloutit littéralement des dieux cosmiques.",
-    "image": "assets/portraits/kirby.svg",
+    "image": "https://static.wikia.nocookie.net/kirby/images/2/2a/Kirby_KARs.png/revision/latest/scale-to-width-down/500?cb=20250819175353&path-prefix=en",
     "abilities": [
       "Aspiration dimensionnelle infinie",
       "Copie de n'importe quel pouvoir",
@@ -966,7 +966,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux Nintendo",
     "description": "Chasseuse de primes galactique en armure Chozo modifiée par de l'ADN Métroïde.",
-    "image": "assets/portraits/samus-aran.svg",
+    "image": "https://static.wikia.nocookie.net/metroid/images/7/7f/Mom_vignette.jpg/revision/latest/scale-to-width-down/367?cb=20150704073331",
     "abilities": [
       "Costume de Puissance & Rayons Plasma",
       "Forme Métroïde (drain d'énergie)",
@@ -981,7 +981,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux Nintendo",
     "description": "Mascotte électrique iconique capable de délivrer des décharges à plusieurs millions de volts.",
-    "image": "assets/portraits/pikachu.svg",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
     "abilities": [
       "Tonnerre & Fatal-Foudre",
       "Attaque Z : Pikachute Foudroyante",
@@ -996,7 +996,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux Nintendo",
     "description": "Pokémon légendaire créé génétiquement, doté de pouvoirs psychiques écrasants.",
-    "image": "assets/portraits/mewtwo.svg",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png",
     "abilities": [
       "Télékinésie & Frappe Psy",
       "Méga-Évolution X & Y",
@@ -1011,7 +1011,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux Nintendo",
     "description": "Roi Gerudo, incarnation du Fléau et porteur de la Triforce de la Force.",
-    "image": "assets/portraits/ganondorf.svg",
+    "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/6/66/TotK_Ganondorf.png/revision/latest/scale-to-width-down/461?cb=20230513141802",
     "abilities": [
       "Triforce de la Force (quasi immortalité)",
       "Magie noire & Lévitation",
@@ -1026,7 +1026,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux Nintendo",
     "description": "Roi des Koopas à la carapace indestructible, survivant même aux trous noirs.",
-    "image": "assets/portraits/bowser.svg",
+    "image": "https://static.wikia.nocookie.net/mario/images/3/3f/SMBW_Bowser_Artwork.png/revision/latest/scale-to-width-down/499?cb=20230910142646",
     "abilities": [
       "Souffle de feu dévastateur",
       "Giga Bowser",
@@ -1041,7 +1041,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux Nintendo",
     "description": "Roi de la jungle dont un seul coup de poing peut faire tomber la lune de son orbite.",
-    "image": "assets/portraits/donkey-kong.svg",
+    "image": "https://static.wikia.nocookie.net/mario/images/c/c3/Donkey-kong.png/revision/latest/scale-to-width-down/500?cb=20250521175012",
     "abilities": [
       "Coup de poing sismique",
       "Force brute colossale",
@@ -1056,7 +1056,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux Nintendo",
     "description": "Sorcière de l'Umbra défiant anges et démons avec élégance dans un temps ralenti.",
-    "image": "assets/portraits/bayonetta.svg",
+    "image": "https://static.wikia.nocookie.net/bayonetta/images/8/82/Bayonetta_%28Bayonetta_3%29_Render_03.png/revision/latest/scale-to-width-down/315?cb=20230510044059",
     "abilities": [
       "Envoûtement (arrêt/ralentissement du temps)",
       "Invocation de démons géants (Madama Butterfly)",
@@ -1071,7 +1071,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux Nintendo",
     "description": "Porteur de la Monado, épée capable de lire l'avenir et de réécrire la réalité.",
-    "image": "assets/portraits/shulk.svg",
+    "image": "https://static.wikia.nocookie.net/xenoblade/images/0/0e/Shulk_pic.png/revision/latest?cb=20170712150059",
     "abilities": [
       "Monado III (manipulation de la réalité)",
       "Prémonition du futur en combat",
@@ -1086,7 +1086,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux SEGA & Rétro",
     "description": "Hérisson bleu le plus rapide du monde dépassant la vitesse du son et de la lumière.",
-    "image": "assets/portraits/sonic.svg",
+    "image": "https://static.wikia.nocookie.net/sonic/images/1/10/SRCSonic.png/revision/latest/scale-to-width-down/354?cb=20251202132714",
     "abilities": [
       "Super Sonic (7 Émeraudes du Chaos)",
       "Vitesse supersonique / luminique",
@@ -1101,7 +1101,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux SEGA & Rétro",
     "description": "Forme de vie ultime manipulant l'énergie du Chaos pour distordre l'espace-temps.",
-    "image": "assets/portraits/shadow-hedgehog.svg",
+    "image": "https://static.wikia.nocookie.net/sonic/images/4/45/SRCShadow.png/revision/latest/scale-to-width-down/328?cb=20251008005300",
     "abilities": [
       "Chaos Control (arrêt du temps)",
       "Chaos Spear & Chaos Blast",
@@ -1116,7 +1116,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PlayStation & Capcom",
     "description": "Chasseur de démons mi-humain mi-démon à l'arsenal extravagant et à la régénération absurde.",
-    "image": "assets/portraits/dante.svg",
+    "image": "https://static.wikia.nocookie.net/devilmaycry/images/c/c2/Dante_DMC5.png/revision/latest/scale-to-width-down/210?cb=20260807221548",
     "abilities": [
       "Sin Devil Trigger",
       "Épée Rebellion / Dante & Ebony & Ivory",
@@ -1131,7 +1131,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PlayStation & Capcom",
     "description": "Frère jumeau de Dante maniant le katana Yamato capable de trancher les dimensions.",
-    "image": "assets/portraits/vergil.svg",
+    "image": "https://static.wikia.nocookie.net/devilmaycry/images/4/4e/Vergil_DMC5.png/revision/latest/scale-to-width-down/231?cb=20260717162336",
     "abilities": [
       "Yamato (Judgment Cut End)",
       "Sin Devil Trigger",
@@ -1146,7 +1146,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PlayStation & Capcom",
     "description": "Artiste martial errant ayant maîtrisé le Néant pour purger la rage meurtrière.",
-    "image": "assets/portraits/ryu.svg",
+    "image": "https://static.wikia.nocookie.net/streetfighter/images/3/3a/Sf6-ryu.png/revision/latest/scale-to-width-down/360?cb=20220603010542",
     "abilities": [
       "Hadouken & Shoryuken",
       "Pouvoir du Néant (Mu no Ken)",
@@ -1161,7 +1161,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PlayStation & Capcom",
     "description": "Agent d'élite ayant survécu aux pires épidémies bio-organiques de la planète.",
-    "image": "assets/portraits/leon-s-kennedy.svg",
+    "image": "https://static.wikia.nocookie.net/residentevil/images/7/7d/RE9_-_Leon_Render.png/revision/latest/scale-to-width-down/194?cb=20251212111407",
     "abilities": [
       "Maîtrise absolue des armes à feu",
       "CQC & parades au couteau",
@@ -1176,7 +1176,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PlayStation & Square",
     "description": "Le Fantôme de Sparte, tueur de panthéons grecs et nordiques animé par la rage spartiate.",
-    "image": "assets/portraits/kratos.svg",
+    "image": "https://static.wikia.nocookie.net/godofwar/images/e/e9/Kratos-_GOW_Ragnarok.png/revision/latest/scale-to-width-down/311?cb=20230115190836",
     "abilities": [
       "Lames du Chaos & Hache Léviathan",
       "Rage Spartiate",
@@ -1191,7 +1191,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PlayStation & Square",
     "description": "Ex-SOLDAT maniant l'Épée Broyeuse et infusé à l'énergie Mako.",
-    "image": "assets/portraits/cloud-strife.svg",
+    "image": "https://static.wikia.nocookie.net/finalfantasy/images/e/e8/Cloud_Strife_from_FFVII_Revelation_promo_render.png/revision/latest/scale-to-width-down/433?cb=20260904175026",
     "abilities": [
       "Omnislash (13 coups simultanés)",
       "Épée Broyeuse & Matérias magiques",
@@ -1206,7 +1206,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PlayStation & Square",
     "description": "L'Ange à une aile doté du katana Masamune et d'une obsession cosmique.",
-    "image": "assets/portraits/sephiroth.svg",
+    "image": "https://static.wikia.nocookie.net/finalfantasy/images/1/18/Sephiroth_from_FFVII_Revelation_promo_render.png/revision/latest/scale-to-width-down/500?cb=20260904180304",
     "abilities": [
       "Supernova (destruction solaire)",
       "Katana Masamune de 2 mètres",
@@ -1221,7 +1221,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PlayStation & Square",
     "description": "Chasseuse Nora chassant des machines géantes grâce à son Focus et son agilité.",
-    "image": "assets/portraits/aloy.svg",
+    "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/f/f5/Aloy.png/revision/latest/scale-to-width-down/428?cb=20250705094135",
     "abilities": [
       "Focus (analyse tactique instantanée)",
       "Arcs à flèches élémentaires",
@@ -1236,7 +1236,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PlayStation & Square",
     "description": "Chasseur de trésors à la chance insolente capable de survivre à l'impossible.",
-    "image": "assets/portraits/nathan-drake.svg",
+    "image": "https://static.wikia.nocookie.net/uncharted/images/e/e1/Nathan_Drake_from_ATE_headshot.png/revision/latest/scale-to-width-down/403?cb=20221025141033",
     "abilities": [
       "Chance statistiquement surnaturelle",
       "Escalade et parkour extrême",
@@ -1251,7 +1251,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PlayStation & Square",
     "description": "Le Fantôme de Tsushima, samouraï ayant adopté la voie de l'ombre pour sauver son île.",
-    "image": "assets/portraits/jin-sakai.svg",
+    "image": "https://static.wikia.nocookie.net/ghostoftsushima/images/9/94/Jin_Sakai_key_art_cropped.png/revision/latest/scale-to-width-down/500?cb=20200802081711",
     "abilities": [
       "Postures de sabre mortelles",
       "Duel éclair (Danse de la Colère)",
@@ -1266,7 +1266,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PlayStation & Square",
     "description": "Élu de la Keyblade voyageant entre les mondes pour repousser les Ténèbres.",
-    "image": "assets/portraits/sora.svg",
+    "image": "https://static.wikia.nocookie.net/kingdomhearts/images/2/27/Sora_KHIV_Render.png/revision/latest/scale-to-width-down/265?cb=20260816173717",
     "abilities": [
       "Keyblade (magie et scellement)",
       "Formes Ultimes & Flux",
@@ -1281,7 +1281,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PlayStation & Square",
     "description": "Androïde de combat d'élite combinant grâce mortelle et arsenal lourd.",
-    "image": "assets/portraits/2b.svg",
+    "image": "https://static.wikia.nocookie.net/nier/images/3/38/YoRHa_No.2_Type_B.png/revision/latest/scale-to-width-down/260?cb=20170322051325",
     "abilities": [
       "Lames Virtuous Contract & Treaty",
       "Pod d'assistance laser/bouclier",
@@ -1296,7 +1296,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PC, Xbox & Indés",
     "description": "Guerrier éternel ayant ravagé les armées de l'Enfer pendant des millénaires.",
-    "image": "assets/portraits/doom-slayer.svg",
+    "image": "https://upload.wikimedia.org/wikipedia/en/f/fc/Doom_Slayer.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
     "abilities": [
       "Armure Praetor indestructible",
       "BFG-9000 & Super Shotgun",
@@ -1311,7 +1311,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PC, Xbox & Indés",
     "description": "Super-soldat Spartan-II ayant sauvé l'humanité face aux Covenants et au Parasite.",
-    "image": "assets/portraits/master-chief.svg",
+    "image": "https://static.wikia.nocookie.net/halo/images/8/84/InfiniteChiefTRANSPARENTholdingReachAR.png/revision/latest/scale-to-width-down/500?cb=20230220134648",
     "abilities": [
       "Armure Mjolnir avec bouclier",
       "Cortana (IA tactique)",
@@ -1326,7 +1326,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PC, Xbox & Indés",
     "description": "Survivant cubique capable de porter des millions de tonnes d'or dans ses poches sans ralentir.",
-    "image": "assets/portraits/steve-minecraft.svg",
+    "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/8/8f/Steve_%28classic%29_JE6.png/revision/latest/scale-to-width-down/222?cb=20250617163359",
     "abilities": [
       "Force de portage astronomique",
       "Armure Netherite enchantée",
@@ -1341,7 +1341,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PC, Xbox & Indés",
     "description": "Le Loup Blanc, sorceleur mutant traqueur de monstres armé de deux épées.",
-    "image": "assets/portraits/geralt-de-riv.svg",
+    "image": "https://static.wikia.nocookie.net/witcher/images/5/51/Netflix_geralt_shirt.jpg/revision/latest/scale-to-width-down/410?cb=20191228182240",
     "abilities": [
       "Signes magiques (Igni, Quen, Axii)",
       "Maîtrise absolue de l'escrime",
@@ -1356,7 +1356,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PC, Xbox & Indés",
     "description": "Demi-déesse invaincue de l'Entre-terre et vecteur de la Putréfaction Écarlate.",
-    "image": "assets/portraits/malenia.svg",
+    "image": "https://static.wikia.nocookie.net/eldenring/images/5/54/Elden_Ring_Screenshot_07.jpg/revision/latest/scale-to-width-down/500?cb=20210120142808",
     "abilities": [
       "Danse d'Aquarelle (Waterfowl Dance)",
       "Déesse de la Putréfaction (Phase 2)",
@@ -1371,7 +1371,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PC, Xbox & Indés",
     "description": "Squelette paresseux à 1 PV mais maître des raccourcis spatiaux et du Karma.",
-    "image": "assets/portraits/sans-undertale.svg",
+    "image": "https://static.wikia.nocookie.net/undertale/images/9/97/Sans_artwork_Steam_card.jpg/revision/latest/scale-to-width-down/500?cb=20160310171514",
     "abilities": [
       "Gaster Blasters",
       "Manipulation de gravité & os",
@@ -1386,7 +1386,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PC, Xbox & Indés",
     "description": "Ancien paladin déchu régnant sur l'armée des morts-vivants d'Azeroth.",
-    "image": "assets/portraits/arthas-lich-king.svg",
+    "image": "https://static.wikia.nocookie.net/wowpedia/images/7/7c/Warcraft_III_Reforged_-_The_Culling_intro_screen.jpg/revision/latest/scale-to-width-down/500?cb=20190510150959",
     "abilities": [
       "Deuillegivre (aspire les âmes)",
       "Armée du Fléau infinie",
@@ -1401,7 +1401,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PC, Xbox & Indés",
     "description": "Prince des Enfers doté des bénédictions de tout le panthéon de l'Olympe.",
-    "image": "assets/portraits/zagreus.svg",
+    "image": "https://static.wikia.nocookie.net/hades_gamepedia_en/images/2/29/Zagreus.png/revision/latest/scale-to-width-down/362?cb=20181210044005",
     "abilities": [
       "Bénédictions des dieux de l'Olympe",
       "Armes infernales légendaires",
@@ -1416,7 +1416,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PC, Xbox & Indés",
     "description": "Petit réceptacle du Vide ayant terrassé la Radiance, déesse de la lumière.",
-    "image": "assets/portraits/chevalier-hollow-knight.svg",
+    "image": "https://static.wikia.nocookie.net/hollowknight/images/6/60/The_Knight_Shade.png/revision/latest?cb=20190507173407",
     "abilities": [
       "Seigneur des Ombres (Vide pur)",
       "Aiguillon Pur & Sorts d'Âme",
@@ -1431,7 +1431,7 @@ window.CHARACTERS_DB = [
     "medium": "Jeux Vidéo",
     "licence": "Jeux PC, Xbox & Indés",
     "description": "Héros de Bordeciel possédant l'âme d'un dragon et la puissance du Thu'um.",
-    "image": "assets/portraits/dovahkiin.svg",
+    "image": "https://static.wikia.nocookie.net/elderscrolls/images/4/4f/Dovahkiin_%28dragonborn%29.jpg/revision/latest/scale-to-width-down/333?cb=20110831192724",
     "abilities": [
       "Cris Draconiques (Fus Ro Dah, Ralenti)",
       "Absorption d'âmes de dragons",
@@ -1446,7 +1446,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Tisseur agile doté d'une force proportionnelle à celle d'une araignée et d'un sixième sens.",
-    "image": "assets/portraits/spider-man.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/620-spider-man.jpg",
     "abilities": [
       "Sens d'araignée (prémonition)",
       "Force capable de soulever des trains",
@@ -1461,7 +1461,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Génie milliardaire équipé d'une armure nanotechnologique capable de tenir tête à des dieux.",
-    "image": "assets/portraits/iron-man.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/346-iron-man.jpg",
     "abilities": [
       "Armure Nanotech (Mark 85 / Hulkbuster)",
       "Intelligence de génie suprême",
@@ -1476,7 +1476,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Dieu du Tonnerre d'Asgard armé de Mjolnir et Stormbreaker.",
-    "image": "assets/portraits/thor.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/659-thor.jpg",
     "abilities": [
       "Stormbreaker & Mjolnir (Bifrost)",
       "Contrôle absolu de la foudre",
@@ -1491,7 +1491,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Colosse gamma dont la force augmente littéralement sans limite avec sa colère.",
-    "image": "assets/portraits/hulk.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/332-hulk.jpg",
     "abilities": [
       "Force potentiellement infinie",
       "Régénération cellulaire quasi instantanée",
@@ -1506,7 +1506,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Le Titan Fou, conquérant cosmique qui effaça la moitié de l'univers d'un claquement de doigts.",
-    "image": "assets/portraits/thanos.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/655-thanos.jpg",
     "abilities": [
       "Gant de l'Infini (6 Gemmes)",
       "Force surpassant Hulk et Thor",
@@ -1521,7 +1521,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Sorcière suprême de la Magie du Chaos capable de réécrire la réalité par un simple murmure.",
-    "image": "assets/portraits/scarlet-witch.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/579-scarlet-witch.jpg",
     "abilities": [
       "Magie du Chaos (altération de réalité)",
       "Télékinésie & télépathie de masse",
@@ -1536,7 +1536,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Sorcier Suprême protecteur des dimensions contre les entités multiverselles.",
-    "image": "assets/portraits/doctor-strange.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/226-doctor-strange.jpg",
     "abilities": [
       "Œil d'Agamotto (manipulation du temps)",
       "Dimension Miroir & portails",
@@ -1551,7 +1551,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Super-soldat au bouclier en vibranium et leader tactique suprême des Avengers.",
-    "image": "assets/portraits/captain-america.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/149-captain-america.jpg",
     "abilities": [
       "Bouclier en vibranium",
       "Digne de manier Mjolnir",
@@ -1566,7 +1566,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Mutant centenaire au squelette en adamantium et au facteur guérisseur quasi absolu.",
-    "image": "assets/portraits/wolverine.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/717-wolverine.jpg",
     "abilities": [
       "Facteur guérisseur surhumain",
       "Griffes et squelette en adamantium",
@@ -1581,7 +1581,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Mercenaire disert totalement immortel brisant le quatrième mur.",
-    "image": "assets/portraits/deadpool.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/213-deadpool.jpg",
     "abilities": [
       "Régénération immortelle",
       "Imprévisibilité totale",
@@ -1596,7 +1596,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Mutant de niveau Oméga commandant toutes les forces électromagnétiques de l'univers.",
-    "image": "assets/portraits/magneto.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/423-magneto.jpg",
     "abilities": [
       "Contrôle du métal & du champ magnétique terrestre",
       "Manipulation du fer dans le sang",
@@ -1611,7 +1611,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Héraut de Galactus doté du Pouvoir Cosmique traversant les galaxies.",
-    "image": "assets/portraits/silver-surfer.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/598-silver-surfer.jpg",
     "abilities": [
       "Pouvoir Cosmique (manipulation de matière/énergie)",
       "Vitesse supraluminique",
@@ -1626,7 +1626,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "DC Comics",
     "description": "Dernier fils de Krypton, parangon absolu des super-héros baigné par la lumière du soleil jaune.",
-    "image": "assets/portraits/superman.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/644-superman.jpg",
     "abilities": [
       "Force quasi infinie",
       "Vitesse proche de celle de Flash",
@@ -1641,7 +1641,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "DC Comics",
     "description": "Le Chevalier Noir, plus grand détective du monde capable de vaincre la Justice League par préparation.",
-    "image": "assets/portraits/batman.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/69-batman.jpg",
     "abilities": [
       "Temps de préparation imbattable",
       "Maître de 127 arts martiaux",
@@ -1656,7 +1656,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "DC Comics",
     "description": "L'homme le plus rapide du monde, connecté à la Force Véloce qui régit le temps.",
-    "image": "assets/portraits/flash.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/263-flash.jpg",
     "abilities": [
       "Vitesse bien supérieure à la lumière",
       "Voyage temporel (Flashpoint)",
@@ -1671,7 +1671,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "DC Comics",
     "description": "Princesse amazone et demi-déesse fille de Zeus à l'entraînement guerrier millénaire.",
-    "image": "assets/portraits/wonder-woman.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/720-wonder-woman.jpg",
     "abilities": [
       "Force & vitesse rivalisant avec Superman",
       "Lasso de Vérité & Bracelets divins",
@@ -1686,7 +1686,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "DC Comics",
     "description": "Tyran d'Apokolips et dieu maléfique cherchant l'Équation d'Anti-Vie.",
-    "image": "assets/portraits/darkseid.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/204-darkseid.jpg",
     "abilities": [
       "Rayons Oméga (téléguidés & effaçants)",
       "Force écrasant la Justice League",
@@ -1701,7 +1701,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "DC Comics",
     "description": "Clown prince du crime imprévisible dont le chaos pur met à genoux les plus grands héros.",
-    "image": "assets/portraits/joker-dc.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/370-joker.jpg",
     "abilities": [
       "Génie criminel chaotique",
       "Gaz hilarant mortel",
@@ -1716,7 +1716,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "DC Comics",
     "description": "Être quantique omniscient percevant tout le temps simultanément et manipulant les atomes.",
-    "image": "assets/portraits/doctor-manhattan.svg",
+    "image": "https://static.wikia.nocookie.net/watchmen/images/4/40/Drmanhattanfrenchportfolio.jpg/revision/latest/scale-to-width-down/356?cb=20250503134052",
     "abilities": [
       "Manipulation subatomique totale",
       "Omniprésence temporelle",
@@ -1731,7 +1731,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "DC Comics",
     "description": "Pilote intrépide maniant l'arme la plus puissante de l'univers : l'anneau de volonté.",
-    "image": "assets/portraits/green-lantern.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/306-hal-jordan.jpg",
     "abilities": [
       "Constructions énergétiques illimitées",
       "Vol interstellaire",
@@ -1746,7 +1746,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "DC Comics",
     "description": "Roi d'Atlantide commandant les sept mers avec le Trident de Poséidon.",
-    "image": "assets/portraits/aquaman.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/38-aquaman.jpg",
     "abilities": [
       "Trident sacré d'Atlan",
       "Contrôle des créatures marines",
@@ -1761,7 +1761,7 @@ window.CHARACTERS_DB = [
     "medium": "Comics / Super-Héros",
     "licence": "DC Comics",
     "description": "Mortel recevant la sagesse, la force, la vitesse et la foudre de six divinités.",
-    "image": "assets/portraits/shazam.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/156-captain-marvel.jpg",
     "abilities": [
       "Éclair magique SHAZAM",
       "Force d'Hercule & Vitesse de Mercure",
@@ -1776,7 +1776,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Star Wars",
     "description": "Seigneur Noir des Sith et icône absolue de la terreur galactique.",
-    "image": "assets/portraits/dark-vador.svg",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/208-darth-vader.jpg",
     "abilities": [
       "Maîtrise écrasante de la Force",
       "Étranglement télékinétique",
@@ -1791,7 +1791,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Star Wars",
     "description": "Grand Maître Jedi ayant restauré l'Ordre et racheté l'Élu.",
-    "image": "assets/portraits/luke-skywalker.svg",
+    "image": "https://static.wikia.nocookie.net/starwars/images/3/3d/LukeSkywalker.png/revision/latest/scale-to-width-down/375?cb=20241221010122",
     "abilities": [
       "Connexion pure à la Force",
       "Projection astrale interplanétaire",
@@ -1806,7 +1806,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Star Wars",
     "description": "Doyen de l'Ordre Jedi pendant 900 ans, légende de sagesse et d'acrobaties au sabre.",
-    "image": "assets/portraits/maitre-yoda.svg",
+    "image": "https://static.wikia.nocookie.net/starwars/images/d/d6/Yoda_SWSB.png/revision/latest/scale-to-width-down/417?cb=20150206140125",
     "abilities": [
       "Absorption d'éclairs de Force",
       "Forme IV Ataru ultra-acrobatique",
@@ -1821,7 +1821,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Star Wars",
     "description": "Cerveau suprême ayant renversé la République et détruit l'Ordre Jedi de l'intérieur.",
-    "image": "assets/portraits/palpatine.svg",
+    "image": "https://static.wikia.nocookie.net/starwars/images/e/e2/Palpatine-CEUEEd.png/revision/latest/scale-to-width-down/417?cb=20250105171652",
     "abilities": [
       "Éclairs de Force capables d'abattre une flotte",
       "Manipulation politique absolue",
@@ -1836,7 +1836,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Star Wars",
     "description": "Maître Jedi légendaire au style défensif impénétrable et au terrain surélevé imbattable.",
-    "image": "assets/portraits/obi-wan-kenobi.svg",
+    "image": "https://static.wikia.nocookie.net/starwars/images/4/4e/ObiWanHS-SWE.jpg/revision/latest/scale-to-width-down/375?cb=20111115052816",
     "abilities": [
       "Maîtrise absolue du Soresu (défense)",
       "Terrain surélevé (High Ground)",
@@ -1851,7 +1851,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Star Wars",
     "description": "L'Élu de la Force au potentiel midi-chlorien le plus élevé jamais mesuré.",
-    "image": "assets/portraits/anakin-skywalker.svg",
+    "image": "https://static.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png/revision/latest/scale-to-width-down/400?cb=20130621175844",
     "abilities": [
       "Potentiel de Force illimité",
       "Agressivité foudroyante au sabre",
@@ -1866,7 +1866,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Star Wars",
     "description": "Padawan d'Anakin devenue guerrière indépendante aux deux sabres blancs.",
-    "image": "assets/portraits/ahsoka-tano.svg",
+    "image": "https://static.wikia.nocookie.net/starwars/images/2/27/Ahsoka-Tano-AG-2023.png/revision/latest/scale-to-width-down/382?cb=20231009063143",
     "abilities": [
       "Style Jar'Kai à deux sabres",
       "Agilité féline exceptionnelle",
@@ -1881,7 +1881,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Star Wars",
     "description": "Guerrier Zabrak survivant à son propre tranchage grâce à sa haine pure.",
-    "image": "assets/portraits/darth-maul.svg",
+    "image": "https://static.wikia.nocookie.net/starwars/images/8/89/MaulHS_SWI185.png/revision/latest/scale-to-width-down/375?cb=20181108061212",
     "abilities": [
       "Double sabre laser emblématique",
       "Survie par le Côté Obscur",
@@ -1896,7 +1896,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Le Seigneur des Anneaux",
     "description": "Esprit immortel Maia envoyé en Terre du Milieu pour guider les peuples libres contre Sauron.",
-    "image": "assets/portraits/gandalf.svg",
+    "image": "https://static.wikia.nocookie.net/lotr/images/4/47/Gandalf_by_Damiani.png/revision/latest/scale-to-width-down/330?cb=20230617183640",
     "abilities": [
       "Flammes d'Anor & Anneau Narya",
       "Magie divine des Maiar",
@@ -1911,7 +1911,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Le Seigneur des Anneaux",
     "description": "Seigneur Ténébreux du Mordor et forgeron de l'Anneau Unique.",
-    "image": "assets/portraits/sauron.svg",
+    "image": "https://static.wikia.nocookie.net/lotr/images/9/90/Sauron-2.jpg/revision/latest?cb=20110508182634",
     "abilities": [
       "Pouvoir de l'Anneau Unique",
       "Force physique dévastatrice (masse d'arme)",
@@ -1926,7 +1926,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Le Seigneur des Anneaux",
     "description": "Héritier d'Isildur, rôdeur légendaire et roi légitime du Gondor.",
-    "image": "assets/portraits/aragorn.svg",
+    "image": "https://static.wikia.nocookie.net/lotr/images/5/50/KipR_Aragorn.JPG/revision/latest/scale-to-width-down/354?cb=20230422203513",
     "abilities": [
       "Épée Andúril (Flamme de l'Ouest)",
       "87 ans d'expérience de rôdeur",
@@ -1941,7 +1941,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Le Seigneur des Anneaux",
     "description": "Prince elfe de la Forêt Noire à la précision surnaturelle et à la grâce aérienne.",
-    "image": "assets/portraits/legolas.svg",
+    "image": "https://static.wikia.nocookie.net/lotr/images/b/be/Legolas%2C_Giancola.jpg/revision/latest/scale-to-width-down/280?cb=20231003014314",
     "abilities": [
       "Tir à l'arc infaillible en plein mouvement",
       "Vision elfique à des lieues",
@@ -1956,7 +1956,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Le Seigneur des Anneaux",
     "description": "Ancien chef de l'ordre des Istari corrompu par la soif du pouvoir d'Isengard.",
-    "image": "assets/portraits/saroumane.svg",
+    "image": "https://static.wikia.nocookie.net/lotr/images/1/11/Saruman_MattStewart.png/revision/latest/scale-to-width-down/391?cb=20230602171506",
     "abilities": [
       "Voix hypnotique et persuasive",
       "Magie météorologique et explosive",
@@ -1971,7 +1971,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Le Seigneur des Anneaux",
     "description": "Chef des Nazgûl chevauchant une ombre ailée, terreur absolue des armées du Gondor.",
-    "image": "assets/portraits/roi-sorcier-angmar.svg",
+    "image": "https://static.wikia.nocookie.net/lotr/images/4/46/Melissa_Hitchcock_-_The_Black_Captain.webp/revision/latest/scale-to-width-down/350?cb=20241018153425",
     "abilities": [
       "Prophétie : aucun homme ne peut le tuer",
       "Cri paralysant de Nazgûl",
@@ -1986,7 +1986,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Harry Potter",
     "description": "Plus grand sorcier de l'ère moderne, seul maître redouté par Voldemort.",
-    "image": "assets/portraits/albus-dumbledore.svg",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/7/75/Albus_Dumbledore_%28HBPF_promo%29.jpg/revision/latest/scale-to-width-down/375?cb=20150822232849",
     "abilities": [
       "Baguette de Sureau",
       "Magie sans baguette ni parole",
@@ -2001,7 +2001,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Harry Potter",
     "description": "Le Seigneur des Ténèbres ayant morcelé son âme en sept Horcruxes pour conquérir la mort.",
-    "image": "assets/portraits/voldemort.svg",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/9/97/Voldemort_Headshot_DHF1.png/revision/latest/scale-to-width-down/375?cb=20161203031453",
     "abilities": [
       "Avada Kedavra sans hésitation",
       "Vol sans balai",
@@ -2016,7 +2016,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Harry Potter",
     "description": "Le Survivant, Auror prodige et maître légitime des Reliques de la Mort.",
-    "image": "assets/portraits/harry-potter.svg",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/c/ce/Harry_Potter_DHF1.jpg/revision/latest?cb=20140603201724",
     "abilities": [
       "Maître de la Cape d'Invisibilité",
       "Expecto Patronum surpuissant",
@@ -2031,7 +2031,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Harry Potter",
     "description": "Maître des Potions, espion double le plus brillant et inventeur de maléfices mortels.",
-    "image": "assets/portraits/severus-rogue.svg",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a3/Severus_Snape.jpg/revision/latest/scale-to-width-down/335?cb=20150307193047",
     "abilities": [
       "Occlumancie impénétrable",
       "Sectumsempra (création personnelle)",
@@ -2046,7 +2046,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Harry Potter",
     "description": "Sorcière la plus brillante de sa génération, mémoire encyclopédique de toute la magie.",
-    "image": "assets/portraits/hermione-granger.svg",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/3/34/Hermione_Granger.jpg/revision/latest/scale-to-width-down/375?cb=20251206062840",
     "abilities": [
       "Répertoire de sortilèges immense",
       "Intelligence et sang-froid",
@@ -2061,7 +2061,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Harry Potter",
     "description": "Lieutenante la plus fanatique et meurtrière de Voldemort.",
-    "image": "assets/portraits/bellatrix-lestrange.svg",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/1/14/BellatrixLestrange.png/revision/latest/scale-to-width-down/295?cb=20171101034243",
     "abilities": [
       "Sortilèges Impardonnables sans remords",
       "Vitesse de duel redoutable",
@@ -2076,7 +2076,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Cinéma Action & Sci-Fi",
     "description": "Roi des Monstres, titan préhistorique de plus de 100 mètres nourri à l'énergie atomique.",
-    "image": "assets/portraits/godzilla.svg",
+    "image": "https://static.wikia.nocookie.net/godzilla/images/9/9b/1998godzilla-1266293297.jpg/revision/latest/scale-to-width-down/337?cb=20260103170140",
     "abilities": [
       "Souffle Atomique perçant la croûte terrestre",
       "Forme Thermonucléaire",
@@ -2091,7 +2091,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Cinéma Action & Sci-Fi",
     "description": "L'Élu capable de percevoir le code source de la Matrice et d'en tordre les lois physiques.",
-    "image": "assets/portraits/neo-matrix.svg",
+    "image": "https://static.wikia.nocookie.net/matrix/images/3/32/Neo.jpg/revision/latest/scale-to-width-down/333?cb=20250617223852",
     "abilities": [
       "Arrêt des balles par la pensée",
       "Vol supersonique",
@@ -2106,7 +2106,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Cinéma Action & Sci-Fi",
     "description": "Baba Yaga, assassin légendaire capable d'éliminer des dizaines de tueurs avec un simple crayon.",
-    "image": "assets/portraits/john-wick.svg",
+    "image": "https://static.wikia.nocookie.net/john-wick8561/images/a/a1/John_Wick.webp/revision/latest/scale-to-width-down/343?cb=20230809124750",
     "abilities": [
       "Gun-Fu chirurgical",
       "Costume pare-balles tactique",
@@ -2121,7 +2121,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Cinéma Action & Sci-Fi",
     "description": "Cyborg assassin envoyé du futur, squelette en hyper-alliage sous peau humaine.",
-    "image": "assets/portraits/terminator-t800.svg",
+    "image": "https://static.wikia.nocookie.net/terminator/images/1/1c/Tg-t800-bts-170543-100.jpeg/revision/latest/scale-to-width-down/500?cb=20151009071612",
     "abilities": [
       "Endosquelette en alliage quasi indestructible",
       "Aucune douleur ni peur",
@@ -2136,7 +2136,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Cinéma Action & Sci-Fi",
     "description": "Titan primate souverain de l'Île du Crâne armé d'une hache énergétique.",
-    "image": "assets/portraits/king-kong.svg",
+    "image": "https://static.wikia.nocookie.net/kingkong/images/e/ec/Kong2024BEASTglove.jpg/revision/latest/scale-to-width-down/408?cb=20251021204825&path-prefix=en",
     "abilities": [
       "Hache dorsale absorbant l'énergie atomique",
       "Gant B.E.A.S.T.",
@@ -2151,7 +2151,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Cinéma Action & Sci-Fi",
     "description": "Chasseur extraterrestre traquant les proies les plus dangereuses de la galaxie.",
-    "image": "assets/portraits/predator.svg",
+    "image": "https://static.wikia.nocookie.net/avp/images/0/03/Yautja.png/revision/latest/scale-to-width-down/332?cb=20150801140540",
     "abilities": [
       "Camouflage optique quasi invisible",
       "Canon plasma d'épaule à visée laser",
@@ -2166,7 +2166,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Cinéma Action & Sci-Fi",
     "description": "Organisme parfait à l'instinct de chasse impitoyable et au sang moléculairement acide.",
-    "image": "assets/portraits/xenomorphe-alien.svg",
+    "image": "https://static.wikia.nocookie.net/avp/images/e/ec/Productionstill03.PNG/revision/latest?cb=20121202084112",
     "abilities": [
       "Sang acide extrêmement corrosif",
       "Double mâchoire perforante",
@@ -2181,7 +2181,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Cinéma Action & Sci-Fi",
     "description": "Chef instable des Sept doté des pouvoirs d'un dieu et d'un ego sans limite.",
-    "image": "assets/portraits/homelander.svg",
+    "image": "https://static.wikia.nocookie.net/amazons-the-boys/images/d/d4/The_Homelander_S5.png/revision/latest/scale-to-width-down/500?cb=20260408014531",
     "abilities": [
       "Rayons laser oculaires instantanés",
       "Vol supersonique",
@@ -2196,7 +2196,7 @@ window.CHARACTERS_DB = [
     "medium": "Films & Séries",
     "licence": "Cinéma Action & Sci-Fi",
     "description": "Maître de l'Upside Down frappant ses victimes depuis l'esprit pour ouvrir des failles.",
-    "image": "assets/portraits/vecna-stranger.svg",
+    "image": "https://static.wikia.nocookie.net/strangerthings8338/images/4/4d/Vecna_S5.jpeg/revision/latest/scale-to-width-down/439?cb=20251229052347",
     "abilities": [
       "Télépathie et torture mentale à distance",
       "Télékinésie brisant les os",
@@ -2211,7 +2211,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Animation Occidentale",
     "description": "Guerrier Viltrumite millénaire capable de raser une civilisation planétaire en quelques minutes.",
-    "image": "assets/portraits/omni-man.svg",
+    "image": "https://static.wikia.nocookie.net/amazon-invincible/images/8/8d/Nolan_coalition_fullbod.png/revision/latest/scale-to-width-down/171?cb=20260510211004",
     "abilities": [
       "Vitesse détruisant l'atmosphère",
       "Force capable de dévier des astéroïdes",
@@ -2226,7 +2226,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Animation Occidentale",
     "description": "Porteur de l'Omnitrix contenant l'ADN de plus d'un million d'espèces extraterrestres.",
-    "image": "assets/portraits/ben-10.svg",
+    "image": "https://static.wikia.nocookie.net/ben10/images/2/2e/Ben_10_Heroes_Glitch.png/revision/latest/scale-to-width-down/164?cb=20260322204137",
     "abilities": [
       "Alien X (omnipotence cosmique)",
       "Clockwork (contrôle du temps)",
@@ -2241,7 +2241,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Animation Occidentale",
     "description": "Dernier Maître de l'Air et pont entre le monde matériel et spirituel.",
-    "image": "assets/portraits/aang-avatar.svg",
+    "image": "https://static.wikia.nocookie.net/avatar/images/a/ae/Aang_at_Jasmine_Dragon.png/revision/latest?cb=20250504214141",
     "abilities": [
       "État d'Avatar (tous les éléments combinés)",
       "Maîtrise Air, Eau, Terre, Feu",
@@ -2256,7 +2256,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Animation Occidentale",
     "description": "Scientifique cynique le plus intelligent du multivers muni d'un pistolet à portails.",
-    "image": "assets/portraits/rick-sanchez.svg",
+    "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
     "abilities": [
       "Pistolet à portails interdimensionnels",
       "Implants cybernétiques secrets",
@@ -2271,7 +2271,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Animation Occidentale",
     "description": "Démon triangle de la deuxième dimension prêt à déclencher le Weirdmageddon.",
-    "image": "assets/portraits/bill-cipher.svg",
+    "image": "https://static.wikia.nocookie.net/gravityfalls/images/e/ea/S1e19_bill_snap.png/revision/latest/scale-to-width-down/500?cb=20130905173319",
     "abilities": [
       "Manipulation de la matière et du temps",
       "Possession d'esprits",
@@ -2286,7 +2286,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Animation Occidentale",
     "description": "Panda maladroit devenu le maître suprême du Chi et du Kung-Fu.",
-    "image": "assets/portraits/po-kung-fu-panda.svg",
+    "image": "https://static.wikia.nocookie.net/kungfupanda/images/2/28/PoXiao.jpg/revision/latest/scale-to-width-down/374?cb=20261004063324",
     "abilities": [
       "Prise du Doigt Wuxi (envoi dans les esprits)",
       "Maîtrise du Chi (Dragon d'or)",
@@ -2301,7 +2301,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "My Hero Academia",
     "description": "Symbole de la Paix et héros numéro 1 dont un seul coup change la météo.",
-    "image": "assets/portraits/all-might.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89224-K6KEuQAuYKzq.jpg",
     "abilities": [
       "One For All à 100%",
       "United States of Smash",
@@ -2316,7 +2316,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "My Hero Academia",
     "description": "Neuvième héritier du One For All combinant sept Alters légendaires.",
-    "image": "assets/portraits/izuku-midoriya.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89028-8w1I9o1ISHMg.png",
     "abilities": [
       "One For All + Gearshift + Fa Jin",
       "Sens du Danger & Fouet Noir",
@@ -2331,7 +2331,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "My Hero Academia",
     "description": "Héritier de All For One capable de réduire une ville entière en poussière d'un toucher.",
-    "image": "assets/portraits/shigaraki-tomura.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89226-qGXqFthO4SM3.jpg",
     "abilities": [
       "Désintégration à l'échelle d'une métropole",
       "All For One (centaines d'Alters)",
@@ -2346,7 +2346,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "My Hero Academia",
     "description": "Prodige explosif maniant des détonations surpuissantes avec une précision aérienne.",
-    "image": "assets/portraits/katsuki-bakugo.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b88892-bdOha3lNcaN6.png",
     "abilities": [
       "Cluster (explosions supersoniques)",
       "Howitzer Impact",
@@ -2361,7 +2361,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "My Hero Academia",
     "description": "Héros bicolore maîtrisant simultanément la glace polaire et les flammes bleues.",
-    "image": "assets/portraits/shoto-todoroki.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89220-KNBwaVFAR8FD.png",
     "abilities": [
       "Mi-Glace Mi-Feu (Phosphor)",
       "Glacier instantané géant",
@@ -2376,7 +2376,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Solo Leveling & Manhwa",
     "description": "Le Monarque des Ombres commandant une armée immortelle de millions de guerriers.",
-    "image": "assets/portraits/sung-jin-woo.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b129928-BCEjVaP0AQSw.png",
     "abilities": [
       "Extraction d'Ombres (Arise)",
       "Armée immortelle (Igris, Beru, Bellion)",
@@ -2391,7 +2391,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Classiques Dark Anime",
     "description": "Vampire originel quasi impossible à tuer abritant des millions d'âmes en lui.",
-    "image": "assets/portraits/alucard-hellsing.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/n601-CVySkaFQgsPW.jpg",
     "abilities": [
       "Omniprésence (Schrödinger)",
       "Libération Niveau Zéro (armée de morts)",
@@ -2406,7 +2406,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Classiques Dark Anime",
     "description": "L'Épéiste Noir défiant des dieux démoniaques avec l'épée Tueuse de Dragons.",
-    "image": "assets/portraits/guts-berserk.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b422-XTaiTuvRohsV.png",
     "abilities": [
       "Armure du Berserker",
       "Épée Tueuse de Dragons (200 kg)",
@@ -2421,7 +2421,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Classiques Dark Anime",
     "description": "L'Alchimiste d'Acier capable de transmuter la matière d'un simple claquement de mains.",
-    "image": "assets/portraits/edward-elric.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b11-TA5Nuk7EDUZG.jpg",
     "abilities": [
       "Transmutation sans cercle alchimique",
       "Lame & membres Automail",
@@ -2436,7 +2436,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "JoJo's Bizarre Adventure",
     "description": "Porteur de Star Platinum capable d'arrêter le temps et de briser des diamants.",
-    "image": "assets/portraits/jotaro-kujo.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b4003-gWDSEGbeOAll.png",
     "abilities": [
       "Star Platinum : The World (arrêt du temps)",
       "Ora Ora Ora à vitesse lumière",
@@ -2451,7 +2451,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "JoJo's Bizarre Adventure",
     "description": "Fils de Dio ayant éveillé le Stand ultime : Gold Experience Requiem.",
-    "image": "assets/portraits/giorno-giovanna.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b10529-AloL8jjZwjsg.png",
     "abilities": [
       "Gold Experience Requiem (retour à zéro)",
       "Annulation de toute action et volonté",
@@ -2466,7 +2466,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "JoJo's Bizarre Adventure",
     "description": "Vampire mégalomane dominant le temps grâce à The World.",
-    "image": "assets/portraits/dio-brando.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b4004-w0OtWuvjhftG.png",
     "abilities": [
       "The World (arrêt du temps croissant)",
       "Force & régénération vampirique",
@@ -2481,7 +2481,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Classiques Rétro Manga",
     "description": "Chevalier d'Athéna brûlant son Cosmos jusqu'à égaler les dieux de l'Olympe.",
-    "image": "assets/portraits/seiya-pegase.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/2285.jpg",
     "abilities": [
       "Météores de Pégase (vitesse lumière)",
       "Armure Divine de Pégase",
@@ -2496,7 +2496,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Classiques Rétro Manga",
     "description": "Héritier du Hokuto Shinken faisant imploser ses ennemis par leurs points vitaux.",
-    "image": "assets/portraits/kenshiro.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b2511-I5ff3jioC5Ze.jpg",
     "abilities": [
       "Hokuto Shinken (destruction interne)",
       "Musou Tensei (intangibilité absolue)",
@@ -2511,7 +2511,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Fairy Tail & Shonen",
     "description": "Chasseur de Dragon de Feu tirant sa puissance démesurée de ses émotions.",
-    "image": "assets/portraits/natsu-dragneel.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b5187-y1OEdRu9sPN2.png",
     "abilities": [
       "Magie du Chasseur de Dragon de Feu",
       "Mode Roi Dragon de Feu / Foudre",
@@ -2526,7 +2526,7 @@ window.CHARACTERS_DB = [
     "medium": "Animé / Manga",
     "licence": "Fairy Tail & Shonen",
     "description": "Chevalier-mage né sans aucune magie mais armé d'épées d'Anti-Magie.",
-    "image": "assets/portraits/asta-black-clover.svg",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b123285-tKijiuQErDS0.png",
     "abilities": [
       "Anti-Magie annulant tout sortilège",
       "Union Démoniaque (Liebe)",

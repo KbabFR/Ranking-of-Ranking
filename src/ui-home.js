@@ -194,7 +194,7 @@
                                   <span class="mini-rank">#${row.rank}</span>
                                   ${
                                     row.image
-                                      ? `<img class="mini-thumb" src="${esc(row.image)}" alt="${esc(row.name)}" loading="lazy" onerror="this.style.display='none'"/>`
+                                      ? `<img class="mini-thumb" src="${esc(row.image)}" alt="${esc(row.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(row))}" data-licence="${esc(row.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>`
                                       : ''
                                   }
                                   <div class="mini-info">
@@ -325,7 +325,7 @@
               .map(
                 (c) => `
               <div class="db-card">
-                <img class="db-thumb" src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy" onerror="this.style.display='none'"/>
+                <img class="db-thumb" src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(c))}" data-licence="${esc(c.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                 <div class="db-card-body">
                   <div class="db-card-head">
                     <strong>${esc(c.name)} ${c.isCustom ? '<span class="custom-badge">Perso local</span>' : ''}</strong>

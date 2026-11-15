@@ -173,7 +173,7 @@
                       title="Cliquer pour voir la fiche de ${esc(slotChar.name)}"
                     >
                       <span class="rank-num ${rankClass}">#${rank}</span>
-                      <img class="rank-thumb" src="${esc(slotChar.image)}" alt="${esc(slotChar.name)}" onerror="this.style.display='none'"/>
+                      <img class="rank-thumb" src="${esc(slotChar.image)}" alt="${esc(slotChar.name)}" data-fallback="${esc(ROR.getFallbackImage(slotChar))}" data-licence="${esc(slotChar.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                       <div class="rank-char-info">
                         <div class="rank-char-name">${esc(slotChar.name)}</div>
                         <div class="rank-char-licence">${esc(slotChar.licence)}</div>
@@ -253,7 +253,9 @@
                   class="char-artwork-img"
                   src="${esc(char.image)}"
                   alt="${esc(char.name)}"
-                  onerror="this.style.opacity='0.2'"
+                  data-fallback="${esc(ROR.getFallbackImage(char))}"
+                  data-licence="${esc(char.licence)}"
+                  onerror="window.ROR && window.ROR.onImgError(this)"
                 />
               </div>
 
@@ -381,7 +383,7 @@
                       <span class="ov-licence">${esc(ch.licence)}</span>
                     </div>
                     <div class="ov-img-wrap">
-                      <img src="${esc(ch.image)}" alt="${esc(ch.name)}" loading="lazy" onerror="this.style.display='none'"/>
+                      <img src="${esc(ch.image)}" alt="${esc(ch.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(ch))}" data-licence="${esc(ch.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                       <button
                         type="button"
                         class="ov-inspect-btn"
@@ -643,7 +645,7 @@
             <span class="char-licence-pill">${esc(char.licence)}</span>
           </div>
           <div class="char-artwork-box">
-            <img class="char-artwork-img" src="${esc(char.image)}" alt="${esc(char.name)}" onerror="this.style.opacity='0.2'"/>
+            <img class="char-artwork-img" src="${esc(char.image)}" alt="${esc(char.name)}" data-fallback="${esc(ROR.getFallbackImage(char))}" data-licence="${esc(char.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
           </div>
           <h2 class="char-name">${esc(char.name)}</h2>
           <p class="char-desc">${esc(char.description)}</p>
@@ -681,7 +683,7 @@
             .map(
               (c) => `
             <div class="burned-item">
-              <img class="mini-thumb" src="${esc(c.image)}" alt="${esc(c.name)}" onerror="this.style.display='none'"/>
+              <img class="mini-thumb" src="${esc(c.image)}" alt="${esc(c.name)}" data-fallback="${esc(ROR.getFallbackImage(c))}" data-licence="${esc(c.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
               <div>
                 <strong>${esc(c.name)}</strong>
                 <div class="muted">${esc(c.licence)}</div>

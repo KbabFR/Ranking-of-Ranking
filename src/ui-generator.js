@@ -3,11 +3,15 @@
 
   const ROR = (global.ROR = global.ROR || {});
 
+  const CUSTOM_OPTION = '__CUSTOM__';
+
   const DEFAULT_DRAFT = () => ({
     id: null,
     name: '',
     medium: 'Animé / Manga',
     licence: '',
+    mediumCustomMode: false,
+    licenceCustomMode: false,
     description: '',
     image: '',
     abilities: ['', '', ''],
@@ -69,7 +73,7 @@
           <span class="prio-badge" style="margin-left:auto;">★ ${draft.priority}</span>
         </div>
         <div class="char-artwork-box">
-          <img class="char-artwork-img" src="${esc(imgSrc)}" alt="${esc(name)}" onerror="this.style.opacity='0.25'"/>
+          <img class="char-artwork-img" src="${esc(imgSrc)}" alt="${esc(name)}" data-licence="${esc(licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
         </div>
         <div class="char-card-body">
           <h3 class="char-name">${esc(name)}</h3>
@@ -112,7 +116,22 @@
     const customChars = ROR.AppState.customCharacters || [];
 
     const existingMediums = Array.from(new Set(allChars.map((c) => c.medium))).sort((a, b) => a.localeCompare(b, 'fr'));
-    const existingLicences = Array.from(new Set(allChars.map((c) => c.licence))).sort((a, b) => a.localeCompare(b, 'fr'));
+    if (!draft.mediumCustomMode && !draft.medium && existingMediums.length > 0) {
+      draft.medium = existingMediums[0];
+    }
+    const isMediumCustom = draft.mediumCustomMode || (Boolean(draft.medium) && !existingMediums.includes(draft.medium));
+    draft.mediumCustomMode = isMediumCustom;
+
+    const existingLicencesAll = Array.from(new Set(allChars.map((c) => c.licence))).sort((a, b) => a.localeCompare(b, 'fr'));
+    const licencesForMedium = isMediumCustom
+      ? existingLicencesAll
+      : Array.from(new Set(allChars.filter((c) => c.medium === draft.medium).map((c) => c.licence))).sort((a, b) =>
+          a.localeCompare(b, 'fr')
+        );
+    const availableLicences = licencesForMedium.length > 0 ? licencesForMedium : existingLicencesAll;
+    const isLicenceCustom =
+      draft.licenceCustomMode || (Boolean(draft.licence) && !availableLicences.includes(draft.licence));
+    draft.licenceCustomMode = isLicenceCustom;
 
     const q = listSearch.trim().toLowerCase();
     const filteredCustom = customChars.filter((c) => {
@@ -171,21 +190,42 @@
               </div>
 
               <div class="gen-row-2">
-                <label class="field-group">
-                  <span class="field-label">Médium *</span>
-                  <input type="text" class="field-input" id="gen-medium" list="gen-mediums-list" required placeholder="Ex: Animé / Manga" value="${esc(draft.medium)}" />
-                  <datalist id="gen-mediums-list">
-                    ${existingMediums.map((m) => `<option value="${esc(m)}"></option>`).join('')}
-                  </datalist>
-                </label>
+                <div class="field-group">
+                  <label class="field-label" for="gen-medium-select">Médium *</label>
+                  <select class="field-input" id="gen-medium-select" ${isMediumCustom ? '' : 'required'}>
+                    ${existingMediums
+                      .map(
+                        (m) =>
+                          `<option value="${esc(m)}" ${!isMediumCustom && draft.medium === m ? 'selected' : ''}>${esc(m)}</option>`
+                      )
+                      .join('')}
+                    <option value="${CUSTOM_OPTION}" ${isMediumCustom ? 'selected' : ''}>➕ Personnalisé (saisir à la main)</option>
+                  </select>
+                  ${
+                    isMediumCustom
+                      ? `<input type="text" class="field-input" id="gen-medium-custom" required placeholder="Saisir le médium (ex: Webtoon, Roman...)" value="${esc(draft.medium)}" />`
+                      : ''
+                  }
+                </div>
 
-                <label class="field-group">
-                  <span class="field-label">Licence *</span>
-                  <input type="text" class="field-input" id="gen-licence" list="gen-licences-list" required placeholder="Ex: Dragon Ball, Jeux Nintendo..." value="${esc(draft.licence)}" />
-                  <datalist id="gen-licences-list">
-                    ${existingLicences.map((l) => `<option value="${esc(l)}"></option>`).join('')}
-                  </datalist>
-                </label>
+                <div class="field-group">
+                  <label class="field-label" for="gen-licence-select">Licence *</label>
+                  <select class="field-input" id="gen-licence-select" ${isLicenceCustom ? '' : 'required'}>
+                    <option value="" disabled ${!isLicenceCustom && !draft.licence ? 'selected' : ''}>-- Choisir une licence --</option>
+                    ${availableLicences
+                      .map(
+                        (l) =>
+                          `<option value="${esc(l)}" ${!isLicenceCustom && draft.licence === l ? 'selected' : ''}>${esc(l)}</option>`
+                      )
+                      .join('')}
+                    <option value="${CUSTOM_OPTION}" ${isLicenceCustom ? 'selected' : ''}>➕ Personnalisé (saisir à la main)</option>
+                  </select>
+                  ${
+                    isLicenceCustom
+                      ? `<input type="text" class="field-input" id="gen-licence-custom" required placeholder="Saisir la licence (ex: Solo Leveling...)" value="${esc(draft.licence)}" />`
+                      : ''
+                  }
+                </div>
               </div>
 
               <div class="field-group">
@@ -283,7 +323,7 @@
                         const isActiveEdit = draft.id === ch.id;
                         return `
                           <div class="gen-char-item ${isActiveEdit ? 'is-editing' : ''}">
-                            <img class="gen-char-thumb" src="${esc(ch.image || ROR.generateInlinePortraitSvg(ch.name, ch.licence))}" alt="${esc(ch.name)}" onerror="this.style.opacity='0.25'"/>
+                            <img class="gen-char-thumb" src="${esc(ch.image || ROR.generateInlinePortraitSvg(ch.name, ch.licence))}" alt="${esc(ch.name)}" data-fallback="${esc(ROR.getFallbackImage(ch))}" data-licence="${esc(ch.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                             <div class="gen-char-info">
                               <div class="gen-char-top">
                                 <strong>${esc(ch.name)}</strong>
@@ -336,11 +376,55 @@
       draft.name = e.target.value;
       renderPreviewCard(container);
     });
-    container.querySelector('#gen-medium')?.addEventListener('input', (e) => {
+
+    container.querySelector('#gen-medium-select')?.addEventListener('change', (e) => {
+      const val = e.target.value;
+      if (val === CUSTOM_OPTION) {
+        draft.mediumCustomMode = true;
+        if (existingMediums.includes(draft.medium)) {
+          draft.medium = '';
+        }
+        ROR.renderGeneratorScreen(container);
+        container.querySelector('#gen-medium-custom')?.focus();
+        return;
+      }
+      draft.mediumCustomMode = false;
+      draft.medium = val;
+      if (!draft.licenceCustomMode) {
+        const nextLicences = allChars.filter((c) => c.medium === val).map((c) => c.licence);
+        if (!nextLicences.includes(draft.licence)) {
+          draft.licence = '';
+        }
+      }
+      ROR.renderGeneratorScreen(container);
+    });
+
+    container.querySelector('#gen-medium-custom')?.addEventListener('input', (e) => {
       draft.medium = e.target.value;
       renderPreviewCard(container);
     });
-    container.querySelector('#gen-licence')?.addEventListener('input', (e) => {
+
+    container.querySelector('#gen-licence-select')?.addEventListener('change', (e) => {
+      const val = e.target.value;
+      if (val === CUSTOM_OPTION) {
+        draft.licenceCustomMode = true;
+        if (availableLicences.includes(draft.licence)) {
+          draft.licence = '';
+        }
+        ROR.renderGeneratorScreen(container);
+        container.querySelector('#gen-licence-custom')?.focus();
+        return;
+      }
+      draft.licenceCustomMode = false;
+      draft.licence = val;
+      if (draft.licenceCustomMode === false && container.querySelector('#gen-licence-custom')) {
+        ROR.renderGeneratorScreen(container);
+      } else {
+        renderPreviewCard(container);
+      }
+    });
+
+    container.querySelector('#gen-licence-custom')?.addEventListener('input', (e) => {
       draft.licence = e.target.value;
       renderPreviewCard(container);
     });
@@ -465,6 +549,8 @@
           name: found.name,
           medium: found.medium,
           licence: found.licence,
+          mediumCustomMode: !existingMediums.includes(found.medium),
+          licenceCustomMode: false,
           description: found.description,
           image: found.image,
           abilities: found.abilities.length > 0 ? [...found.abilities] : [''],
@@ -484,6 +570,8 @@
           name: `${found.name} (copie)`,
           medium: found.medium,
           licence: found.licence,
+          mediumCustomMode: !existingMediums.includes(found.medium),
+          licenceCustomMode: false,
           description: found.description,
           image: found.image,
           abilities: found.abilities.length > 0 ? [...found.abilities] : [''],
