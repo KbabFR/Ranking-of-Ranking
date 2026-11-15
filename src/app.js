@@ -17,6 +17,7 @@
         targetCount: setup.targetCount,
         maxSwaps: setup.maxSwaps,
         selectedLicences: setup.selectedLicences,
+        enabledSpecialCategories: setup.enabledSpecialCategories,
         characters
       });
       ROR.navigateTo('game');

@@ -628,7 +628,10 @@ window.CHARACTERS_DB = [
       "Éternuement qui détruit Jupiter",
       "Croissance exponentielle infinie"
     ],
-    "priority": 10
+    "priority": 10,
+    "specialCategories": {
+      "overcheate": true
+    }
   },
   {
     "id": "garou",
@@ -1503,6 +1506,7 @@ window.CHARACTERS_DB = [
   {
     "id": "thanos",
     "name": "Thanos",
+    "complement": "Avec Gantelet de l'Infini",
     "medium": "Comics / Super-Héros",
     "licence": "Marvel",
     "description": "Le Titan Fou, conquérant cosmique qui effaça la moitié de l'univers d'un claquement de doigts.",
@@ -1723,7 +1727,10 @@ window.CHARACTERS_DB = [
       "Désintégration instantanée",
       "Immortalité absolue"
     ],
-    "priority": 8
+    "priority": 8,
+    "specialCategories": {
+      "overcheate": true
+    }
   },
   {
     "id": "green-lantern",
@@ -1848,6 +1855,7 @@ window.CHARACTERS_DB = [
   {
     "id": "anakin-skywalker",
     "name": "Anakin Skywalker",
+    "complement": "Avant Dark Vador",
     "medium": "Films & Séries",
     "licence": "Star Wars",
     "description": "L'Élu de la Force au potentiel midi-chlorien le plus élevé jamais mesuré.",
@@ -2223,6 +2231,7 @@ window.CHARACTERS_DB = [
   {
     "id": "ben-10",
     "name": "Ben Tennyson (Ben 10)",
+    "complement": "Omnitrix complet (Alien X)",
     "medium": "Animé / Manga",
     "licence": "Animation Occidentale",
     "description": "Porteur de l'Omnitrix contenant l'ADN de plus d'un million d'espèces extraterrestres.",
@@ -2233,7 +2242,10 @@ window.CHARACTERS_DB = [
       "Feedback & Way Big",
       "Sécurité anti-mort de l'Omnitrix"
     ],
-    "priority": 10
+    "priority": 10,
+    "specialCategories": {
+      "overcheate": true
+    }
   },
   {
     "id": "aang-avatar",
@@ -2278,7 +2290,10 @@ window.CHARACTERS_DB = [
       "Altération totale de la réalité",
       "Omniscience multidimensionnelle"
     ],
-    "priority": 8
+    "priority": 8,
+    "specialCategories": {
+      "overcheate": true
+    }
   },
   {
     "id": "po-kung-fu-panda",
@@ -2388,6 +2403,7 @@ window.CHARACTERS_DB = [
   {
     "id": "alucard-hellsing",
     "name": "Alucard (Hellsing)",
+    "complement": "Post-Schrödinger",
     "medium": "Animé / Manga",
     "licence": "Classiques Dark Anime",
     "description": "Vampire originel quasi impossible à tuer abritant des millions d'âmes en lui.",
@@ -2398,7 +2414,10 @@ window.CHARACTERS_DB = [
       "Pistolets Casull & Jackal",
       "Régénération absolue"
     ],
-    "priority": 9
+    "priority": 9,
+    "specialCategories": {
+      "overcheate": true
+    }
   },
   {
     "id": "guts-berserk",
@@ -2448,6 +2467,7 @@ window.CHARACTERS_DB = [
   {
     "id": "giorno-giovanna",
     "name": "Giorno Giovanna",
+    "complement": "Gold Experience Requiem",
     "medium": "Animé / Manga",
     "licence": "JoJo's Bizarre Adventure",
     "description": "Fils de Dio ayant éveillé le Stand ultime : Gold Experience Requiem.",
@@ -2458,7 +2478,10 @@ window.CHARACTERS_DB = [
       "Création de vie à partir d'objets",
       "Boucle de mort infinie"
     ],
-    "priority": 9
+    "priority": 9,
+    "specialCategories": {
+      "overcheate": true
+    }
   },
   {
     "id": "dio-brando",

@@ -175,7 +175,7 @@
                       <span class="rank-num ${rankClass}">#${rank}</span>
                       <img class="rank-thumb" src="${esc(slotChar.image)}" alt="${esc(slotChar.name)}" data-fallback="${esc(ROR.getFallbackImage(slotChar))}" data-licence="${esc(slotChar.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                       <div class="rank-char-info">
-                        <div class="rank-char-name">${esc(slotChar.name)}</div>
+                        <div class="rank-char-name">${ROR.renderCharNameHtml(slotChar, { compact: true })}</div>
                         <div class="rank-char-licence">${esc(slotChar.licence)}</div>
                       </div>
                       <span class="rank-lock-icon">🔒</span>
@@ -245,6 +245,7 @@
               <div class="char-card-header">
                 <span class="char-medium-pill">${esc(char.medium)}</span>
                 <span class="char-licence-pill">${esc(char.licence)}</span>
+                ${ROR.renderSpecialBadgesHtml(char, 'power')}
                 ${isJoker ? '<span class="char-joker-pill">🃏 JOKER</span>' : ''}
               </div>
 
@@ -260,7 +261,7 @@
               </div>
 
               <div class="char-card-body">
-                <h2 class="char-name">${esc(char.name)}</h2>
+                <h2 class="char-name">${ROR.renderCharNameHtml(char)}</h2>
                 <p class="char-desc">${esc(char.description)}</p>
 
                 <div class="char-abilities-block">
@@ -392,7 +393,7 @@
                         aria-label="Voir les détails de ${esc(ch.name)}"
                       >👁</button>
                     </div>
-                    <div class="ov-name">${esc(ch.name)}</div>
+                    <div class="ov-name">${ROR.renderCharNameHtml(ch, { compact: true })}</div>
                     ${isSelected ? '<span class="ov-selected-tag">Sélectionné</span>' : ''}
                   </div>
                 `;
@@ -643,11 +644,12 @@
           <div class="char-card-header">
             <span class="char-medium-pill">${esc(char.medium)}</span>
             <span class="char-licence-pill">${esc(char.licence)}</span>
+            ${ROR.renderSpecialBadgesHtml(char, 'power')}
           </div>
           <div class="char-artwork-box">
             <img class="char-artwork-img" src="${esc(char.image)}" alt="${esc(char.name)}" data-fallback="${esc(ROR.getFallbackImage(char))}" data-licence="${esc(char.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
           </div>
-          <h2 class="char-name">${esc(char.name)}</h2>
+          <h2 class="char-name">${ROR.renderCharNameHtml(char)}</h2>
           <p class="char-desc">${esc(char.description)}</p>
           <div class="char-abilities-block">
             <div class="abilities-title">Points forts &amp; Capacités</div>

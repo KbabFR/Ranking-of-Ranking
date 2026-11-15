@@ -8,6 +8,7 @@
   const DEFAULT_DRAFT = () => ({
     id: null,
     name: '',
+    complement: '',
     medium: 'Animé / Manga',
     licence: '',
     mediumCustomMode: false,
@@ -15,7 +16,10 @@
     description: '',
     image: '',
     abilities: ['', '', ''],
-    priority: 8
+    priority: 8,
+    specialCategories: {
+      overcheate: false
+    }
   });
 
   let draft = DEFAULT_DRAFT();
@@ -59,24 +63,31 @@
     if (!previewHost) return;
     const esc = ROR.escapeHtml;
     const name = draft.name.trim() || 'Nom du personnage';
+    const complement = (draft.complement || '').trim();
     const medium = draft.medium.trim() || 'Médium';
     const licence = draft.licence.trim() || 'Licence';
     const desc = draft.description.trim() || 'Description du personnage...';
     const abilities = draft.abilities.map((a) => a.trim()).filter(Boolean);
     const imgSrc = draft.image.trim() || ROR.generateInlinePortraitSvg(name, licence);
+    const previewChar = {
+      name,
+      complement,
+      specialCategories: draft.specialCategories || {}
+    };
 
     previewHost.innerHTML = `
       <div class="gen-preview-card">
         <div class="char-card-header">
           <span class="char-medium-pill">${esc(medium)}</span>
           <span class="char-licence-pill">${esc(licence)}</span>
+          ${ROR.renderSpecialBadgesHtml(previewChar, 'power')}
           <span class="prio-badge" style="margin-left:auto;">★ ${draft.priority}</span>
         </div>
         <div class="char-artwork-box">
           <img class="char-artwork-img" src="${esc(imgSrc)}" alt="${esc(name)}" data-licence="${esc(licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
         </div>
         <div class="char-card-body">
-          <h3 class="char-name">${esc(name)}</h3>
+          <h3 class="char-name">${ROR.renderCharNameHtml(previewChar)}</h3>
           <p class="char-desc">${esc(desc)}</p>
           <div class="char-abilities-block">
             <div class="abilities-title">Points forts &amp; Capacités</div>
@@ -179,13 +190,12 @@
               <div class="gen-row-2">
                 <label class="field-group">
                   <span class="field-label">Nom du personnage *</span>
-                  <input type="text" class="field-input" id="gen-name" required placeholder="Ex: Gojo Satoru" value="${esc(draft.name)}" />
+                  <input type="text" class="field-input" id="gen-name" required placeholder="Ex: Anakin Skywalker" value="${esc(draft.name)}" />
                 </label>
 
                 <label class="field-group">
-                  <span class="field-label">Indice de priorité : <strong id="gen-prio-val">${draft.priority}</strong>/10</span>
-                  <input type="range" id="gen-priority" min="1" max="10" step="1" value="${draft.priority}" class="range-input" />
-                  <span class="field-help">10 = personnage incontournable, pris en priorité lors des tirages limités.</span>
+                  <span class="field-label">Complément (optionnel)</span>
+                  <input type="text" class="field-input" id="gen-complement" placeholder="Ex: Avant Dark Vador, Avec Gantelet..." value="${esc(draft.complement || '')}" />
                 </label>
               </div>
 
@@ -255,6 +265,32 @@
                 <span class="field-label">Description</span>
                 <textarea class="field-input field-textarea" id="gen-desc" rows="2" placeholder="Courte description marquante du personnage...">${esc(draft.description)}</textarea>
               </label>
+
+              <div class="gen-row-2">
+                <label class="field-group">
+                  <span class="field-label">Indice de priorité : <strong id="gen-prio-val">${draft.priority}</strong>/10</span>
+                  <input type="range" id="gen-priority" min="1" max="10" step="1" value="${draft.priority}" class="range-input" />
+                  <span class="field-help">10 = personnage incontournable, pris en priorité lors des tirages limités.</span>
+                </label>
+
+                <div class="field-group">
+                  <span class="field-label">Catégories spéciales (Mode Puissance)</span>
+                  <div class="gen-special-list">
+                    ${ROR.SPECIAL_CATEGORIES.map((cat) => {
+                      const checked = Boolean(draft.specialCategories?.[cat.id]);
+                      return `
+                        <label class="gen-special-option ${checked ? 'is-checked' : ''}">
+                          <input type="checkbox" class="gen-special-checkbox" data-gen-special="${esc(cat.id)}" ${checked ? 'checked' : ''} />
+                          <div>
+                            <div class="gen-special-title">${esc(cat.emoji)} ${esc(cat.label)}</div>
+                            <div class="field-help">${esc(cat.description)}</div>
+                          </div>
+                        </label>
+                      `;
+                    }).join('')}
+                  </div>
+                </div>
+              </div>
 
               <div class="field-group">
                 <div class="field-head-inline">
@@ -326,7 +362,7 @@
                             <img class="gen-char-thumb" src="${esc(ch.image || ROR.generateInlinePortraitSvg(ch.name, ch.licence))}" alt="${esc(ch.name)}" data-fallback="${esc(ROR.getFallbackImage(ch))}" data-licence="${esc(ch.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                             <div class="gen-char-info">
                               <div class="gen-char-top">
-                                <strong>${esc(ch.name)}</strong>
+                                <strong>${ROR.renderCharNameHtml(ch, { compact: true })} ${ROR.renderSpecialBadgesHtml(ch, 'power')}</strong>
                                 <span class="prio-badge">★ ${ch.priority}</span>
                               </div>
                               <div class="db-card-sub">${esc(ch.medium)} • ${esc(ch.licence)}</div>
@@ -375,6 +411,20 @@
     container.querySelector('#gen-name')?.addEventListener('input', (e) => {
       draft.name = e.target.value;
       renderPreviewCard(container);
+    });
+
+    container.querySelector('#gen-complement')?.addEventListener('input', (e) => {
+      draft.complement = e.target.value;
+      renderPreviewCard(container);
+    });
+
+    container.querySelectorAll('.gen-special-checkbox').forEach((cb) => {
+      cb.addEventListener('change', (e) => {
+        const catId = e.target.getAttribute('data-gen-special');
+        draft.specialCategories = { ...(draft.specialCategories || {}), [catId]: e.target.checked };
+        e.target.closest('.gen-special-option')?.classList.toggle('is-checked', e.target.checked);
+        renderPreviewCard(container);
+      });
     });
 
     container.querySelector('#gen-medium-select')?.addEventListener('change', (e) => {
@@ -492,12 +542,14 @@
         ROR.upsertCustomCharacter({
           id: draft.id,
           name: draft.name,
+          complement: draft.complement,
           medium: draft.medium,
           licence: draft.licence,
           description: draft.description,
           image: draft.image,
           abilities: draft.abilities.map((a) => a.trim()).filter(Boolean),
-          priority: draft.priority
+          priority: draft.priority,
+          specialCategories: draft.specialCategories
         });
         draft = DEFAULT_DRAFT();
         ROR.renderGeneratorScreen(container);
@@ -547,6 +599,7 @@
         draft = {
           id: found.id,
           name: found.name,
+          complement: found.complement || '',
           medium: found.medium,
           licence: found.licence,
           mediumCustomMode: !existingMediums.includes(found.medium),
@@ -554,7 +607,8 @@
           description: found.description,
           image: found.image,
           abilities: found.abilities.length > 0 ? [...found.abilities] : [''],
-          priority: found.priority
+          priority: found.priority,
+          specialCategories: { ...(found.specialCategories || {}) }
         };
         ROR.renderGeneratorScreen(container);
       });
@@ -568,6 +622,7 @@
         draft = {
           id: null,
           name: `${found.name} (copie)`,
+          complement: found.complement || '',
           medium: found.medium,
           licence: found.licence,
           mediumCustomMode: !existingMediums.includes(found.medium),
@@ -575,7 +630,8 @@
           description: found.description,
           image: found.image,
           abilities: found.abilities.length > 0 ? [...found.abilities] : [''],
-          priority: found.priority
+          priority: found.priority,
+          specialCategories: { ...(found.specialCategories || {}) }
         };
         ROR.renderGeneratorScreen(container);
       });
