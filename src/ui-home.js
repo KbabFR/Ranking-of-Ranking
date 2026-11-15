@@ -198,7 +198,7 @@
                                       : ''
                                   }
                                   <div class="mini-info">
-                                    <div class="mini-name">${esc(row.name)}</div>
+                                    <div class="mini-name">${ROR.renderCharNameHtml(row, { compact: true })}</div>
                                     <div class="mini-licence">${esc(row.licence)}</div>
                                   </div>
                                 </div>
@@ -265,6 +265,7 @@
     let searchTerm = '';
     let filterMedium = 'ALL';
     let filterLicence = 'ALL';
+    let filterSpecial = 'ALL';
 
     function render() {
       const chars = ROR.AppState.characters;
@@ -285,9 +286,12 @@
       const filtered = chars.filter((c) => {
         if (filterMedium !== 'ALL' && c.medium !== filterMedium) return false;
         if (filterLicence !== 'ALL' && c.licence !== filterLicence) return false;
+        if (filterSpecial === 'OVERCHEATE' && !c.specialCategories?.overcheate) return false;
+        if (filterSpecial === 'NORMAL' && c.specialCategories?.overcheate) return false;
         if (!q) return true;
         return (
           c.name.toLowerCase().includes(q) ||
+          (c.complement || '').toLowerCase().includes(q) ||
           c.licence.toLowerCase().includes(q) ||
           c.description.toLowerCase().includes(q)
         );
@@ -313,6 +317,11 @@
               <option value="ALL">Toutes les licences</option>
               ${availableLicences.map((l) => `<option value="${esc(l)}" ${filterLicence === l ? 'selected' : ''}>${esc(l)}</option>`).join('')}
             </select>
+            <select class="db-filter" data-filter-special aria-label="Filtrer par catégorie spéciale">
+              <option value="ALL">Toutes catégories</option>
+              <option value="NORMAL" ${filterSpecial === 'NORMAL' ? 'selected' : ''}>Classiques uniquement</option>
+              <option value="OVERCHEATE" ${filterSpecial === 'OVERCHEATE' ? 'selected' : ''}>♾️ Overcheaté uniquement</option>
+            </select>
             <label class="btn btn-sm btn-secondary db-upload-label">
               📂 Importer JSON / CSV
               <input type="file" accept=".json,.csv" hidden data-import-file />
@@ -328,7 +337,7 @@
                 <img class="db-thumb" src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(c))}" data-licence="${esc(c.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                 <div class="db-card-body">
                   <div class="db-card-head">
-                    <strong>${esc(c.name)} ${c.isCustom ? '<span class="custom-badge">Perso local</span>' : ''}</strong>
+                    <strong>${ROR.renderCharNameHtml(c, { compact: true })} ${c.isCustom ? '<span class="custom-badge">Perso local</span>' : ''} ${ROR.renderSpecialBadgesHtml(c, 'power')}</strong>
                     <span class="prio-badge" title="Indice de priorité">★ ${c.priority}</span>
                   </div>
                   <div class="db-card-sub">${esc(c.medium)} • ${esc(c.licence)}</div>
@@ -368,6 +377,11 @@
 
       overlay.querySelector('[data-filter-licence]')?.addEventListener('change', (e) => {
         filterLicence = e.target.value;
+        render();
+      });
+
+      overlay.querySelector('[data-filter-special]')?.addEventListener('change', (e) => {
+        filterSpecial = e.target.value;
         render();
       });
 

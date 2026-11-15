@@ -7,6 +7,18 @@
   ROR.STORAGE_KEY = 'ranking_of_ranking_history_v1';
   ROR.CUSTOM_CHARS_KEY = 'ranking_of_ranking_custom_chars_v1';
 
+  ROR.SPECIAL_CATEGORIES = [
+    {
+      id: 'overcheate',
+      mode: 'power',
+      label: 'Overcheaté',
+      emoji: '♾️',
+      description:
+        'Puissance absolue, méta-narrative, volontairement sans plafond ou impossible à argumenter en 1v1 inter-univers (ex : Saitama).',
+      defaultEnabled: false
+    }
+  ];
+
   ROR.AppState = {
     screen: 'home', // 'home' | 'setup' | 'game' | 'generator'
     mode: 'power',
@@ -18,7 +30,9 @@
       targetCount: 20,
       maxSwaps: 3,
       selectedLicences: new Set(),
-      collapsedMediums: new Set()
+      collapsedMediums: new Set(),
+      enabledSpecialCategories: new Set(),
+      collapsedSpecialCategories: new Set(['overcheate'])
     },
 
     game: null
@@ -42,18 +56,83 @@
     return arr;
   };
 
+  ROR.normalizeSpecialCategories = function normalizeSpecialCategories(ch) {
+    const raw = (ch && typeof ch.specialCategories === 'object' && ch.specialCategories) || {};
+    const out = {};
+    for (const cat of ROR.SPECIAL_CATEGORIES) {
+      out[cat.id] = Boolean(raw[cat.id] ?? ch?.[cat.id]);
+    }
+    return out;
+  };
+
+  ROR.getSpecialCategoriesForMode = function getSpecialCategoriesForMode(mode = ROR.AppState.mode || 'power') {
+    return ROR.SPECIAL_CATEGORIES.filter((cat) => cat.mode === mode);
+  };
+
+  ROR.isCharacterEnabledBySpecialCategories = function isCharacterEnabledBySpecialCategories(
+    char,
+    mode = 'power',
+    enabledSpecialCategories = ROR.AppState.setup?.enabledSpecialCategories
+  ) {
+    if (!char) return false;
+    const enabledSet =
+      enabledSpecialCategories && typeof enabledSpecialCategories.has === 'function'
+        ? enabledSpecialCategories
+        : new Set();
+    const cats = char.specialCategories || {};
+    for (const cat of ROR.getSpecialCategoriesForMode(mode)) {
+      if (cats[cat.id] && !enabledSet.has(cat.id)) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  ROR.getEligibleCharacters = function getEligibleCharacters(
+    characters,
+    selectedLicences,
+    enabledSpecialCategories = ROR.AppState.setup?.enabledSpecialCategories,
+    mode = ROR.AppState.mode || 'power'
+  ) {
+    return (characters || []).filter(
+      (ch) => selectedLicences.has(ch.licence) && ROR.isCharacterEnabledBySpecialCategories(ch, mode, enabledSpecialCategories)
+    );
+  };
+
+  ROR.renderCharNameHtml = function renderCharNameHtml(char, { compact = false } = {}) {
+    if (!char) return '';
+    const esc = ROR.escapeHtml;
+    const comp = String(char.complement || '').trim();
+    if (!comp) return esc(char.name);
+    return `${esc(char.name)} <span class="char-complement${compact ? ' is-compact' : ''}">${esc(comp)}</span>`;
+  };
+
+  ROR.renderSpecialBadgesHtml = function renderSpecialBadgesHtml(char, mode = ROR.AppState.mode || 'power') {
+    if (!char || !char.specialCategories) return '';
+    const esc = ROR.escapeHtml;
+    return ROR.getSpecialCategoriesForMode(mode)
+      .filter((cat) => char.specialCategories[cat.id])
+      .map(
+        (cat) =>
+          `<span class="char-special-pill" title="${esc(cat.description)}">${esc(cat.emoji)} ${esc(cat.label)}</span>`
+      )
+      .join('');
+  };
+
   ROR.normalizeCharacters = function normalizeCharacters(rawList, { isCustom = false } = {}) {
     return rawList
       .filter((ch) => ch && ch.name && ch.licence && ch.medium)
       .map((ch, idx) => ({
         id: ch.id || `char-${idx}-${String(ch.name).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
         name: String(ch.name).trim(),
+        complement: String(ch.complement || '').trim(),
         medium: String(ch.medium).trim(),
         licence: String(ch.licence).trim(),
         description: String(ch.description || '').trim(),
         image: String(ch.image || '').trim(),
         abilities: Array.isArray(ch.abilities) ? ch.abilities.map((a) => String(a).trim()).filter(Boolean) : [],
         priority: Number.isFinite(Number(ch.priority)) ? Math.max(1, Math.min(10, Number(ch.priority))) : 5,
+        specialCategories: ROR.normalizeSpecialCategories(ch),
         isCustom: Boolean(ch.isCustom || isCustom),
         createdAt: ch.createdAt || null
       }));
@@ -116,8 +195,14 @@
    * Selects N + J characters from selected licences, balanced across licences
    * and prioritizing highest priority scores inside each licence.
    */
-  ROR.selectCharactersForGame = function selectCharactersForGame(characters, selectedLicences, targetCount) {
-    const pool = characters.filter((ch) => selectedLicences.has(ch.licence));
+  ROR.selectCharactersForGame = function selectCharactersForGame(
+    characters,
+    selectedLicences,
+    targetCount,
+    enabledSpecialCategories = ROR.AppState.setup?.enabledSpecialCategories,
+    mode = ROR.AppState.mode || 'power'
+  ) {
+    const pool = ROR.getEligibleCharacters(characters, selectedLicences, enabledSpecialCategories, mode);
     if (pool.length < targetCount) {
       throw new Error(`Pas assez de personnages (${pool.length}/${targetCount}).`);
     }
@@ -161,8 +246,21 @@
     };
   };
 
-  ROR.createGameState = function createGameState({ mode, targetCount, maxSwaps, selectedLicences, characters }) {
-    const { mainDeck, jokerDeck } = ROR.selectCharactersForGame(characters, selectedLicences, targetCount);
+  ROR.createGameState = function createGameState({
+    mode,
+    targetCount,
+    maxSwaps,
+    selectedLicences,
+    enabledSpecialCategories = new Set(),
+    characters
+  }) {
+    const { mainDeck, jokerDeck } = ROR.selectCharactersForGame(
+      characters,
+      selectedLicences,
+      targetCount,
+      enabledSpecialCategories,
+      mode
+    );
 
     return {
       id: `game-${Date.now()}`,
@@ -215,6 +313,7 @@
         rank: idx + 1,
         id: ch?.id || '',
         name: ch?.name || 'Vide',
+        complement: ch?.complement || '',
         licence: ch?.licence || '',
         medium: ch?.medium || '',
         image: ch?.image || ''
@@ -245,7 +344,12 @@
     const lines = [`Ranking of Ranking — Mode ${modeLabel} (${slots.length} persos)`, ''];
     slots.forEach((ch, idx) => {
       const prefix = `#${idx + 1}`;
-      lines.push(`${prefix} - ${ch ? `${ch.name} (${ch.licence})` : 'Vide'}`);
+      if (!ch) {
+        lines.push(`${prefix} - Vide`);
+        return;
+      }
+      const label = ch.complement ? `${ch.name} (${ch.complement})` : ch.name;
+      lines.push(`${prefix} - ${label} (${ch.licence})`);
     });
     return lines.join('\n');
   };
@@ -285,12 +389,16 @@
     const headers = splitCsvLine(lines[0]).map((h) => h.toLowerCase());
     const idxOf = (names) => headers.findIndex((h) => names.includes(h));
     const iName = idxOf(['name', 'nom']);
+    const iComp = idxOf(['complement', 'complément', 'variant', 'variante']);
     const iMedium = idxOf(['medium', 'médium']);
     const iLicence = idxOf(['licence', 'license']);
     const iDesc = idxOf(['description', 'desc']);
     const iImg = idxOf(['image', 'img']);
     const iAbil = idxOf(['abilities', 'capacites', 'capacités', 'points_forts']);
     const iPrio = idxOf(['priority', 'priorite', 'priorité']);
+    const iOver = idxOf(['overcheate', 'overcheated', 'overcheaté']);
+
+    const parseBoolCell = (val) => /^(1|true|oui|yes|x)$/i.test(String(val || '').trim());
 
     const list = [];
     for (let r = 1; r < lines.length; r++) {
@@ -300,12 +408,16 @@
       const abilitiesRaw = iAbil >= 0 ? row[iAbil] || '' : '';
       list.push({
         name,
+        complement: iComp >= 0 ? row[iComp] || '' : '',
         medium: (iMedium >= 0 ? row[iMedium] : '') || 'Divers',
         licence: (iLicence >= 0 ? row[iLicence] : '') || 'Personnalisé',
         description: iDesc >= 0 ? row[iDesc] || '' : '',
         image: iImg >= 0 ? row[iImg] || '' : '',
         abilities: abilitiesRaw.split(/[|;]/).map((s) => s.trim()).filter(Boolean),
-        priority: iPrio >= 0 ? Number(row[iPrio]) || 5 : 5
+        priority: iPrio >= 0 ? Number(row[iPrio]) || 5 : 5,
+        specialCategories: {
+          overcheate: iOver >= 0 ? parseBoolCell(row[iOver]) : false
+        }
       });
     }
     return ROR.normalizeCharacters(list);
@@ -422,12 +534,14 @@
         {
           id,
           name: input.name,
+          complement: input.complement || '',
           medium: input.medium,
           licence: input.licence,
           description: input.description,
           image,
           abilities: input.abilities,
           priority: input.priority,
+          specialCategories: input.specialCategories || {},
           isCustom: true,
           createdAt: existingIdx >= 0 ? list[existingIdx].createdAt || new Date().toISOString() : new Date().toISOString()
         }
@@ -498,16 +612,23 @@
         }
       }
 
-      exportedChars.push({
+      const exportedObj = {
         id: ch.id,
-        name: ch.name,
-        medium: ch.medium,
-        licence: ch.licence,
-        description: ch.description,
-        image: imageField,
-        abilities: ch.abilities,
-        priority: ch.priority
-      });
+        name: ch.name
+      };
+      if (ch.complement) exportedObj.complement = ch.complement;
+      exportedObj.medium = ch.medium;
+      exportedObj.licence = ch.licence;
+      exportedObj.description = ch.description;
+      exportedObj.image = imageField;
+      exportedObj.abilities = ch.abilities;
+      exportedObj.priority = ch.priority;
+      if (ch.specialCategories && Object.values(ch.specialCategories).some(Boolean)) {
+        exportedObj.specialCategories = Object.fromEntries(
+          Object.entries(ch.specialCategories).filter(([, enabled]) => Boolean(enabled))
+        );
+      }
+      exportedChars.push(exportedObj);
     }
 
     files.unshift({

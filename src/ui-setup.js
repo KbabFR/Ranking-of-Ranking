@@ -4,11 +4,13 @@
   const ROR = (global.ROR = global.ROR || {});
 
   function updateSetupStateUI(container, tree) {
-    const { setup, characters } = ROR.AppState;
+    const { setup, characters, mode } = ROR.AppState;
     const steps = ROR.CARD_COUNT_STEPS;
     const stepIndex = Math.max(0, steps.indexOf(setup.targetCount));
+    const specialCats = ROR.getSpecialCategoriesForMode(mode);
 
-    const availableCount = characters.filter((c) => setup.selectedLicences.has(c.licence)).length;
+    const eligibleChars = ROR.getEligibleCharacters(characters, setup.selectedLicences, setup.enabledSpecialCategories, mode);
+    const availableCount = eligibleChars.length;
     const jokerCount = ROR.computeJokerTarget(setup.targetCount, availableCount);
     const idealJokerCount = Math.max(1, Math.round(setup.targetCount * 0.2));
     const canStart = availableCount >= setup.targetCount;
@@ -94,7 +96,11 @@
       const selectedInGroup = group.licences.filter((l) => setup.selectedLicences.has(l.name));
       const allChecked = selectedInGroup.length === group.licences.length && group.licences.length > 0;
       const someChecked = selectedInGroup.length > 0 && !allChecked;
-      const selectedCharsInGroup = selectedInGroup.reduce((s, l) => s + l.count, 0);
+
+      const countActiveInLic = (licObj) =>
+        licObj.characters.filter((c) => ROR.isCharacterEnabledBySpecialCategories(c, mode, setup.enabledSpecialCategories)).length;
+
+      const selectedCharsInGroup = selectedInGroup.reduce((s, l) => s + countActiveInLic(l), 0);
 
       const medCb = groupEl.querySelector('.medium-checkbox');
       if (medCb) {
@@ -116,15 +122,61 @@
         const lic = cb.getAttribute('data-licence-check');
         const checked = setup.selectedLicences.has(lic);
         cb.checked = checked;
-        cb.closest('.licence-row')?.classList.toggle('is-checked', checked);
+        const row = cb.closest('.licence-row');
+        row?.classList.toggle('is-checked', checked);
+        const licObj = group.licences.find((l) => l.name === lic);
+        const countEl = row?.querySelector('.licence-count');
+        if (licObj && countEl) {
+          countEl.textContent = String(countActiveInLic(licObj));
+        }
+      });
+    }
+
+    // Update Special Categories UI in place
+    for (const cat of specialCats) {
+      const catEl = container.querySelector(`.special-cat-group[data-special-group="${escAttr(cat.id)}"]`);
+      if (!catEl) continue;
+
+      const catEnabled = setup.enabledSpecialCategories.has(cat.id);
+      const isCollapsed = setup.collapsedSpecialCategories.has(cat.id);
+      const charsInCat = characters.filter((c) => c.specialCategories?.[cat.id]);
+      const activeLicCount = charsInCat.filter((c) => setup.selectedLicences.has(c.licence)).length;
+
+      catEl.classList.toggle('is-enabled', catEnabled);
+      catEl.classList.toggle('is-collapsed', isCollapsed);
+
+      const cb = catEl.querySelector('.special-cat-checkbox');
+      if (cb) cb.checked = catEnabled;
+
+      const collapseBtn = catEl.querySelector('.collapse-btn');
+      if (collapseBtn) collapseBtn.textContent = isCollapsed ? '▸' : '▾';
+
+      const badge = catEl.querySelector('.special-cat-badge');
+      if (badge) {
+        badge.textContent = catEnabled
+          ? `Activée • ${activeLicCount}/${charsInCat.length} inclus`
+          : `Désactivée • ${charsInCat.length} exclus`;
+      }
+
+      catEl.querySelectorAll('.special-char-row').forEach((row) => {
+        const lic = row.getAttribute('data-special-licence');
+        const licOn = setup.selectedLicences.has(lic);
+        row.classList.toggle('is-cat-off', !catEnabled);
+        row.classList.toggle('is-licence-off', catEnabled && !licOn);
+        row.classList.toggle('is-active-in-pool', catEnabled && licOn);
+        const statusEl = row.querySelector('.special-char-status');
+        if (statusEl) {
+          statusEl.textContent = !catEnabled ? 'Exclu' : licOn ? 'Inclus' : 'Licence décochée';
+        }
       });
     }
   }
 
   ROR.renderSetupScreen = function renderSetupScreen(container) {
     const esc = ROR.escapeHtml;
-    const { setup, characters } = ROR.AppState;
+    const { setup, characters, mode } = ROR.AppState;
     const tree = ROR.buildMediumTree(characters);
+    const specialCats = ROR.getSpecialCategoriesForMode(mode);
 
     const steps = ROR.CARD_COUNT_STEPS;
     let stepIndex = steps.indexOf(setup.targetCount);
@@ -238,6 +290,56 @@
               </div>
             </div>
 
+            <div class="special-categories-block">
+              ${specialCats
+                .map((cat) => {
+                  const charsInCat = characters.filter((c) => c.specialCategories?.[cat.id]);
+                  const isCollapsed = setup.collapsedSpecialCategories.has(cat.id);
+                  const catEnabled = setup.enabledSpecialCategories.has(cat.id);
+                  return `
+                    <div class="special-cat-group ${isCollapsed ? 'is-collapsed' : ''} ${catEnabled ? 'is-enabled' : ''}" data-special-group="${esc(cat.id)}">
+                      <div class="special-cat-header">
+                        <button type="button" class="collapse-btn" data-toggle-special="${esc(cat.id)}" aria-label="Déplier ou replier ${esc(cat.label)}">
+                          ${isCollapsed ? '▸' : '▾'}
+                        </button>
+                        <label class="checkbox-label special-cat-checkbox-label">
+                          <input
+                            type="checkbox"
+                            class="special-cat-checkbox"
+                            data-special-check="${esc(cat.id)}"
+                            ${catEnabled ? 'checked' : ''}
+                          />
+                          <span class="medium-name">${esc(cat.emoji)} ${esc(cat.label)}</span>
+                        </label>
+                        <span class="special-cat-badge"></span>
+                      </div>
+                      <p class="special-cat-desc">${esc(cat.description)}</p>
+                      <div class="special-cat-list">
+                        ${
+                          charsInCat.length === 0
+                            ? '<p class="muted" style="margin:4px 0;font-size:0.8rem;">Aucun personnage dans cette catégorie.</p>'
+                            : charsInCat
+                                .map(
+                                  (ch) => `
+                                  <div class="special-char-row" data-special-licence="${esc(ch.licence)}">
+                                    <img class="mini-thumb" src="${esc(ch.image)}" alt="${esc(ch.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(ch))}" data-licence="${esc(ch.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
+                                    <div class="special-char-info">
+                                      <div class="special-char-name">${ROR.renderCharNameHtml(ch, { compact: true })}</div>
+                                      <div class="special-char-sub">${esc(ch.medium)} • ${esc(ch.licence)}</div>
+                                    </div>
+                                    <span class="special-char-status"></span>
+                                  </div>
+                                `
+                                )
+                                .join('')
+                        }
+                      </div>
+                    </div>
+                  `;
+                })
+                .join('')}
+            </div>
+
             <div class="medium-tree">
               ${tree
                 .map((group) => {
@@ -344,6 +446,30 @@
       });
     });
 
+    container.querySelectorAll('[data-toggle-special]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const catId = btn.getAttribute('data-toggle-special');
+        if (setup.collapsedSpecialCategories.has(catId)) {
+          setup.collapsedSpecialCategories.delete(catId);
+        } else {
+          setup.collapsedSpecialCategories.add(catId);
+        }
+        updateSetupStateUI(container, tree);
+      });
+    });
+
+    container.querySelectorAll('[data-special-check]').forEach((cb) => {
+      cb.addEventListener('change', (e) => {
+        const catId = e.target.getAttribute('data-special-check');
+        if (e.target.checked) {
+          setup.enabledSpecialCategories.add(catId);
+        } else {
+          setup.enabledSpecialCategories.delete(catId);
+        }
+        updateSetupStateUI(container, tree);
+      });
+    });
+
     container.querySelectorAll('[data-medium-check]').forEach((cb) => {
       cb.addEventListener('change', (e) => {
         const med = e.target.getAttribute('data-medium-check');
@@ -371,7 +497,12 @@
     });
 
     container.querySelector('[data-action="launch-game"]')?.addEventListener('click', () => {
-      const availableCount = characters.filter((c) => setup.selectedLicences.has(c.licence)).length;
+      const availableCount = ROR.getEligibleCharacters(
+        characters,
+        setup.selectedLicences,
+        setup.enabledSpecialCategories,
+        ROR.AppState.mode
+      ).length;
       if (availableCount < setup.targetCount) return;
       ROR.startNewGame();
     });
