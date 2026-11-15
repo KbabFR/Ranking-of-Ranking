@@ -4,10 +4,11 @@
   const ROR = (global.ROR = global.ROR || {});
 
   ROR.renderHomeScreen = function renderHomeScreen(container) {
-    const { characters } = ROR.AppState;
+    const { characters, customCharacters } = ROR.AppState;
     const history = ROR.loadSavedHistory();
     const tree = ROR.buildMediumTree(characters);
     const totalLicences = tree.reduce((sum, m) => sum + m.licences.length, 0);
+    const customCount = (customCharacters || []).length;
 
     container.innerHTML = `
       <div class="screen screen-home">
@@ -89,6 +90,10 @@
             <span>📚 Base de personnages</span>
             <span class="pill-count">${characters.length} persos • ${totalLicences} licences</span>
           </button>
+          <button type="button" class="btn btn-secondary" data-action="open-generator">
+            <span>✨ Générateur de personnages</span>
+            <span class="pill-count">${customCount}</span>
+          </button>
         </footer>
       </div>
     `;
@@ -103,6 +108,10 @@
 
     container.querySelector('[data-action="open-database"]')?.addEventListener('click', () => {
       ROR.openDatabaseModal();
+    });
+
+    container.querySelector('[data-action="open-generator"]')?.addEventListener('click', () => {
+      ROR.navigateTo('generator');
     });
   };
 
@@ -319,7 +328,7 @@
                 <img class="db-thumb" src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy" onerror="this.style.display='none'"/>
                 <div class="db-card-body">
                   <div class="db-card-head">
-                    <strong>${esc(c.name)}</strong>
+                    <strong>${esc(c.name)} ${c.isCustom ? '<span class="custom-badge">Perso local</span>' : ''}</strong>
                     <span class="prio-badge" title="Indice de priorité">★ ${c.priority}</span>
                   </div>
                   <div class="db-card-sub">${esc(c.medium)} • ${esc(c.licence)}</div>
@@ -375,8 +384,9 @@
             imported = Array.isArray(parsed) ? ROR.normalizeCharacters(parsed) : [];
           }
           if (imported.length > 0) {
-            ROR.AppState.characters = imported;
-            ROR.AppState.setup.selectedLicences = new Set(imported.map((c) => c.licence));
+            ROR.AppState.baseCharacters = imported;
+            ROR.refreshAllCharacters();
+            ROR.AppState.setup.selectedLicences = new Set(ROR.AppState.characters.map((c) => c.licence));
             filterMedium = 'ALL';
             filterLicence = 'ALL';
             render();
