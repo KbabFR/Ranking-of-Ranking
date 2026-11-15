@@ -33,15 +33,20 @@
       ROR.renderSetupScreen(app);
     } else if (screen === 'game') {
       ROR.renderGameScreen(app);
+    } else if (screen === 'generator') {
+      ROR.renderGeneratorScreen(app);
     } else {
       ROR.renderHomeScreen(app);
     }
   };
 
   async function init() {
-    const characters = await ROR.loadCharacterDatabase();
-    ROR.AppState.characters = characters;
-    ROR.AppState.setup.selectedLicences = new Set(characters.map((c) => c.licence));
+    const baseCharacters = await ROR.loadCharacterDatabase();
+    const customCharacters = ROR.loadCustomCharacters();
+    ROR.AppState.baseCharacters = baseCharacters;
+    ROR.AppState.customCharacters = customCharacters;
+    ROR.refreshAllCharacters();
+    ROR.AppState.setup.selectedLicences = new Set(ROR.AppState.characters.map((c) => c.licence));
     ROR.renderCurrentScreen();
   }
 
