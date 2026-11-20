@@ -14,6 +14,7 @@
     try {
       ROR.AppState.game = ROR.createGameState({
         mode,
+        subMode: ROR.getActiveSubMode(mode, setup),
         targetCount: setup.targetCount,
         maxSwaps: setup.maxSwaps,
         selectedLicences: setup.selectedLicences,

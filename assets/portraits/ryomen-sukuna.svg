@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320">
   <defs>
     <radialGradient id="bgGrad" cx="50%" cy="45%" r="65%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.34"/>
-      <stop offset="55%" stop-color="#0c081c" stop-opacity="0.96"/>
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.36"/>
+      <stop offset="55%" stop-color="#130d26" stop-opacity="0.96"/>
       <stop offset="100%" stop-color="#05070e" stop-opacity="1"/>
     </radialGradient>
     <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.7"/>
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.7"/>
       <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#8b5cf6"/>
-      <stop offset="100%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
     </linearGradient>
     <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
       <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
@@ -19,17 +19,12 @@
   </defs>
   <rect width="320" height="320" fill="url(#bgGrad)"/>
   <rect width="320" height="320" fill="url(#grid)"/>
-  <g transform="rotate(7 160 155)"><line x1="160" y1="155" x2="345.13031230919466" y2="197.74070032533436" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="298.95720330764243" y2="284.5796884118747" stroke="#06b6d4" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="215.55062389731998" y2="336.6979036329767" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="117.25929967466568" y2="340.13031230919466" stroke="#06b6d4" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="30.420311588125315" y2="293.95720330764243" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-21.697903632976733" y2="210.55062389732004" stroke="#06b6d4" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-25.130312309194693" y2="112.25929967466566" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="21.042796692357598" y2="25.420311588125315" stroke="#06b6d4" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="104.44937610267995" y2="-26.697903632976704" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="202.74070032533433" y2="-30.130312309194693" stroke="#06b6d4" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="289.5796884118746" y2="16.042796692357513" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="341.69790363297676" y2="99.4493761026801" stroke="#06b6d4" stroke-width="1.2" opacity="0.14"/></g>
+  <g transform="rotate(20 160 155)"><line x1="160" y1="155" x2="350.0" y2="155.0" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="324.5" y2="250.0" stroke="#22d3ee" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="255.0" y2="319.5" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="160.0" y2="345.0" stroke="#22d3ee" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="65.0" y2="319.5" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-4.5" y2="250.0" stroke="#22d3ee" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-30.0" y2="155.0" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-4.5" y2="60.0" stroke="#22d3ee" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="65.0" y2="-9.5" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="160.0" y2="-35.0" stroke="#22d3ee" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="255.0" y2="-9.5" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="324.5" y2="60.0" stroke="#22d3ee" stroke-width="1.2" opacity="0.14"/></g>
   <circle cx="160" cy="155" r="95" fill="url(#glow)" opacity="0.35"/>
-  
-        <circle cx="160" cy="155" r="78" fill="none" stroke="#8b5cf6" stroke-width="2" opacity="0.55"/>
-        <circle cx="160" cy="155" r="58" fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="6 6" opacity="0.75"/>
-        <circle cx="145" cy="155" r="36" fill="none" stroke="#8b5cf6" stroke-width="2.5" opacity="0.65"/>
-        <circle cx="175" cy="155" r="36" fill="none" stroke="#06b6d4" stroke-width="2.5" opacity="0.65"/>
-      
-  <circle cx="160" cy="155" r="46" fill="#090c16" fill-opacity="0.82" stroke="url(#badgeGrad)" stroke-width="3.5"/>
+  <circle cx="160" cy="155" r="56" fill="none" stroke="#22d3ee" stroke-width="2.5" opacity="0.65"/>
+  <circle cx="160" cy="155" r="46" fill="#090c16" fill-opacity="0.85" stroke="url(#badgeGrad)" stroke-width="3.5"/>
   <text x="160" y="170" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="900" font-size="38" letter-spacing="1" fill="#ffffff">RS</text>
   <rect x="24" y="18" width="272" height="26" rx="13" fill="#000000" fill-opacity="0.45" stroke="#8b5cf6" stroke-opacity="0.5"/>
-  <text x="160" y="35" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="700" font-size="11" letter-spacing="1.4" fill="#06b6d4">JUJUTSU KAISEN</text>
-  <circle cx="132" cy="264" r="3.2" fill="#06b6d4" opacity="0.9"/><circle cx="146" cy="264" r="3.2" fill="#06b6d4" opacity="0.9"/><circle cx="160" cy="264" r="3.2" fill="#06b6d4" opacity="0.9"/><circle cx="174" cy="264" r="3.2" fill="#06b6d4" opacity="0.9"/><circle cx="188" cy="264" r="3.2" fill="#06b6d4" opacity="0.9"/>
+  <text x="160" y="35" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="700" font-size="11" letter-spacing="1.4" fill="#22d3ee">JUJUTSU KAISEN</text>
+  <circle cx="132.0" cy="264" r="3.2" fill="#22d3ee" opacity="0.9"/><circle cx="146.0" cy="264" r="3.2" fill="#22d3ee" opacity="0.9"/><circle cx="160.0" cy="264" r="3.2" fill="#22d3ee" opacity="0.9"/><circle cx="174.0" cy="264" r="3.2" fill="#22d3ee" opacity="0.9"/><circle cx="188.0" cy="264" r="3.2" fill="#22d3ee" opacity="0.9"/>
 </svg>

@@ -7,14 +7,103 @@
   ROR.STORAGE_KEY = 'ranking_of_ranking_history_v1';
   ROR.CUSTOM_CHARS_KEY = 'ranking_of_ranking_custom_chars_v1';
 
+  ROR.MODES = {
+    power: {
+      id: 'power',
+      label: 'Puissance',
+      tag: '⚡ Puissance',
+      setupTag: '⚡ Mode : Puissance',
+      icon: '⚡',
+      fullArt: false
+    },
+    beauty: {
+      id: 'beauty',
+      label: 'Beauté & Charisme',
+      tag: '✨ Beauté & Charisme',
+      setupTag: '✨ Mode : Beauté & Charisme',
+      icon: '✨',
+      fullArt: true,
+      subModes: [
+        {
+          id: 'default',
+          label: 'Mode par défaut',
+          description: 'Sélection aléatoire équilibrée en respectant l’indice de priorité.'
+        },
+        {
+          id: 'bg',
+          label: 'Mode BG',
+          description: 'Priorise les personnages les plus attirants et charismatiques (indice beauté).'
+        }
+      ],
+      defaultSubMode: 'default'
+    },
+    smash: {
+      id: 'smash',
+      label: 'Smash or Pass',
+      tag: '🔥 Smash or Pass',
+      setupTag: '🔥 Mode : Smash or Pass',
+      icon: '🔥',
+      fullArt: true,
+      isSwipeMode: true,
+      subModes: [
+        {
+          id: 'default',
+          label: 'Mode par défaut',
+          description: 'Sélection aléatoire équilibrée en respectant l’indice de priorité.'
+        },
+        {
+          id: 'bg',
+          label: 'Mode BG',
+          description: 'Priorise les personnages les plus attirants et charismatiques (indice beauté).'
+        },
+        {
+          id: 'personne_ne_juge',
+          label: '🫣 Personne ne juge',
+          description: 'Ne sélectionne que les personnages immondes, grotesques, monstres ou créatures improbables !'
+        }
+      ],
+      defaultSubMode: 'default'
+    }
+  };
+
+  ROR.getModeMeta = function getModeMeta(mode = ROR.AppState.mode || 'power') {
+    return ROR.MODES[mode] || ROR.MODES.power;
+  };
+
+  ROR.getActiveSubMode = function getActiveSubMode(
+    mode = ROR.AppState.mode || 'power',
+    setup = ROR.AppState.setup
+  ) {
+    const modeMeta = ROR.getModeMeta(mode);
+    if (!Array.isArray(modeMeta.subModes) || modeMeta.subModes.length === 0) {
+      return null;
+    }
+    const candidate = setup?.subMode;
+    if (candidate && modeMeta.subModes.some((s) => s.id === candidate)) {
+      return candidate;
+    }
+    return modeMeta.defaultSubMode || modeMeta.subModes[0].id;
+  };
+
   ROR.SPECIAL_CATEGORIES = [
     {
       id: 'overcheate',
       mode: 'power',
+      filterType: 'exclude_unless_enabled',
       label: 'Overcheaté',
       emoji: '♾️',
       description:
         'Puissance absolue, méta-narrative, volontairement sans plafond ou impossible à argumenter en 1v1 inter-univers (ex : Saitama).',
+      defaultEnabled: false
+    },
+    {
+      id: 'personneNeJuge',
+      mode: 'smash',
+      filterType: 'only_when_enabled',
+      label: 'Personne ne juge',
+      emoji: '🫣',
+      description:
+        'Mode sans tabou : une fois activé, ne sélectionne QUE les personnages immondes, grotesques, boss monstrueux ou créatures improbables !',
       defaultEnabled: false
     }
   ];
@@ -29,10 +118,11 @@
     setup: {
       targetCount: 20,
       maxSwaps: 3,
+      subMode: 'default',
       selectedLicences: new Set(),
       collapsedMediums: new Set(),
       enabledSpecialCategories: new Set(),
-      collapsedSpecialCategories: new Set(['overcheate'])
+      collapsedSpecialCategories: new Set(['overcheate', 'personneNeJuge'])
     },
 
     game: null
@@ -66,6 +156,7 @@
   };
 
   ROR.getSpecialCategoriesForMode = function getSpecialCategoriesForMode(mode = ROR.AppState.mode || 'power') {
+    if (mode === 'all') return ROR.SPECIAL_CATEGORIES;
     return ROR.SPECIAL_CATEGORIES.filter((cat) => cat.mode === mode);
   };
 
@@ -81,8 +172,14 @@
         : new Set();
     const cats = char.specialCategories || {};
     for (const cat of ROR.getSpecialCategoriesForMode(mode)) {
-      if (cats[cat.id] && !enabledSet.has(cat.id)) {
-        return false;
+      if (cat.filterType === 'only_when_enabled') {
+        if (enabledSet.has(cat.id) && !cats[cat.id]) {
+          return false;
+        }
+      } else {
+        if (cats[cat.id] && !enabledSet.has(cat.id)) {
+          return false;
+        }
       }
     }
     return true;
@@ -130,8 +227,10 @@
         licence: String(ch.licence).trim(),
         description: String(ch.description || '').trim(),
         image: String(ch.image || '').trim(),
+        imageLandscape: String(ch.imageLandscape || ch.landscapeImage || '').trim(),
         abilities: Array.isArray(ch.abilities) ? ch.abilities.map((a) => String(a).trim()).filter(Boolean) : [],
         priority: Number.isFinite(Number(ch.priority)) ? Math.max(1, Math.min(10, Number(ch.priority))) : 5,
+        beauty: Number.isFinite(Number(ch.beauty)) ? Math.max(1, Math.min(10, Number(ch.beauty))) : 5,
         specialCategories: ROR.normalizeSpecialCategories(ch),
         isCustom: Boolean(ch.isCustom || isCustom),
         createdAt: ch.createdAt || null
@@ -185,7 +284,12 @@
     return tree;
   };
 
-  ROR.computeJokerTarget = function computeJokerTarget(targetCount, availableCount) {
+  ROR.computeJokerTarget = function computeJokerTarget(
+    targetCount,
+    availableCount,
+    mode = ROR.AppState.mode || 'power'
+  ) {
+    if (mode === 'smash') return 0;
     const idealJokers = Math.max(1, Math.round(targetCount * 0.2));
     if (availableCount <= targetCount) return 0;
     return Math.min(idealJokers, availableCount - targetCount);
@@ -193,22 +297,24 @@
 
   /**
    * Selects N + J characters from selected licences, balanced across licences
-   * and prioritizing highest priority scores inside each licence.
+   * and prioritizing highest priority (or beauty in 'bg' sub-mode) scores inside each licence.
    */
   ROR.selectCharactersForGame = function selectCharactersForGame(
     characters,
     selectedLicences,
     targetCount,
     enabledSpecialCategories = ROR.AppState.setup?.enabledSpecialCategories,
-    mode = ROR.AppState.mode || 'power'
+    mode = ROR.AppState.mode || 'power',
+    subMode = ROR.getActiveSubMode(mode)
   ) {
     const pool = ROR.getEligibleCharacters(characters, selectedLicences, enabledSpecialCategories, mode);
     if (pool.length < targetCount) {
       throw new Error(`Pas assez de personnages (${pool.length}/${targetCount}).`);
     }
 
-    const jokerCount = ROR.computeJokerTarget(targetCount, pool.length);
+    const jokerCount = ROR.computeJokerTarget(targetCount, pool.length, mode);
     const totalNeeded = targetCount + jokerCount;
+    const useBeautySort = (mode === 'beauty' || mode === 'smash') && subMode === 'bg';
 
     const buckets = new Map();
     for (const ch of pool) {
@@ -219,7 +325,11 @@
     const queues = [];
     for (const [licence, chars] of buckets.entries()) {
       const shuffled = ROR.shuffleArray(chars);
-      shuffled.sort((a, b) => b.priority - a.priority);
+      if (useBeautySort) {
+        shuffled.sort((a, b) => b.beauty - a.beauty || b.priority - a.priority);
+      } else {
+        shuffled.sort((a, b) => b.priority - a.priority);
+      }
       queues.push({ licence, items: shuffled, index: 0 });
     }
 
@@ -248,34 +358,49 @@
 
   ROR.createGameState = function createGameState({
     mode,
+    subMode = ROR.getActiveSubMode(mode),
     targetCount,
     maxSwaps,
     selectedLicences,
     enabledSpecialCategories = new Set(),
     characters
   }) {
+    const activeSubMode = ROR.getActiveSubMode(mode, { subMode });
     const { mainDeck, jokerDeck } = ROR.selectCharactersForGame(
       characters,
       selectedLicences,
       targetCount,
       enabledSpecialCategories,
-      mode
+      mode,
+      activeSubMode
     );
+
+    const isSmash = mode === 'smash';
+    const firstActiveCard = isSmash && mainDeck.length > 0 ? mainDeck.pop() : null;
 
     return {
       id: `game-${Date.now()}`,
       mode,
+      subMode: activeSubMode,
       targetCount,
       maxSwaps,
       swapsRemaining: maxSwaps,
       swapsUsed: 0,
+      turboMax: maxSwaps,
+      turboRemaining: maxSwaps,
+      turboUsed: 0,
+      tiers: {
+        turbo: [],
+        smash: [],
+        pass: []
+      },
       licencesUsed: Array.from(selectedLicences),
       mainDeck,
       jokerDeck,
       burnedCards: [],
       slots: Array(targetCount).fill(null),
-      activeCard: null,
-      activeCardSource: null,
+      activeCard: firstActiveCard,
+      activeCardSource: firstActiveCard ? 'main' : null,
       isFlipped: false,
       isBurning: false,
       overviewOpen: false,
@@ -297,28 +422,57 @@
     }
   };
 
+  function mapCharForHistory(ch, extra = {}) {
+    return {
+      id: ch?.id || '',
+      name: ch?.name || 'Vide',
+      complement: ch?.complement || '',
+      licence: ch?.licence || '',
+      medium: ch?.medium || '',
+      image: ch?.image || '',
+      imageLandscape: ch?.imageLandscape || '',
+      ...extra
+    };
+  }
+
   ROR.saveGameToHistory = function saveGameToHistory(game) {
     if (!game || game.savedToHistory) return ROR.loadSavedHistory();
     const history = ROR.loadSavedHistory();
-    const entry = {
-      id: game.id,
-      mode: game.mode,
-      targetCount: game.targetCount,
-      swapsUsed: game.swapsUsed,
-      maxSwaps: game.maxSwaps,
-      burnedCount: game.burnedCards.length,
-      licencesCount: game.licencesUsed.length,
-      finishedAt: new Date().toISOString(),
-      ranking: game.slots.map((ch, idx) => ({
-        rank: idx + 1,
-        id: ch?.id || '',
-        name: ch?.name || 'Vide',
-        complement: ch?.complement || '',
-        licence: ch?.licence || '',
-        medium: ch?.medium || '',
-        image: ch?.image || ''
-      }))
-    };
+    let entry;
+
+    if (game.mode === 'smash') {
+      const turbo = (game.tiers?.turbo || []).map((c, idx) => mapCharForHistory(c, { rank: idx + 1, tier: 'turbo' }));
+      const smash = (game.tiers?.smash || []).map((c, idx) => mapCharForHistory(c, { rank: idx + 1, tier: 'smash' }));
+      const pass = (game.tiers?.pass || []).map((c, idx) => mapCharForHistory(c, { rank: idx + 1, tier: 'pass' }));
+      entry = {
+        id: game.id,
+        mode: game.mode,
+        subMode: game.subMode || null,
+        targetCount: game.targetCount,
+        swapsUsed: game.turboUsed || 0,
+        maxSwaps: game.turboMax || game.maxSwaps,
+        turboUsed: game.turboUsed || 0,
+        turboMax: game.turboMax || game.maxSwaps,
+        burnedCount: 0,
+        licencesCount: game.licencesUsed.length,
+        finishedAt: new Date().toISOString(),
+        tiers: { turbo, smash, pass },
+        ranking: [...turbo, ...smash, ...pass].map((item, idx) => ({ ...item, rank: idx + 1 }))
+      };
+    } else {
+      entry = {
+        id: game.id,
+        mode: game.mode,
+        subMode: game.subMode || null,
+        targetCount: game.targetCount,
+        swapsUsed: game.swapsUsed,
+        maxSwaps: game.maxSwaps,
+        burnedCount: game.burnedCards.length,
+        licencesCount: game.licencesUsed.length,
+        finishedAt: new Date().toISOString(),
+        ranking: game.slots.map((ch, idx) => mapCharForHistory(ch, { rank: idx + 1 }))
+      };
+    }
 
     const next = [entry, ...history].slice(0, 30);
     try {
@@ -351,6 +505,31 @@
       const label = ch.complement ? `${ch.name} (${ch.complement})` : ch.name;
       lines.push(`${prefix} - ${label} (${ch.licence})`);
     });
+    return lines.join('\n');
+  };
+
+  ROR.formatSmashTiersAsText = function formatSmashTiersAsText(tiers, totalCount) {
+    const turbo = tiers?.turbo || [];
+    const smash = tiers?.smash || [];
+    const pass = tiers?.pass || [];
+    const count = totalCount || turbo.length + smash.length + pass.length;
+    const fmtChar = (ch) => {
+      const label = ch.complement ? `${ch.name} (${ch.complement})` : ch.name;
+      return `• ${label} (${ch.licence})`;
+    };
+
+    const lines = [
+      `Ranking of Ranking — Mode Smash or Pass (${count} persos)`,
+      '',
+      `🚀 TURBO SMASH (${turbo.length}) :`,
+      ...(turbo.length > 0 ? turbo.map(fmtChar) : ['• Aucun']),
+      '',
+      `🔥 SMASH (${smash.length}) :`,
+      ...(smash.length > 0 ? smash.map(fmtChar) : ['• Aucun']),
+      '',
+      `❄️ PASS (${pass.length}) :`,
+      ...(pass.length > 0 ? pass.map(fmtChar) : ['• Aucun'])
+    ];
     return lines.join('\n');
   };
 
@@ -394,9 +573,12 @@
     const iLicence = idxOf(['licence', 'license']);
     const iDesc = idxOf(['description', 'desc']);
     const iImg = idxOf(['image', 'img']);
+    const iImgLand = idxOf(['image_landscape', 'imagelandscape', 'image_paysage', 'paysage', 'landscape']);
     const iAbil = idxOf(['abilities', 'capacites', 'capacités', 'points_forts']);
     const iPrio = idxOf(['priority', 'priorite', 'priorité']);
+    const iBeauty = idxOf(['beauty', 'beaute', 'beauté', 'bg', 'charisme']);
     const iOver = idxOf(['overcheate', 'overcheated', 'overcheaté']);
+    const iPnj = idxOf(['personne_ne_juge', 'personnenejuge', 'immonde', 'grotesque']);
 
     const parseBoolCell = (val) => /^(1|true|oui|yes|x)$/i.test(String(val || '').trim());
 
@@ -413,10 +595,13 @@
         licence: (iLicence >= 0 ? row[iLicence] : '') || 'Personnalisé',
         description: iDesc >= 0 ? row[iDesc] || '' : '',
         image: iImg >= 0 ? row[iImg] || '' : '',
+        imageLandscape: iImgLand >= 0 ? row[iImgLand] || '' : '',
         abilities: abilitiesRaw.split(/[|;]/).map((s) => s.trim()).filter(Boolean),
         priority: iPrio >= 0 ? Number(row[iPrio]) || 5 : 5,
+        beauty: iBeauty >= 0 ? Number(row[iBeauty]) || 5 : 5,
         specialCategories: {
-          overcheate: iOver >= 0 ? parseBoolCell(row[iOver]) : false
+          overcheate: iOver >= 0 ? parseBoolCell(row[iOver]) : false,
+          personneNeJuge: iPnj >= 0 ? parseBoolCell(row[iPnj]) : false
         }
       });
     }
@@ -463,14 +648,154 @@
     return ROR.generateInlinePortraitSvg(ch.name, ch.licence);
   };
 
+  ROR.getCharacterImage = function getCharacterImage(char, orientation = 'portrait') {
+    if (!char) return '';
+    const portrait = String(char.image || '').trim();
+    const landscape = String(char.imageLandscape || '').trim();
+    if (orientation === 'landscape') {
+      return landscape || portrait || ROR.getFallbackImage(char);
+    }
+    return portrait || landscape || ROR.getFallbackImage(char);
+  };
+
+  ROR.hasDedicatedLandscape = function hasDedicatedLandscape(char) {
+    return Boolean(char && String(char.imageLandscape || '').trim());
+  };
+
+  ROR.renderArtworkBoxHtml = function renderArtworkBoxHtml(char, { orientation = 'landscape' } = {}) {
+    const esc = ROR.escapeHtml;
+    const isLandscape = orientation === 'landscape';
+    const hasDedicated = isLandscape && ROR.hasDedicatedLandscape(char);
+    const src = ROR.getCharacterImage(char, orientation);
+    const fallback = ROR.getFallbackImage(char);
+    const licence = char?.licence || '';
+    const name = char?.name || 'Personnage';
+
+    if (isLandscape && !hasDedicated) {
+      return `
+        <div class="char-artwork-box has-blurred-bg">
+          <img
+            class="char-artwork-backdrop"
+            src="${esc(src)}"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+            data-fallback="${esc(fallback)}"
+            data-licence="${esc(licence)}"
+            onerror="window.ROR && window.ROR.onImgError(this)"
+          />
+          <div class="char-artwork-vignette" aria-hidden="true"></div>
+          <img
+            class="char-artwork-img"
+            src="${esc(src)}"
+            alt="${esc(name)}"
+            draggable="false"
+            data-fallback="${esc(fallback)}"
+            data-licence="${esc(licence)}"
+            onerror="window.ROR && window.ROR.onImgError(this)"
+          />
+        </div>
+      `;
+    }
+
+    return `
+      <div class="char-artwork-box">
+        <img
+          class="char-artwork-img ${hasDedicated ? 'is-landscape-fill' : ''}"
+          src="${esc(src)}"
+          alt="${esc(name)}"
+          draggable="false"
+          data-fallback="${esc(fallback)}"
+          data-licence="${esc(licence)}"
+          onerror="window.ROR && window.ROR.onImgError(this)"
+        />
+      </div>
+    `;
+  };
+
+  ROR.renderCharacterCardFrontHtml = function renderCharacterCardFrontHtml(
+    char,
+    { mode = 'power', isJoker = false, showPriority = false } = {}
+  ) {
+    const esc = ROR.escapeHtml;
+    const modeMeta = ROR.getModeMeta(mode);
+    const abilities = Array.isArray(char?.abilities) ? char.abilities : [];
+
+    if (modeMeta.fullArt) {
+      const portraitSrc = ROR.getCharacterImage(char, 'portrait');
+      const fallback = ROR.getFallbackImage(char);
+      return `
+        <div class="char-fullart-media">
+          <img
+            class="char-fullart-img"
+            src="${esc(portraitSrc)}"
+            alt="${esc(char?.name || 'Personnage')}"
+            draggable="false"
+            data-fallback="${esc(fallback)}"
+            data-licence="${esc(char?.licence || '')}"
+            onerror="window.ROR && window.ROR.onImgError(this)"
+          />
+          <div class="char-fullart-top-grad" aria-hidden="true"></div>
+          <div class="char-fullart-bottom-grad" aria-hidden="true"></div>
+        </div>
+        <div class="char-card-header is-fullart-header">
+          <span class="char-medium-pill">${esc(char?.medium || '')}</span>
+          <span class="char-licence-pill">${esc(char?.licence || '')}</span>
+          ${ROR.renderSpecialBadgesHtml(char, mode)}
+          ${isJoker ? '<span class="char-joker-pill">🃏 JOKER</span>' : ''}
+          ${showPriority ? `<span class="beauty-badge" style="margin-left:auto;">✨ ${char?.beauty ?? 5}</span>` : ''}
+        </div>
+        <div class="char-fullart-footer">
+          <h2 class="char-name">${ROR.renderCharNameHtml(char)}</h2>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="char-card-header">
+        <span class="char-medium-pill">${esc(char?.medium || '')}</span>
+        <span class="char-licence-pill">${esc(char?.licence || '')}</span>
+        ${ROR.renderSpecialBadgesHtml(char, mode)}
+        ${isJoker ? '<span class="char-joker-pill">🃏 JOKER</span>' : ''}
+        ${showPriority ? `<span class="prio-badge" style="margin-left:auto;">★ ${char?.priority ?? 5}</span>` : ''}
+      </div>
+
+      ${ROR.renderArtworkBoxHtml(char, { orientation: 'landscape' })}
+
+      <div class="char-card-body">
+        <h2 class="char-name">${ROR.renderCharNameHtml(char)}</h2>
+        <p class="char-desc">${esc(char?.description || '')}</p>
+
+        <div class="char-abilities-block">
+          <div class="abilities-title">Points forts &amp; Capacités</div>
+          <ul class="abilities-list">
+            ${
+              abilities.length > 0
+                ? abilities.map((ab) => `<li>${esc(ab)}</li>`).join('')
+                : '<li class="muted">Ajoutez au moins une capacité...</li>'
+            }
+          </ul>
+        </div>
+      </div>
+    `;
+  };
+
   ROR.onImgError = function onImgError(imgEl) {
     if (!imgEl) return;
+    const syncBackdrop = (nextSrc) => {
+      const box = imgEl.closest('.char-artwork-box');
+      const backdrop = box?.querySelector('.char-artwork-backdrop');
+      if (backdrop && backdrop !== imgEl && backdrop.getAttribute('src') !== nextSrc) {
+        backdrop.src = nextSrc;
+      }
+    };
     const step = imgEl.dataset.fbStep || '0';
     if (step === '0') {
       imgEl.dataset.fbStep = '1';
       const fallback = imgEl.dataset.fallback;
       if (fallback && imgEl.getAttribute('src') !== fallback) {
         imgEl.src = fallback;
+        syncBackdrop(fallback);
         return;
       }
     }
@@ -479,6 +804,7 @@
       const inline = ROR.generateInlinePortraitSvg(imgEl.alt || 'Perso', imgEl.dataset.licence || '');
       if (imgEl.getAttribute('src') !== inline) {
         imgEl.src = inline;
+        syncBackdrop(inline);
         return;
       }
     }
@@ -528,6 +854,7 @@
     }
 
     const image = (input.image || '').trim() || ROR.generateInlinePortraitSvg(input.name, input.licence);
+    const imageLandscape = (input.imageLandscape || '').trim();
 
     const record = ROR.normalizeCharacters(
       [
@@ -539,8 +866,10 @@
           licence: input.licence,
           description: input.description,
           image,
+          imageLandscape,
           abilities: input.abilities,
           priority: input.priority,
+          beauty: input.beauty,
           specialCategories: input.specialCategories || {},
           isCustom: true,
           createdAt: existingIdx >= 0 ? list[existingIdx].createdAt || new Date().toISOString() : new Date().toISOString()
@@ -597,20 +926,29 @@
     const exportedChars = [];
     let imageFileCount = 0;
 
-    for (const ch of customList) {
-      let imageField = ch.image || '';
-      if (imageField.startsWith('data:')) {
-        const decoded = decodeDataUrl(imageField);
+    const extractZipImageField = (rawField, slugSuffix = '') => {
+      let field = String(rawField || '').trim();
+      if (field.startsWith('data:')) {
+        const decoded = decodeDataUrl(field);
         if (decoded) {
-          const filename = `${ROR.slugify(ch.id || ch.name)}.${decoded.ext}`;
+          const filename = `${slugSuffix}.${decoded.ext}`;
           files.push({
             name: `portraits/${filename}`,
             data: decoded.bytes
           });
-          imageField = `assets/portraits/${filename}`;
+          field = `assets/portraits/${filename}`;
           imageFileCount += 1;
         }
       }
+      return field;
+    };
+
+    for (const ch of customList) {
+      const baseName = ROR.slugify(ch.id || ch.name);
+      const imageField = extractZipImageField(ch.image, baseName);
+      const landscapeField = ch.imageLandscape
+        ? extractZipImageField(ch.imageLandscape, `${baseName}-landscape`)
+        : '';
 
       const exportedObj = {
         id: ch.id,
@@ -621,8 +959,10 @@
       exportedObj.licence = ch.licence;
       exportedObj.description = ch.description;
       exportedObj.image = imageField;
+      if (landscapeField) exportedObj.imageLandscape = landscapeField;
       exportedObj.abilities = ch.abilities;
       exportedObj.priority = ch.priority;
+      exportedObj.beauty = ch.beauty;
       if (ch.specialCategories && Object.values(ch.specialCategories).some(Boolean)) {
         exportedObj.specialCategories = Object.fromEntries(
           Object.entries(ch.specialCategories).filter(([, enabled]) => Boolean(enabled))

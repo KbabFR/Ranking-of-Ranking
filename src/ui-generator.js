@@ -15,17 +15,21 @@
     licenceCustomMode: false,
     description: '',
     image: '',
+    imageLandscape: '',
     abilities: ['', '', ''],
     priority: 8,
+    beauty: 7,
     specialCategories: {
-      overcheate: false
+      overcheate: false,
+      personneNeJuge: false
     }
   });
 
   let draft = DEFAULT_DRAFT();
   let listSearch = '';
+  let previewMode = 'power';
 
-  function compressImageFile(file) {
+  function compressImageFile(file, orientation = 'portrait') {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onerror = () => reject(new Error('Lecture du fichier image impossible.'));
@@ -33,10 +37,11 @@
         const img = new Image();
         img.onerror = () => reject(new Error('Format image non reconnu.'));
         img.onload = () => {
-          const maxDim = 420;
+          const maxW = orientation === 'landscape' ? 720 : 540;
+          const maxH = orientation === 'landscape' ? 460 : 760;
           let { width, height } = img;
-          if (width > maxDim || height > maxDim) {
-            const ratio = Math.min(maxDim / width, maxDim / height);
+          if (width > maxW || height > maxH) {
+            const ratio = Math.min(maxW / width, maxH / height);
             width = Math.round(width * ratio);
             height = Math.round(height * ratio);
           }
@@ -61,45 +66,35 @@
   function renderPreviewCard(container) {
     const previewHost = container.querySelector('#gen-live-preview');
     if (!previewHost) return;
-    const esc = ROR.escapeHtml;
+    const modeMeta = ROR.getModeMeta(previewMode);
     const name = draft.name.trim() || 'Nom du personnage';
     const complement = (draft.complement || '').trim();
     const medium = draft.medium.trim() || 'Médium';
     const licence = draft.licence.trim() || 'Licence';
-    const desc = draft.description.trim() || 'Description du personnage...';
+    const description = draft.description.trim() || 'Description du personnage...';
     const abilities = draft.abilities.map((a) => a.trim()).filter(Boolean);
-    const imgSrc = draft.image.trim() || ROR.generateInlinePortraitSvg(name, licence);
+    const fallbackSvg = ROR.generateInlinePortraitSvg(name, licence);
     const previewChar = {
       name,
       complement,
+      medium,
+      licence,
+      description,
+      image: draft.image.trim() || (draft.imageLandscape.trim() ? '' : fallbackSvg),
+      imageLandscape: draft.imageLandscape.trim(),
+      abilities,
+      priority: draft.priority,
+      beauty: draft.beauty,
       specialCategories: draft.specialCategories || {}
     };
 
+    container.querySelectorAll('[data-preview-mode]').forEach((btn) => {
+      btn.classList.toggle('is-active', btn.getAttribute('data-preview-mode') === previewMode);
+    });
+
     previewHost.innerHTML = `
-      <div class="gen-preview-card">
-        <div class="char-card-header">
-          <span class="char-medium-pill">${esc(medium)}</span>
-          <span class="char-licence-pill">${esc(licence)}</span>
-          ${ROR.renderSpecialBadgesHtml(previewChar, 'power')}
-          <span class="prio-badge" style="margin-left:auto;">★ ${draft.priority}</span>
-        </div>
-        <div class="char-artwork-box">
-          <img class="char-artwork-img" src="${esc(imgSrc)}" alt="${esc(name)}" data-licence="${esc(licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
-        </div>
-        <div class="char-card-body">
-          <h3 class="char-name">${ROR.renderCharNameHtml(previewChar)}</h3>
-          <p class="char-desc">${esc(desc)}</p>
-          <div class="char-abilities-block">
-            <div class="abilities-title">Points forts &amp; Capacités</div>
-            <ul class="abilities-list">
-              ${
-                abilities.length > 0
-                  ? abilities.map((ab) => `<li>${esc(ab)}</li>`).join('')
-                  : '<li class="muted">Ajoutez au moins une capacité...</li>'
-              }
-            </ul>
-          </div>
-        </div>
+      <div class="gen-preview-card ${modeMeta.fullArt ? 'is-fullart-preview' : ''}">
+        ${ROR.renderCharacterCardFrontHtml(previewChar, { mode: previewMode, showPriority: true })}
       </div>
     `;
   }
@@ -238,27 +233,54 @@
                 </div>
               </div>
 
-              <div class="field-group">
-                <span class="field-label">Image du personnage (URL ou fichier local)</span>
-                <div class="gen-image-controls">
-                  <input
-                    type="text"
-                    class="field-input"
-                    id="gen-image-url"
-                    placeholder="https://... (ou importez un fichier à droite)"
-                    value="${draft.image.startsWith('data:') ? '' : esc(draft.image)}"
-                  />
-                  <label class="btn btn-sm btn-secondary gen-upload-btn">
-                    🖼️ Importer image
-                    <input type="file" accept="image/*" hidden id="gen-image-file" />
-                  </label>
-                  <button type="button" class="btn btn-sm btn-ghost" id="gen-clear-image" title="Revenir à l'image auto">✕</button>
+              <div class="gen-images-stack">
+                <div class="field-group">
+                  <span class="field-label">Image Verticale — Portrait / Full-Art (Mode Beauté &amp; Charisme)</span>
+                  <div class="gen-image-controls">
+                    <input
+                      type="text"
+                      class="field-input"
+                      id="gen-image-url"
+                      placeholder="https://... (format vertical recommandé)"
+                      value="${draft.image.startsWith('data:') ? '' : esc(draft.image)}"
+                    />
+                    <label class="btn btn-sm btn-secondary gen-upload-btn">
+                      🖼️ Importer
+                      <input type="file" accept="image/*" hidden id="gen-image-file" />
+                    </label>
+                    <button type="button" class="btn btn-sm btn-ghost" id="gen-clear-image" title="Revenir à l'image auto">✕</button>
+                  </div>
+                  ${
+                    draft.image.startsWith('data:image/webp') || draft.image.startsWith('data:image/jpeg') || draft.image.startsWith('data:image/png')
+                      ? `<span class="field-help ok-inline">✓ Image verticale locale chargée et compressée (incluse dans l'export .zip).</span>`
+                      : `<span class="field-help">Laissez vide pour générer un blason automatique.</span>`
+                  }
                 </div>
-                ${
-                  draft.image.startsWith('data:image/webp') || draft.image.startsWith('data:image/jpeg') || draft.image.startsWith('data:image/png')
-                    ? `<span class="field-help ok-inline">✓ Image locale chargée et compressée (incluse dans l'export .zip).</span>`
-                    : `<span class="field-help">Laissez vide pour générer un blason automatique.</span>`
-                }
+
+                <div class="field-group">
+                  <span class="field-label">Image Paysage — Horizontale (Mode Puissance, optionnelle)</span>
+                  <div class="gen-image-controls">
+                    <input
+                      type="text"
+                      class="field-input"
+                      id="gen-landscape-url"
+                      placeholder="https://... (format 16:9 / horizontal)"
+                      value="${(draft.imageLandscape || '').startsWith('data:') ? '' : esc(draft.imageLandscape || '')}"
+                    />
+                    <label class="btn btn-sm btn-secondary gen-upload-btn">
+                      🖼️ Importer
+                      <input type="file" accept="image/*" hidden id="gen-landscape-file" />
+                    </label>
+                    <button type="button" class="btn btn-sm btn-ghost" id="gen-clear-landscape" title="Effacer l'image paysage">✕</button>
+                  </div>
+                  ${
+                    (draft.imageLandscape || '').startsWith('data:image/webp') ||
+                    (draft.imageLandscape || '').startsWith('data:image/jpeg') ||
+                    (draft.imageLandscape || '').startsWith('data:image/png')
+                      ? `<span class="field-help ok-inline">✓ Image paysage locale chargée et compressée (incluse dans l'export .zip).</span>`
+                      : `<span class="field-help">Si vide, le mode Puissance affichera l'image verticale sur un fond flouté stylisé.</span>`
+                  }
+                </div>
               </div>
 
               <label class="field-group">
@@ -273,22 +295,28 @@
                   <span class="field-help">10 = personnage incontournable, pris en priorité lors des tirages limités.</span>
                 </label>
 
-                <div class="field-group">
-                  <span class="field-label">Catégories spéciales (Mode Puissance)</span>
-                  <div class="gen-special-list">
-                    ${ROR.SPECIAL_CATEGORIES.map((cat) => {
-                      const checked = Boolean(draft.specialCategories?.[cat.id]);
-                      return `
-                        <label class="gen-special-option ${checked ? 'is-checked' : ''}">
-                          <input type="checkbox" class="gen-special-checkbox" data-gen-special="${esc(cat.id)}" ${checked ? 'checked' : ''} />
-                          <div>
-                            <div class="gen-special-title">${esc(cat.emoji)} ${esc(cat.label)}</div>
-                            <div class="field-help">${esc(cat.description)}</div>
-                          </div>
-                        </label>
-                      `;
-                    }).join('')}
-                  </div>
+                <label class="field-group">
+                  <span class="field-label">Indice beauté / BG : <strong id="gen-beauty-val">${draft.beauty}</strong>/10</span>
+                  <input type="range" id="gen-beauty" min="1" max="10" step="1" value="${draft.beauty}" class="range-input range-beauty" />
+                  <span class="field-help">10 = personnage très populaire / attirant, priorisé en mode Beauté (sous-mode BG).</span>
+                </label>
+              </div>
+
+              <div class="field-group">
+                <span class="field-label">Catégories spéciales (Overcheaté / Personne ne juge)</span>
+                <div class="gen-special-list">
+                  ${ROR.SPECIAL_CATEGORIES.map((cat) => {
+                    const checked = Boolean(draft.specialCategories?.[cat.id]);
+                    return `
+                      <label class="gen-special-option ${checked ? 'is-checked' : ''}">
+                        <input type="checkbox" class="gen-special-checkbox" data-gen-special="${esc(cat.id)}" ${checked ? 'checked' : ''} />
+                        <div>
+                          <div class="gen-special-title">${esc(cat.emoji)} ${esc(cat.label)}</div>
+                          <div class="field-help">${esc(cat.description)}</div>
+                        </div>
+                      </label>
+                    `;
+                  }).join('')}
                 </div>
               </div>
 
@@ -320,7 +348,17 @@
             </form>
 
             <div class="gen-preview-section">
-              <div class="abilities-title" style="margin-bottom:8px;">Aperçu de la carte en jeu</div>
+              <div class="gen-preview-head">
+                <div class="abilities-title" style="margin-bottom:0;">Aperçu de la carte en jeu</div>
+                <div class="gen-preview-tabs">
+                  <button type="button" class="btn btn-xs btn-ghost gen-preview-tab ${previewMode === 'power' ? 'is-active' : ''}" data-preview-mode="power">
+                    ⚡ Puissance (Paysage)
+                  </button>
+                  <button type="button" class="btn btn-xs btn-ghost gen-preview-tab ${previewMode === 'beauty' ? 'is-active' : ''}" data-preview-mode="beauty">
+                    ✨ Beauté (Full-Art Vertical)
+                  </button>
+                </div>
+              </div>
               <div id="gen-live-preview"></div>
             </div>
           </section>
@@ -362,10 +400,13 @@
                             <img class="gen-char-thumb" src="${esc(ch.image || ROR.generateInlinePortraitSvg(ch.name, ch.licence))}" alt="${esc(ch.name)}" data-fallback="${esc(ROR.getFallbackImage(ch))}" data-licence="${esc(ch.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                             <div class="gen-char-info">
                               <div class="gen-char-top">
-                                <strong>${ROR.renderCharNameHtml(ch, { compact: true })} ${ROR.renderSpecialBadgesHtml(ch, 'power')}</strong>
-                                <span class="prio-badge">★ ${ch.priority}</span>
+                                <strong>${ROR.renderCharNameHtml(ch, { compact: true })} ${ROR.renderSpecialBadgesHtml(ch, 'all')}</strong>
+                                <span class="gen-score-badges">
+                                  <span class="prio-badge" title="Indice de priorité">★ ${ch.priority}</span>
+                                  <span class="beauty-badge" title="Indice beauté / BG">✨ ${ch.beauty ?? 5}</span>
+                                </span>
                               </div>
-                              <div class="db-card-sub">${esc(ch.medium)} • ${esc(ch.licence)}</div>
+                              <div class="db-card-sub">${esc(ch.medium)} • ${esc(ch.licence)}${ch.imageLandscape ? ' • <span class="landscape-badge">🖼️ Paysage</span>' : ''}</div>
                               <div class="gen-char-desc">${esc(ch.description || 'Aucune description')}</div>
                               ${
                                 ch.abilities.length > 0
@@ -488,6 +529,12 @@
       if (valEl) valEl.textContent = String(draft.priority);
       renderPreviewCard(container);
     });
+    container.querySelector('#gen-beauty')?.addEventListener('input', (e) => {
+      draft.beauty = Number(e.target.value) || 5;
+      const valEl = container.querySelector('#gen-beauty-val');
+      if (valEl) valEl.textContent = String(draft.beauty);
+      renderPreviewCard(container);
+    });
     container.querySelector('#gen-image-url')?.addEventListener('input', (e) => {
       draft.image = e.target.value.trim();
       renderPreviewCard(container);
@@ -497,7 +544,7 @@
       const file = e.target.files?.[0];
       if (!file) return;
       try {
-        draft.image = await compressImageFile(file);
+        draft.image = await compressImageFile(file, 'portrait');
         ROR.renderGeneratorScreen(container);
       } catch (err) {
         global.alert(err.message || 'Erreur lors du chargement de l’image.');
@@ -507,6 +554,34 @@
     container.querySelector('#gen-clear-image')?.addEventListener('click', () => {
       draft.image = '';
       ROR.renderGeneratorScreen(container);
+    });
+
+    container.querySelector('#gen-landscape-url')?.addEventListener('input', (e) => {
+      draft.imageLandscape = e.target.value.trim();
+      renderPreviewCard(container);
+    });
+
+    container.querySelector('#gen-landscape-file')?.addEventListener('change', async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      try {
+        draft.imageLandscape = await compressImageFile(file, 'landscape');
+        ROR.renderGeneratorScreen(container);
+      } catch (err) {
+        global.alert(err.message || 'Erreur lors du chargement de l’image.');
+      }
+    });
+
+    container.querySelector('#gen-clear-landscape')?.addEventListener('click', () => {
+      draft.imageLandscape = '';
+      ROR.renderGeneratorScreen(container);
+    });
+
+    container.querySelectorAll('[data-preview-mode]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        previewMode = btn.getAttribute('data-preview-mode') || 'power';
+        renderPreviewCard(container);
+      });
     });
 
     container.querySelector('#gen-add-ability')?.addEventListener('click', () => {
@@ -547,8 +622,10 @@
           licence: draft.licence,
           description: draft.description,
           image: draft.image,
+          imageLandscape: draft.imageLandscape,
           abilities: draft.abilities.map((a) => a.trim()).filter(Boolean),
           priority: draft.priority,
+          beauty: draft.beauty,
           specialCategories: draft.specialCategories
         });
         draft = DEFAULT_DRAFT();
@@ -591,26 +668,31 @@
       }
     });
 
+    const loadDraftFromChar = (found, { duplicate = false } = {}) => {
+      draft = {
+        id: duplicate ? null : found.id,
+        name: duplicate ? `${found.name} (copie)` : found.name,
+        complement: found.complement || '',
+        medium: found.medium,
+        licence: found.licence,
+        mediumCustomMode: !existingMediums.includes(found.medium),
+        licenceCustomMode: false,
+        description: found.description,
+        image: found.image,
+        imageLandscape: found.imageLandscape || '',
+        abilities: found.abilities.length > 0 ? [...found.abilities] : [''],
+        priority: found.priority,
+        beauty: found.beauty ?? 5,
+        specialCategories: { ...(found.specialCategories || {}) }
+      };
+      ROR.renderGeneratorScreen(container);
+    };
+
     container.querySelectorAll('[data-edit-char]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const id = btn.getAttribute('data-edit-char');
         const found = customChars.find((c) => c.id === id);
-        if (!found) return;
-        draft = {
-          id: found.id,
-          name: found.name,
-          complement: found.complement || '',
-          medium: found.medium,
-          licence: found.licence,
-          mediumCustomMode: !existingMediums.includes(found.medium),
-          licenceCustomMode: false,
-          description: found.description,
-          image: found.image,
-          abilities: found.abilities.length > 0 ? [...found.abilities] : [''],
-          priority: found.priority,
-          specialCategories: { ...(found.specialCategories || {}) }
-        };
-        ROR.renderGeneratorScreen(container);
+        if (found) loadDraftFromChar(found, { duplicate: false });
       });
     });
 
@@ -618,22 +700,7 @@
       btn.addEventListener('click', () => {
         const id = btn.getAttribute('data-dup-char');
         const found = customChars.find((c) => c.id === id);
-        if (!found) return;
-        draft = {
-          id: null,
-          name: `${found.name} (copie)`,
-          complement: found.complement || '',
-          medium: found.medium,
-          licence: found.licence,
-          mediumCustomMode: !existingMediums.includes(found.medium),
-          licenceCustomMode: false,
-          description: found.description,
-          image: found.image,
-          abilities: found.abilities.length > 0 ? [...found.abilities] : [''],
-          priority: found.priority,
-          specialCategories: { ...(found.specialCategories || {}) }
-        };
-        ROR.renderGeneratorScreen(container);
+        if (found) loadDraftFromChar(found, { duplicate: true });
       });
     });
 

@@ -11,7 +11,8 @@
 
     const eligibleChars = ROR.getEligibleCharacters(characters, setup.selectedLicences, setup.enabledSpecialCategories, mode);
     const availableCount = eligibleChars.length;
-    const jokerCount = ROR.computeJokerTarget(setup.targetCount, availableCount);
+    const isSmash = mode === 'smash';
+    const jokerCount = ROR.computeJokerTarget(setup.targetCount, availableCount, mode);
     const idealJokerCount = Math.max(1, Math.round(setup.targetCount * 0.2));
     const canStart = availableCount >= setup.targetCount;
 
@@ -30,15 +31,23 @@
 
     const jokerHint = container.querySelector('#joker-hint');
     if (jokerHint) {
-      const capNotice =
-        jokerCount < idealJokerCount && canStart
-          ? ` <span class="warn-inline">(plafonné par les ${availableCount} persos sélectionnés)</span>`
-          : '';
-      jokerHint.innerHTML = `
-        De 5 en 5 jusqu'à 50, puis par dizaines jusqu'à 100.
-        <br/>
-        Deck Joker (~20%) : <strong id="joker-preview">${jokerCount}</strong> carte${jokerCount > 1 ? 's' : ''} Joker${capNotice}
-      `;
+      if (isSmash) {
+        jokerHint.innerHTML = `
+          De 5 en 5 jusqu'à 50, puis par dizaines jusqu'à 100.
+          <br/>
+          Deck central (Portrait) : <strong>${setup.targetCount}</strong> cartes à retourner et swiper.
+        `;
+      } else {
+        const capNotice =
+          jokerCount < idealJokerCount && canStart
+            ? ` <span class="warn-inline">(plafonné par les ${availableCount} persos sélectionnés)</span>`
+            : '';
+        jokerHint.innerHTML = `
+          De 5 en 5 jusqu'à 50, puis par dizaines jusqu'à 100.
+          <br/>
+          Deck Joker (~20%) : <strong id="joker-preview">${jokerCount}</strong> carte${jokerCount > 1 ? 's' : ''} Joker${capNotice}
+        `;
+      }
     }
 
     const swapSlider = container.querySelector('#swap-count-slider');
@@ -55,7 +64,11 @@
 
     const swapHint = container.querySelector('#swap-hint');
     if (swapHint) {
-      swapHint.innerHTML = `Une fois toutes les cases remplies, vous pourrez échanger jusqu'à <strong>${setup.maxSwaps}</strong> paire${setup.maxSwaps > 1 ? 's' : ''} de cartes.`;
+      if (isSmash) {
+        swapHint.innerHTML = `Durant la partie, vous pourrez glisser jusqu'à <strong>${setup.maxSwaps}</strong> carte${setup.maxSwaps > 1 ? 's' : ''} vers le haut en <strong>🚀 Turbo Smash</strong>.`;
+      } else {
+        swapHint.innerHTML = `Une fois toutes les cases remplies, vous pourrez échanger jusqu'à <strong>${setup.maxSwaps}</strong> paire${setup.maxSwaps > 1 ? 's' : ''} de cartes.`;
+      }
     }
 
     // Update summary & launch button
@@ -67,7 +80,27 @@
     const availEl = container.querySelector('#available-count');
     if (availEl) availEl.textContent = String(availableCount);
     const reqEl = container.querySelector('#required-count');
-    if (reqEl) reqEl.textContent = `${setup.targetCount} + ${jokerCount} = ${setup.targetCount + jokerCount}`;
+    if (reqEl) {
+      reqEl.textContent = isSmash
+        ? `${setup.targetCount}`
+        : `${setup.targetCount} + ${jokerCount} = ${setup.targetCount + jokerCount}`;
+    }
+
+    const activeSubMode = ROR.getActiveSubMode(mode, setup);
+    if (mode === 'smash') {
+      if (activeSubMode === 'personne_ne_juge') {
+        setup.enabledSpecialCategories.add('personneNeJuge');
+      } else {
+        setup.enabledSpecialCategories.delete('personneNeJuge');
+      }
+    }
+
+    container.querySelectorAll('[data-submode-radio]').forEach((radio) => {
+      const val = radio.getAttribute('data-submode-radio');
+      const checked = val === activeSubMode;
+      radio.checked = checked;
+      radio.closest('.submode-option')?.classList.toggle('is-checked', checked);
+    });
 
     const summaryMsg = container.querySelector('#summary-message');
     if (summaryMsg) {
@@ -75,6 +108,12 @@
         summaryMsg.className = 'summary-error';
         const diff = setup.targetCount - availableCount;
         summaryMsg.textContent = `Sélectionnez plus de licences ou réduisez le nombre de personnages (manque ${diff} perso${diff > 1 ? 's' : ''}).`;
+      } else if (mode === 'smash' && activeSubMode === 'personne_ne_juge') {
+        summaryMsg.className = 'summary-ok';
+        summaryMsg.textContent = `🫣 Mode Personne ne juge actif : seuls les personnages immondes, grotesques, boss monstrueux ou créatures improbables (${availableCount} éligibles) seront sélectionnés !`;
+      } else if ((mode === 'beauty' || mode === 'smash') && activeSubMode === 'bg') {
+        summaryMsg.className = 'summary-ok';
+        summaryMsg.textContent = `Mode BG actif : les personnages avec le plus fort indice beauté (attrait & charisme) seront retenus en premier si le pool dépasse ${setup.targetCount + jokerCount}.`;
       } else {
         summaryMsg.className = 'summary-ok';
         summaryMsg.textContent = `Les personnages les plus marquants (indice de priorité) seront sélectionnés en premier si le pool dépasse ${setup.targetCount + jokerCount}.`;
@@ -84,7 +123,9 @@
     const launchBtn = container.querySelector('[data-action="launch-game"]');
     if (launchBtn) {
       launchBtn.disabled = !canStart;
-      launchBtn.textContent = `🎴 Lancer la partie (${setup.targetCount} rangs)`;
+      launchBtn.textContent = isSmash
+        ? `🔥 Lancer la partie (${setup.targetCount} cartes)`
+        : `🎴 Lancer la partie (${setup.targetCount} rangs)`;
     }
 
     // Update Medium & Licence checkboxes + counts in place
@@ -152,10 +193,17 @@
       if (collapseBtn) collapseBtn.textContent = isCollapsed ? '▸' : '▾';
 
       const badge = catEl.querySelector('.special-cat-badge');
+      const isOnlyMode = cat.filterType === 'only_when_enabled';
       if (badge) {
-        badge.textContent = catEnabled
-          ? `Activée • ${activeLicCount}/${charsInCat.length} inclus`
-          : `Désactivée • ${charsInCat.length} exclus`;
+        if (isOnlyMode) {
+          badge.textContent = catEnabled
+            ? `Activée • ${activeLicCount}/${charsInCat.length} sélectionnés uniquement`
+            : `Optionnelle • ${charsInCat.length} persos disponibles`;
+        } else {
+          badge.textContent = catEnabled
+            ? `Activée • ${activeLicCount}/${charsInCat.length} inclus`
+            : `Désactivée • ${charsInCat.length} exclus`;
+        }
       }
 
       catEl.querySelectorAll('.special-char-row').forEach((row) => {
@@ -166,7 +214,11 @@
         row.classList.toggle('is-active-in-pool', catEnabled && licOn);
         const statusEl = row.querySelector('.special-char-status');
         if (statusEl) {
-          statusEl.textContent = !catEnabled ? 'Exclu' : licOn ? 'Inclus' : 'Licence décochée';
+          if (isOnlyMode) {
+            statusEl.textContent = !catEnabled ? 'Mode standard' : licOn ? 'Retenu' : 'Licence décochée';
+          } else {
+            statusEl.textContent = !catEnabled ? 'Exclu' : licOn ? 'Inclus' : 'Licence décochée';
+          }
         }
       });
     }
@@ -179,6 +231,7 @@
     const specialCats = ROR.getSpecialCategoriesForMode(mode);
 
     const steps = ROR.CARD_COUNT_STEPS;
+    const modeMeta = ROR.getModeMeta(mode);
     let stepIndex = steps.indexOf(setup.targetCount);
     if (stepIndex === -1) {
       stepIndex = 3; // 20
@@ -190,7 +243,7 @@
         <header class="topbar">
           <button type="button" class="btn btn-ghost" data-action="back-home">← Accueil</button>
           <div class="topbar-center">
-            <span class="mode-tag">⚡ Mode : Puissance</span>
+            <span class="mode-tag">${esc(modeMeta.setupTag)}</span>
             <h1 class="topbar-title">Paramètres de la partie</h1>
           </div>
           <div class="topbar-right"></div>
@@ -198,11 +251,11 @@
 
         <div class="setup-grid">
           <section class="panel setup-rules-panel">
-            <h2 class="panel-title">Règles du classement</h2>
+            <h2 class="panel-title">${mode === 'smash' ? 'Règles de la partie' : 'Règles du classement'}</h2>
 
             <div class="slider-block">
               <div class="slider-header">
-                <label for="card-count-slider" class="slider-label">Nombre de personnages à classer</label>
+                <label for="card-count-slider" class="slider-label">${mode === 'smash' ? 'Nombre de personnages à jouer' : 'Nombre de personnages à classer'}</label>
                 <span class="slider-value-badge" id="card-count-readout">${setup.targetCount}</span>
               </div>
               <input
@@ -233,7 +286,7 @@
 
             <div class="slider-block">
               <div class="slider-header">
-                <label for="swap-count-slider" class="slider-label">Échanges autorisés en fin de partie</label>
+                <label for="swap-count-slider" class="slider-label">${mode === 'smash' ? '🚀 Nombre de Turbo Smash disponibles' : 'Échanges autorisés en fin de partie'}</label>
                 <span class="slider-value-badge slider-value-amber" id="swap-count-readout">${setup.maxSwaps}</span>
               </div>
               <input
@@ -261,13 +314,48 @@
               <p class="slider-hint" id="swap-hint"></p>
             </div>
 
+            ${
+              Array.isArray(modeMeta.subModes) && modeMeta.subModes.length > 0
+                ? (() => {
+                    const activeSubMode = ROR.getActiveSubMode(mode, setup);
+                    return `
+                      <div class="submode-block">
+                        <div class="slider-label">Sous-mode (${esc(modeMeta.label)})</div>
+                        <div class="submode-radio-group" role="radiogroup" aria-label="Sous-mode ${esc(modeMeta.label)}">
+                          ${modeMeta.subModes
+                            .map((sub) => {
+                              const checked = sub.id === activeSubMode;
+                              return `
+                                <label class="submode-option ${checked ? 'is-checked' : ''}">
+                                  <input
+                                    type="radio"
+                                    name="setup-submode"
+                                    value="${esc(sub.id)}"
+                                    data-submode-radio="${esc(sub.id)}"
+                                    ${checked ? 'checked' : ''}
+                                  />
+                                  <div class="submode-option-body">
+                                    <div class="submode-option-title">${esc(sub.label)}</div>
+                                    <div class="submode-option-desc">${esc(sub.description)}</div>
+                                  </div>
+                                </label>
+                              `;
+                            })
+                            .join('')}
+                        </div>
+                      </div>
+                    `;
+                  })()
+                : ''
+            }
+
             <div class="summary-card" id="summary-card">
               <div class="summary-row">
                 <span>Personnages disponibles (licences cochées)</span>
                 <strong id="available-count">0</strong>
               </div>
               <div class="summary-row">
-                <span>Cartes requises (Deck + Jokers)</span>
+                <span>${mode === 'smash' ? 'Cartes requises (Deck)' : 'Cartes requises (Deck + Jokers)'}</span>
                 <strong id="required-count">0</strong>
               </div>
               <div id="summary-message"></div>
@@ -290,7 +378,9 @@
               </div>
             </div>
 
-            <div class="special-categories-block">
+            ${
+              specialCats.length > 0
+                ? `<div class="special-categories-block">
               ${specialCats
                 .map((cat) => {
                   const charsInCat = characters.filter((c) => c.specialCategories?.[cat.id]);
@@ -338,7 +428,9 @@
                   `;
                 })
                 .join('')}
-            </div>
+            </div>`
+                : ''
+            }
 
             <div class="medium-tree">
               ${tree
@@ -424,6 +516,22 @@
       });
     });
 
+    container.querySelectorAll('[data-submode-radio]').forEach((radio) => {
+      radio.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          setup.subMode = e.target.value;
+          if (mode === 'smash') {
+            if (setup.subMode === 'personne_ne_juge') {
+              setup.enabledSpecialCategories.add('personneNeJuge');
+            } else {
+              setup.enabledSpecialCategories.delete('personneNeJuge');
+            }
+          }
+          updateSetupStateUI(container, tree);
+        }
+      });
+    });
+
     container.querySelector('[data-action="select-all"]')?.addEventListener('click', () => {
       setup.selectedLicences = new Set(characters.map((c) => c.licence));
       updateSetupStateUI(container, tree);
@@ -463,8 +571,14 @@
         const catId = e.target.getAttribute('data-special-check');
         if (e.target.checked) {
           setup.enabledSpecialCategories.add(catId);
+          if (catId === 'personneNeJuge' && mode === 'smash') {
+            setup.subMode = 'personne_ne_juge';
+          }
         } else {
           setup.enabledSpecialCategories.delete(catId);
+          if (catId === 'personneNeJuge' && mode === 'smash' && setup.subMode === 'personne_ne_juge') {
+            setup.subMode = 'default';
+          }
         }
         updateSetupStateUI(container, tree);
       });
