@@ -58,17 +58,20 @@
               </div>
             </button>
 
-            <div class="mode-card mode-card-locked" aria-disabled="true">
+            <button type="button" class="mode-card mode-card-active mode-card-smash" data-action="select-mode" data-mode="smash">
               <div class="mode-card-top">
                 <span class="mode-icon">🔥</span>
-                <span class="mode-badge mode-badge-soon">Bientôt</span>
+                <span class="mode-badge mode-badge-ready">Disponible</span>
               </div>
               <h3 class="mode-title">Smash or Pass</h3>
               <p class="mode-desc">
-                Mode soirée rapide en duo ou en groupe : on garde ou on brûle en direct !
+                Mode soirée rapide : retournez la carte puis swipez à droite pour Smash, à gauche pour Pass, ou vers le haut pour Turbo Smash !
               </p>
-              <div class="mode-cta mode-cta-locked">Prochainement</div>
-            </div>
+              <div class="mode-cta">
+                <span>Configurer la partie</span>
+                <span class="cta-arrow">→</span>
+              </div>
+            </button>
 
             <div class="mode-card mode-card-locked" aria-disabled="true">
               <div class="mode-card-top">
@@ -121,6 +124,53 @@
     });
   };
 
+  function renderSmashHistoryTiersHtml(tiers, esc) {
+    const sections = [
+      { key: 'turbo', label: '🚀 TURBO SMASH', cls: 'tier-row-turbo', list: tiers.turbo || [] },
+      { key: 'smash', label: '🔥 SMASH', cls: 'tier-row-smash', list: tiers.smash || [] },
+      { key: 'pass', label: '❄️ PASS', cls: 'tier-row-pass', list: tiers.pass || [] }
+    ];
+    return `
+      <div class="smash-tierlist is-compact-tierlist">
+        ${sections
+          .map(
+            (sec) => `
+            <div class="tier-row ${sec.cls}">
+              <div class="tier-label">
+                <span class="tier-label-title">${sec.label}</span>
+                <span class="tier-label-count">${sec.list.length}</span>
+              </div>
+              <div class="tier-items">
+                ${
+                  sec.list.length === 0
+                    ? '<span class="tier-empty">Aucun personnage</span>'
+                    : sec.list
+                        .map(
+                          (row) => `
+                          <div class="mini-grid-card">
+                            ${
+                              row.image
+                                ? `<img class="mini-thumb" src="${esc(row.image)}" alt="${esc(row.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(row))}" data-licence="${esc(row.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>`
+                                : ''
+                            }
+                            <div class="mini-info">
+                              <div class="mini-name">${ROR.renderCharNameHtml(row, { compact: true })}</div>
+                              <div class="mini-licence">${esc(row.licence)}</div>
+                            </div>
+                          </div>
+                        `
+                        )
+                        .join('')
+                }
+              </div>
+            </div>
+          `
+          )
+          .join('')}
+      </div>
+    `;
+  }
+
   ROR.openHistoryModal = function openHistoryModal(selectedId = null) {
     const history = ROR.loadSavedHistory();
     const esc = ROR.escapeHtml;
@@ -163,16 +213,23 @@
                           minute: '2-digit'
                         });
                         const isSelected = activeEntry && activeEntry.id === entry.id;
-                        const top1 = entry.ranking[0]?.name || '—';
                         const modeMeta = ROR.getModeMeta(entry.mode || 'power');
-                        const subSuffix = entry.mode === 'beauty' && entry.subMode === 'bg' ? ' (Mode BG)' : '';
+                        const subSuffix =
+                          (entry.mode === 'beauty' || entry.mode === 'smash') && entry.subMode === 'bg' ? ' (Mode BG)' : '';
+                        let winnerLine = `🥇 ${esc(entry.ranking?.[0]?.name || '—')}`;
+                        if (entry.mode === 'smash' && entry.tiers) {
+                          const tCount = (entry.tiers.turbo || []).length;
+                          const sCount = (entry.tiers.smash || []).length;
+                          const pCount = (entry.tiers.pass || []).length;
+                          winnerLine = `🚀 ${tCount} Turbo • 🔥 ${sCount} Smash • ❄️ ${pCount} Pass`;
+                        }
                         return `
                           <button type="button" class="history-item ${isSelected ? 'is-selected' : ''}" data-history-id="${esc(entry.id)}">
                             <div class="history-item-top">
                               <span class="history-mode">${esc(modeMeta.tag + subSuffix)} • ${entry.targetCount} persos</span>
                               <span class="history-date">${esc(dateStr)}</span>
                             </div>
-                            <div class="history-item-winner">🥇 ${esc(top1)}</div>
+                            <div class="history-item-winner">${winnerLine}</div>
                           </button>
                         `;
                       })
@@ -185,35 +242,45 @@
                         ? `
                           <div class="history-detail-bar">
                             <div class="history-meta-pills">
-                              <span class="meta-pill">${activeEntry.targetCount} classés</span>
-                              <span class="meta-pill">${activeEntry.swapsUsed}/${activeEntry.maxSwaps} échanges</span>
-                              <span class="meta-pill">${activeEntry.burnedCount || 0} brûlées</span>
+                              <span class="meta-pill">${activeEntry.targetCount} cartes</span>
+                              ${
+                                activeEntry.mode === 'smash'
+                                  ? `<span class="meta-pill">🚀 ${activeEntry.turboUsed ?? activeEntry.swapsUsed}/${activeEntry.turboMax ?? activeEntry.maxSwaps} Turbo Smash</span>`
+                                  : `
+                                    <span class="meta-pill">${activeEntry.swapsUsed}/${activeEntry.maxSwaps} échanges</span>
+                                    <span class="meta-pill">${activeEntry.burnedCount || 0} brûlées</span>
+                                  `
+                              }
                             </div>
                             <div class="history-detail-actions">
                               <button type="button" class="btn btn-sm btn-secondary" data-copy-history>📋 Copier</button>
                               <button type="button" class="btn btn-sm btn-danger" data-delete-history="${esc(activeEntry.id)}">🗑 Supprimer</button>
                             </div>
                           </div>
-                          <div class="history-ranking-grid">
-                            ${activeEntry.ranking
-                              .map(
-                                (row) => `
-                                <div class="mini-grid-card ${row.rank <= 3 ? `rank-top-${row.rank}` : ''}">
-                                  <span class="mini-rank">#${row.rank}</span>
-                                  ${
-                                    row.image
-                                      ? `<img class="mini-thumb" src="${esc(row.image)}" alt="${esc(row.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(row))}" data-licence="${esc(row.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>`
-                                      : ''
-                                  }
-                                  <div class="mini-info">
-                                    <div class="mini-name">${ROR.renderCharNameHtml(row, { compact: true })}</div>
-                                    <div class="mini-licence">${esc(row.licence)}</div>
-                                  </div>
-                                </div>
-                              `
-                              )
-                              .join('')}
-                          </div>
+                          ${
+                            activeEntry.mode === 'smash' && activeEntry.tiers
+                              ? renderSmashHistoryTiersHtml(activeEntry.tiers, esc)
+                              : `<div class="history-ranking-grid">
+                                  ${activeEntry.ranking
+                                    .map(
+                                      (row) => `
+                                      <div class="mini-grid-card ${row.rank <= 3 ? `rank-top-${row.rank}` : ''}">
+                                        <span class="mini-rank">#${row.rank}</span>
+                                        ${
+                                          row.image
+                                            ? `<img class="mini-thumb" src="${esc(row.image)}" alt="${esc(row.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(row))}" data-licence="${esc(row.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>`
+                                            : ''
+                                        }
+                                        <div class="mini-info">
+                                          <div class="mini-name">${ROR.renderCharNameHtml(row, { compact: true })}</div>
+                                          <div class="mini-licence">${esc(row.licence)}</div>
+                                        </div>
+                                      </div>
+                                    `
+                                    )
+                                    .join('')}
+                                </div>`
+                          }
                         `
                         : ''
                     }
@@ -249,7 +316,10 @@
       overlay.querySelector('[data-copy-history]')?.addEventListener('click', async (e) => {
         if (!activeEntry) return;
         const modeLabel = ROR.getModeMeta(activeEntry.mode || 'power').label;
-        const text = ROR.formatRankingAsText(activeEntry.ranking, modeLabel);
+        const text =
+          activeEntry.mode === 'smash' && activeEntry.tiers
+            ? ROR.formatSmashTiersAsText(activeEntry.tiers, activeEntry.targetCount)
+            : ROR.formatRankingAsText(activeEntry.ranking, modeLabel);
         try {
           await navigator.clipboard.writeText(text);
           e.currentTarget.textContent = '✓ Copié !';

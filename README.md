@@ -11,7 +11,8 @@ Application **100 % statique** (HTML / CSS / JS vanilla sans outil de build) : e
 - **Accueil & Modes de jeu** :
   - **⚡ Puissance** : cartes classiques avec image **paysage** (ou image verticale centrée sur fond flouté stylisé en repli), description et capacités.
   - **✨ Beauté & Charisme** : cartes **full-art verticales** sans description ni capacités, mettant en valeur le portrait du personnage, avec deux sous-modes : **Mode par défaut** (priorité standard) et **Mode BG** (priorise les personnages à plus fort indice `beauty`).
-  - Architecture prête pour de futurs modes (Smash or Pass, Autres Critères).
+  - **🔥 Smash or Pass** : deck central grand format **portrait**, paramètre de **🚀 Turbo Smash** disponibles (`1` à `10`), retournement de la carte au clic puis **glisser / swiper** à droite pour **Smash**, à gauche pour **Pass** ou vers le haut pour **Turbo Smash**, avec un écran de **Tierlist finale** à 3 rangs (**Turbo Smash**, **Smash**, **Pass**).
+  - Architecture prête pour de futurs modes (Autres Critères).
 - **Paramètres de partie** :
   - Nombre de personnages à classer (`5` en `5` jusqu'à `50`, puis par dizaines jusqu'à `100`).
   - Nombre d'échanges autorisés en fin de partie (`1` à `10`).

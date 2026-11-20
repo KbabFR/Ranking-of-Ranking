@@ -36,6 +36,28 @@
         }
       ],
       defaultSubMode: 'default'
+    },
+    smash: {
+      id: 'smash',
+      label: 'Smash or Pass',
+      tag: '🔥 Smash or Pass',
+      setupTag: '🔥 Mode : Smash or Pass',
+      icon: '🔥',
+      fullArt: true,
+      isSwipeMode: true,
+      subModes: [
+        {
+          id: 'default',
+          label: 'Mode par défaut',
+          description: 'Sélection aléatoire équilibrée en respectant l’indice de priorité.'
+        },
+        {
+          id: 'bg',
+          label: 'Mode BG',
+          description: 'Priorise les personnages les plus attirants et charismatiques (indice beauté).'
+        }
+      ],
+      defaultSubMode: 'default'
     }
   };
 
@@ -239,7 +261,12 @@
     return tree;
   };
 
-  ROR.computeJokerTarget = function computeJokerTarget(targetCount, availableCount) {
+  ROR.computeJokerTarget = function computeJokerTarget(
+    targetCount,
+    availableCount,
+    mode = ROR.AppState.mode || 'power'
+  ) {
+    if (mode === 'smash') return 0;
     const idealJokers = Math.max(1, Math.round(targetCount * 0.2));
     if (availableCount <= targetCount) return 0;
     return Math.min(idealJokers, availableCount - targetCount);
@@ -262,9 +289,9 @@
       throw new Error(`Pas assez de personnages (${pool.length}/${targetCount}).`);
     }
 
-    const jokerCount = ROR.computeJokerTarget(targetCount, pool.length);
+    const jokerCount = ROR.computeJokerTarget(targetCount, pool.length, mode);
     const totalNeeded = targetCount + jokerCount;
-    const useBeautySort = mode === 'beauty' && subMode === 'bg';
+    const useBeautySort = (mode === 'beauty' || mode === 'smash') && subMode === 'bg';
 
     const buckets = new Map();
     for (const ch of pool) {
@@ -325,6 +352,9 @@
       activeSubMode
     );
 
+    const isSmash = mode === 'smash';
+    const firstActiveCard = isSmash && mainDeck.length > 0 ? mainDeck.pop() : null;
+
     return {
       id: `game-${Date.now()}`,
       mode,
@@ -333,13 +363,21 @@
       maxSwaps,
       swapsRemaining: maxSwaps,
       swapsUsed: 0,
+      turboMax: maxSwaps,
+      turboRemaining: maxSwaps,
+      turboUsed: 0,
+      tiers: {
+        turbo: [],
+        smash: [],
+        pass: []
+      },
       licencesUsed: Array.from(selectedLicences),
       mainDeck,
       jokerDeck,
       burnedCards: [],
       slots: Array(targetCount).fill(null),
-      activeCard: null,
-      activeCardSource: null,
+      activeCard: firstActiveCard,
+      activeCardSource: firstActiveCard ? 'main' : null,
       isFlipped: false,
       isBurning: false,
       overviewOpen: false,
@@ -361,30 +399,57 @@
     }
   };
 
+  function mapCharForHistory(ch, extra = {}) {
+    return {
+      id: ch?.id || '',
+      name: ch?.name || 'Vide',
+      complement: ch?.complement || '',
+      licence: ch?.licence || '',
+      medium: ch?.medium || '',
+      image: ch?.image || '',
+      imageLandscape: ch?.imageLandscape || '',
+      ...extra
+    };
+  }
+
   ROR.saveGameToHistory = function saveGameToHistory(game) {
     if (!game || game.savedToHistory) return ROR.loadSavedHistory();
     const history = ROR.loadSavedHistory();
-    const entry = {
-      id: game.id,
-      mode: game.mode,
-      subMode: game.subMode || null,
-      targetCount: game.targetCount,
-      swapsUsed: game.swapsUsed,
-      maxSwaps: game.maxSwaps,
-      burnedCount: game.burnedCards.length,
-      licencesCount: game.licencesUsed.length,
-      finishedAt: new Date().toISOString(),
-      ranking: game.slots.map((ch, idx) => ({
-        rank: idx + 1,
-        id: ch?.id || '',
-        name: ch?.name || 'Vide',
-        complement: ch?.complement || '',
-        licence: ch?.licence || '',
-        medium: ch?.medium || '',
-        image: ch?.image || '',
-        imageLandscape: ch?.imageLandscape || ''
-      }))
-    };
+    let entry;
+
+    if (game.mode === 'smash') {
+      const turbo = (game.tiers?.turbo || []).map((c, idx) => mapCharForHistory(c, { rank: idx + 1, tier: 'turbo' }));
+      const smash = (game.tiers?.smash || []).map((c, idx) => mapCharForHistory(c, { rank: idx + 1, tier: 'smash' }));
+      const pass = (game.tiers?.pass || []).map((c, idx) => mapCharForHistory(c, { rank: idx + 1, tier: 'pass' }));
+      entry = {
+        id: game.id,
+        mode: game.mode,
+        subMode: game.subMode || null,
+        targetCount: game.targetCount,
+        swapsUsed: game.turboUsed || 0,
+        maxSwaps: game.turboMax || game.maxSwaps,
+        turboUsed: game.turboUsed || 0,
+        turboMax: game.turboMax || game.maxSwaps,
+        burnedCount: 0,
+        licencesCount: game.licencesUsed.length,
+        finishedAt: new Date().toISOString(),
+        tiers: { turbo, smash, pass },
+        ranking: [...turbo, ...smash, ...pass].map((item, idx) => ({ ...item, rank: idx + 1 }))
+      };
+    } else {
+      entry = {
+        id: game.id,
+        mode: game.mode,
+        subMode: game.subMode || null,
+        targetCount: game.targetCount,
+        swapsUsed: game.swapsUsed,
+        maxSwaps: game.maxSwaps,
+        burnedCount: game.burnedCards.length,
+        licencesCount: game.licencesUsed.length,
+        finishedAt: new Date().toISOString(),
+        ranking: game.slots.map((ch, idx) => mapCharForHistory(ch, { rank: idx + 1 }))
+      };
+    }
 
     const next = [entry, ...history].slice(0, 30);
     try {
@@ -417,6 +482,31 @@
       const label = ch.complement ? `${ch.name} (${ch.complement})` : ch.name;
       lines.push(`${prefix} - ${label} (${ch.licence})`);
     });
+    return lines.join('\n');
+  };
+
+  ROR.formatSmashTiersAsText = function formatSmashTiersAsText(tiers, totalCount) {
+    const turbo = tiers?.turbo || [];
+    const smash = tiers?.smash || [];
+    const pass = tiers?.pass || [];
+    const count = totalCount || turbo.length + smash.length + pass.length;
+    const fmtChar = (ch) => {
+      const label = ch.complement ? `${ch.name} (${ch.complement})` : ch.name;
+      return `• ${label} (${ch.licence})`;
+    };
+
+    const lines = [
+      `Ranking of Ranking — Mode Smash or Pass (${count} persos)`,
+      '',
+      `🚀 TURBO SMASH (${turbo.length}) :`,
+      ...(turbo.length > 0 ? turbo.map(fmtChar) : ['• Aucun']),
+      '',
+      `🔥 SMASH (${smash.length}) :`,
+      ...(smash.length > 0 ? smash.map(fmtChar) : ['• Aucun']),
+      '',
+      `❄️ PASS (${pass.length}) :`,
+      ...(pass.length > 0 ? pass.map(fmtChar) : ['• Aucun'])
+    ];
     return lines.join('\n');
   };
 

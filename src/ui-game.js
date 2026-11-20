@@ -3,10 +3,25 @@
 
   const ROR = (global.ROR = global.ROR || {});
 
+  let activeSmashKeyHandler = null;
+
+  function clearSmashKeyHandler() {
+    if (activeSmashKeyHandler) {
+      global.removeEventListener('keydown', activeSmashKeyHandler);
+      activeSmashKeyHandler = null;
+    }
+  }
+
   ROR.renderGameScreen = function renderGameScreen(container) {
+    clearSmashKeyHandler();
     const game = ROR.AppState.game;
     if (!game) {
       ROR.navigateTo('home');
+      return;
+    }
+
+    if (game.mode === 'smash') {
+      renderSmashGameScreen(container, game);
       return;
     }
 
@@ -719,4 +734,692 @@
     });
     document.body.appendChild(overlay);
   };
+
+  /* ==================== SMASH OR PASS MODE ==================== */
+
+  function renderSmashGameScreen(container, game) {
+    const esc = ROR.escapeHtml;
+    const modeMeta = ROR.getModeMeta(game.mode);
+    const subModeLabel = game.subMode === 'bg' ? ' • Mode BG' : '';
+
+    const turboList = game.tiers?.turbo || [];
+    const smashList = game.tiers?.smash || [];
+    const passList = game.tiers?.pass || [];
+    const swipedCount = turboList.length + smashList.length + passList.length;
+    const progressPct = Math.round((swipedCount / game.targetCount) * 100);
+    const remainingInDeck = game.mainDeck.length + (game.activeCard ? 1 : 0);
+
+    const prevOverview = container.querySelector('.overview-overlay');
+    const prevOverviewScroll = prevOverview ? prevOverview.scrollTop : 0;
+
+    container.innerHTML = `
+      <div class="screen screen-game is-fullart-mode is-smash-mode">
+        <header class="topbar game-topbar">
+          <div class="topbar-left">
+            <button type="button" class="btn btn-sm btn-ghost" data-action="quit-game">✕ Quitter</button>
+            <span class="mode-tag mode-tag-smash">${esc(modeMeta.tag + subModeLabel)}</span>
+          </div>
+
+          <div class="game-progress-wrap">
+            <div class="progress-text">
+              <span>Progression</span>
+              <strong>${swipedCount} / ${game.targetCount}</strong>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill progress-fill-smash" style="width: ${progressPct}%"></div>
+            </div>
+          </div>
+
+          <div class="topbar-right">
+            <button type="button" class="btn btn-sm btn-secondary" data-action="open-overview">
+              ⊞ Tierlist (${swipedCount})
+            </button>
+          </div>
+        </header>
+
+        <main class="smash-arena">
+          <!-- TOP COUNTERS & DIRECTION REMINDERS -->
+          <div class="smash-hud-bar">
+            <div class="smash-hud-pill smash-hud-pass" data-smash-pill="pass">
+              <span class="smash-hud-arrow">⬅️</span>
+              <span class="smash-hud-icon">❄️</span>
+              <div class="smash-hud-info">
+                <span class="smash-hud-label">PASS</span>
+                <strong class="smash-hud-count">${passList.length}</strong>
+              </div>
+            </div>
+
+            <div class="smash-hud-pill smash-hud-turbo ${game.turboRemaining <= 0 ? 'is-depleted' : ''}" data-smash-pill="turbo">
+              <span class="smash-hud-arrow">⬆️</span>
+              <span class="smash-hud-icon">🚀</span>
+              <div class="smash-hud-info">
+                <span class="smash-hud-label">TURBO SMASH</span>
+                <strong class="smash-hud-count">${game.turboRemaining} / ${game.turboMax} restant${game.turboRemaining > 1 ? 's' : ''}</strong>
+              </div>
+            </div>
+
+            <div class="smash-hud-pill smash-hud-smash" data-smash-pill="smash">
+              <div class="smash-hud-info is-right">
+                <span class="smash-hud-label">SMASH</span>
+                <strong class="smash-hud-count">${smashList.length}</strong>
+              </div>
+              <span class="smash-hud-icon">🔥</span>
+              <span class="smash-hud-arrow">➡️</span>
+            </div>
+          </div>
+
+          <!-- CENTER: LARGE PORTRAIT DECK & SWIPEABLE CARD -->
+          <section class="smash-stage">
+            <div class="center-action-banner smash-action-banner ${game.isFlipped ? 'is-revealed' : ''}" id="smash-banner">
+              ${
+                !game.activeCard
+                  ? '🎉 Toutes les cartes ont été jouées !'
+                  : !game.isFlipped
+                    ? `🎴 Deck central (${remainingInDeck} restante${remainingInDeck > 1 ? 's' : ''}) — Cliquez sur la carte pour la retourner !`
+                    : '👆 Glissez la carte : ⬅️ Pass • ➡️ Smash • ⬆️ Turbo Smash'
+              }
+            </div>
+
+            ${
+              !game.activeCard
+                ? `
+                  <div class="center-empty-slot">
+                    <div class="empty-slot-icon">🏆</div>
+                    <h3>Deck terminé !</h3>
+                    <p>Découvrez votre Tierlist finale Smash or Pass.</p>
+                    <button type="button" class="btn btn-primary" data-action="open-overview">Voir la Tierlist finale</button>
+                  </div>
+                `
+                : renderSmashCenterDeckCard(game)
+            }
+
+            ${
+              game.activeCard
+                ? `
+                  <div class="smash-controls-row ${game.isFlipped ? 'is-ready' : 'is-locked'}" id="smash-controls">
+                    <button
+                      type="button"
+                      class="btn smash-action-btn btn-smash-pass"
+                      data-smash-choice="pass"
+                      ${game.isFlipped ? '' : 'disabled'}
+                      title="Glisser à gauche ou Flèche Gauche"
+                    >
+                      <span>⬅️ ❄️ Pass</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      class="btn smash-action-btn btn-smash-turbo ${game.turboRemaining <= 0 ? 'is-empty' : ''}"
+                      data-smash-choice="turbo"
+                      ${game.isFlipped && game.turboRemaining > 0 ? '' : 'disabled'}
+                      title="${game.turboRemaining > 0 ? 'Glisser vers le haut ou Flèche Haut' : 'Plus de Turbo Smash disponible'}"
+                    >
+                      <span>⬆️ 🚀 Turbo (${game.turboRemaining})</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      class="btn smash-action-btn btn-smash-yes"
+                      data-smash-choice="smash"
+                      ${game.isFlipped ? '' : 'disabled'}
+                      title="Glisser à droite ou Flèche Droite"
+                    >
+                      <span>🔥 Smash ➡️</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-ghost smash-inspect-btn"
+                      data-action="inspect-active-smash"
+                      ${game.isFlipped ? '' : 'disabled'}
+                      title="Voir les détails du personnage"
+                    >
+                      👁 Fiche
+                    </button>
+                  </div>
+                `
+                : ''
+            }
+          </section>
+        </main>
+      </div>
+
+      ${game.overviewOpen ? renderSmashOverviewOverlay(game) : ''}
+    `;
+
+    const newOverview = container.querySelector('.overview-overlay');
+    if (newOverview && prevOverviewScroll > 0) {
+      newOverview.scrollTop = prevOverviewScroll;
+    }
+
+    bindSmashGameEvents(container, game);
+  }
+
+  function renderSmashCenterDeckCard(game) {
+    const esc = ROR.escapeHtml;
+    const char = game.activeCard;
+    const isFlipped = game.isFlipped;
+    const deckBehind = game.mainDeck.length;
+
+    return `
+      <div class="smash-deck-stack">
+        ${deckBehind >= 3 ? '<div class="smash-stack-card stack-depth-3" aria-hidden="true"></div>' : ''}
+        ${deckBehind >= 2 ? '<div class="smash-stack-card stack-depth-2" aria-hidden="true"></div>' : ''}
+        ${deckBehind >= 1 ? '<div class="smash-stack-card stack-depth-1" aria-hidden="true"></div>' : ''}
+
+        <div class="smash-swipe-wrapper" id="smash-swipe-wrapper">
+          <div
+            class="flip-card is-fullart-card smash-flip-card ${isFlipped ? 'is-flipped is-swipeable' : ''}"
+            id="smash-flip-card"
+            data-action="flip-smash-card"
+            role="button"
+            tabindex="0"
+            aria-label="${isFlipped ? esc(char.name) : 'Retourner la carte'}"
+          >
+            <div class="flip-card-inner">
+              <!-- BACK FACE (DECK CENTRAL FACE CACHÉE) -->
+              <div class="flip-card-face flip-card-back back-smash">
+                <div class="card-back-frame">
+                  <div class="card-back-corner tl">🔥</div>
+                  <div class="card-back-corner tr">🔥</div>
+                  <div class="card-back-corner bl">🔥</div>
+                  <div class="card-back-corner br">🔥</div>
+                  <div class="card-back-emblem">🔥</div>
+                  <div class="card-back-title">SMASH OR PASS</div>
+                  <div class="smash-deck-count-pill">
+                    Carte ${game.targetCount - game.mainDeck.length} sur ${game.targetCount}
+                  </div>
+                  <div class="card-back-cta">Cliquez pour retourner</div>
+                </div>
+              </div>
+
+              <!-- FRONT FACE (PORTRAIT FULL-ART + SWIPE STAMPS) -->
+              <div class="flip-card-face flip-card-front is-fullart-front">
+                ${ROR.renderCharacterCardFrontHtml(char, { mode: 'smash', isJoker: false })}
+
+                <!-- DYNAMIC SWIPE OVERLAY STAMPS -->
+                <div class="swipe-stamp swipe-stamp-smash" id="stamp-smash" aria-hidden="true">
+                  🔥 SMASH
+                </div>
+                <div class="swipe-stamp swipe-stamp-pass" id="stamp-pass" aria-hidden="true">
+                  ❄️ PASS
+                </div>
+                <div class="swipe-stamp swipe-stamp-turbo" id="stamp-turbo" aria-hidden="true">
+                  ${game.turboRemaining > 0 ? '🚀 TURBO SMASH' : '🚫 PLUS DE TURBO'}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderSmashOverviewOverlay(game) {
+    const esc = ROR.escapeHtml;
+    const isFinished = game.phase === 'finished';
+    const turboList = game.tiers?.turbo || [];
+    const smashList = game.tiers?.smash || [];
+    const passList = game.tiers?.pass || [];
+    const swipedCount = turboList.length + smashList.length + passList.length;
+
+    const statusBanner = isFinished
+      ? `
+        <div class="overview-banner overview-banner-finished overview-banner-smash">
+          <div>
+            <div class="banner-kicker banner-kicker-gold">🏆 TIERLIST FINALE ENREGISTRÉE</div>
+            <h2>🔥 Smash or Pass — ${game.targetCount} personnages</h2>
+            <p class="muted">
+              🚀 <strong>${turboList.length}</strong> Turbo Smash (${game.turboUsed}/${game.turboMax} utilisés) •
+              🔥 <strong>${smashList.length}</strong> Smash •
+              ❄️ <strong>${passList.length}</strong> Pass
+            </p>
+          </div>
+          <div class="finished-actions">
+            <button type="button" class="btn btn-secondary" data-action="copy-final">📋 Copier la tierlist</button>
+            <button type="button" class="btn btn-secondary" data-action="replay-same">🔄 Rejouer</button>
+            <button type="button" class="btn btn-primary" data-action="return-home-final">🏠 Retour à l'accueil</button>
+          </div>
+        </div>
+      `
+      : `
+        <div class="overview-banner overview-banner-playing">
+          <div>
+            <h2>⊞ Tierlist Smash or Pass en cours (${swipedCount} / ${game.targetCount})</h2>
+            <p class="muted">
+              Aperçu en direct de vos choix — 🚀 ${game.turboRemaining}/${game.turboMax} Turbo Smash restant${game.turboRemaining > 1 ? 's' : ''}.
+            </p>
+          </div>
+          <button type="button" class="btn btn-primary" data-action="close-overview">← Retour à la partie</button>
+        </div>
+      `;
+
+    const sections = [
+      {
+        key: 'turbo',
+        title: '🚀 TURBO SMASH',
+        subtitle: 'Coups de cœur absolus',
+        cls: 'tier-row-turbo',
+        items: turboList
+      },
+      {
+        key: 'smash',
+        title: '🔥 SMASH',
+        subtitle: 'Validés à droite',
+        cls: 'tier-row-smash',
+        items: smashList
+      },
+      {
+        key: 'pass',
+        title: '❄️ PASS',
+        subtitle: 'Écartés à gauche',
+        cls: 'tier-row-pass',
+        items: passList
+      }
+    ];
+
+    return `
+      <div class="overview-overlay">
+        <div class="overview-container">
+          ${statusBanner}
+
+          <div class="smash-tierlist">
+            ${sections
+              .map(
+                (sec) => `
+                  <div class="tier-row ${sec.cls}">
+                    <div class="tier-label">
+                      <span class="tier-label-title">${sec.title}</span>
+                      <span class="tier-label-sub">${sec.subtitle}</span>
+                      <span class="tier-label-count">${sec.items.length} perso${sec.items.length > 1 ? 's' : ''}</span>
+                    </div>
+                    <div class="tier-items">
+                      ${
+                        sec.items.length === 0
+                          ? `<div class="tier-empty">Aucun personnage dans cette catégorie</div>`
+                          : sec.items
+                              .map((ch) => {
+                                const ovImg = ROR.getCharacterImage(ch, 'portrait');
+                                return `
+                                  <div
+                                    role="button"
+                                    tabindex="0"
+                                    class="overview-card overview-card-filled is-tier-card"
+                                    data-smash-inspect-id="${esc(ch.id)}"
+                                    title="Cliquer pour voir ${esc(ch.name)}"
+                                  >
+                                    <div class="ov-top">
+                                      <span class="ov-licence">${esc(ch.licence)}</span>
+                                    </div>
+                                    <div class="ov-img-wrap">
+                                      <img src="${esc(ovImg)}" alt="${esc(ch.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(ch))}" data-licence="${esc(ch.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
+                                      <button
+                                        type="button"
+                                        class="ov-inspect-btn"
+                                        data-smash-inspect-id="${esc(ch.id)}"
+                                        title="Voir la carte de ${esc(ch.name)}"
+                                        aria-label="Voir la carte de ${esc(ch.name)}"
+                                      >👁</button>
+                                    </div>
+                                    <div class="ov-name">${ROR.renderCharNameHtml(ch, { compact: true })}</div>
+                                  </div>
+                                `;
+                              })
+                              .join('')
+                      }
+                    </div>
+                  </div>
+                `
+              )
+              .join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function bindSmashGameEvents(container, game) {
+    container.querySelector('[data-action="quit-game"]')?.addEventListener('click', () => {
+      if (game.phase === 'playing') {
+        const ok = global.confirm('Quitter la partie en cours ? Votre progression actuelle sera perdue.');
+        if (!ok) return;
+      }
+      clearSmashKeyHandler();
+      ROR.AppState.game = null;
+      ROR.navigateTo('home');
+    });
+
+    container.querySelectorAll('[data-action="open-overview"]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        game.overviewOpen = true;
+        ROR.renderGameScreen(container);
+      });
+    });
+
+    container.querySelector('[data-action="close-overview"]')?.addEventListener('click', () => {
+      game.overviewOpen = false;
+      ROR.renderGameScreen(container);
+    });
+
+    container.querySelector('[data-action="inspect-active-smash"]')?.addEventListener('click', () => {
+      if (game.activeCard && game.isFlipped) {
+        ROR.openCharacterInspectModal(game.activeCard, {
+          showModeToggle: true,
+          mode: 'beauty'
+        });
+      }
+    });
+
+    container.querySelectorAll('[data-smash-inspect-id]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = el.getAttribute('data-smash-inspect-id');
+        const allPlaced = [
+          ...(game.tiers?.turbo || []),
+          ...(game.tiers?.smash || []),
+          ...(game.tiers?.pass || [])
+        ];
+        const found = allPlaced.find((c) => c.id === id);
+        if (found) {
+          ROR.openCharacterInspectModal(found, {
+            showModeToggle: true,
+            mode: 'beauty'
+          });
+        }
+      });
+    });
+
+    container.querySelector('[data-action="copy-final"]')?.addEventListener('click', async (e) => {
+      const text = ROR.formatSmashTiersAsText(game.tiers, game.targetCount);
+      try {
+        await navigator.clipboard.writeText(text);
+        e.currentTarget.textContent = '✓ Copié !';
+        setTimeout(() => {
+          if (e.currentTarget) e.currentTarget.textContent = '📋 Copier la tierlist';
+        }, 1600);
+      } catch {
+        // Ignore
+      }
+    });
+
+    container.querySelector('[data-action="replay-same"]')?.addEventListener('click', () => {
+      clearSmashKeyHandler();
+      ROR.startNewGame();
+    });
+
+    container.querySelector('[data-action="return-home-final"]')?.addEventListener('click', () => {
+      clearSmashKeyHandler();
+      ROR.AppState.game = null;
+      ROR.navigateTo('home');
+    });
+
+    const flipCardEl = container.querySelector('#smash-flip-card');
+    const swipeWrapperEl = container.querySelector('#smash-swipe-wrapper');
+    const stampSmash = container.querySelector('#stamp-smash');
+    const stampPass = container.querySelector('#stamp-pass');
+    const stampTurbo = container.querySelector('#stamp-turbo');
+
+    const pillPass = container.querySelector('[data-smash-pill="pass"]');
+    const pillSmash = container.querySelector('[data-smash-pill="smash"]');
+    const pillTurbo = container.querySelector('[data-smash-pill="turbo"]');
+
+    let isAnimatingOut = false;
+
+    const unlockAfterFlipInPlace = () => {
+      if (!game.activeCard || game.isFlipped) return;
+      game.isFlipped = true;
+      flipCardEl?.classList.add('is-flipped', 'is-swipeable');
+
+      const banner = container.querySelector('#smash-banner');
+      if (banner) {
+        banner.classList.add('is-revealed');
+        banner.textContent = '👆 Glissez la carte : ⬅️ Pass • ➡️ Smash • ⬆️ Turbo Smash';
+      }
+
+      const controls = container.querySelector('#smash-controls');
+      if (controls) {
+        controls.classList.remove('is-locked');
+        controls.classList.add('is-ready');
+      }
+
+      container.querySelectorAll('[data-smash-choice]').forEach((btn) => {
+        const choice = btn.getAttribute('data-smash-choice');
+        if (choice === 'turbo' && game.turboRemaining <= 0) {
+          btn.disabled = true;
+        } else {
+          btn.disabled = false;
+        }
+      });
+
+      const inspectBtn = container.querySelector('[data-action="inspect-active-smash"]');
+      if (inspectBtn) inspectBtn.disabled = false;
+    };
+
+    const flashDepletedTurbo = () => {
+      if (pillTurbo) {
+        pillTurbo.classList.remove('is-shake');
+        void pillTurbo.offsetWidth;
+        pillTurbo.classList.add('is-shake');
+      }
+    };
+
+    const commitSmashChoice = (choice) => {
+      if (isAnimatingOut || game.phase !== 'playing' || !game.activeCard || !game.isFlipped) return;
+      if (choice === 'turbo' && game.turboRemaining <= 0) {
+        flashDepletedTurbo();
+        return;
+      }
+
+      isAnimatingOut = true;
+
+      if (stampSmash) stampSmash.style.opacity = choice === 'smash' ? '1' : '0';
+      if (stampPass) stampPass.style.opacity = choice === 'pass' ? '1' : '0';
+      if (stampTurbo) stampTurbo.style.opacity = choice === 'turbo' ? '1' : '0';
+
+      if (swipeWrapperEl) {
+        swipeWrapperEl.classList.remove('is-dragging');
+        swipeWrapperEl.style.transition = 'transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease';
+        if (choice === 'smash') {
+          swipeWrapperEl.style.transform = 'translate3d(460px, 20px, 0) rotate(22deg)';
+        } else if (choice === 'pass') {
+          swipeWrapperEl.style.transform = 'translate3d(-460px, 20px, 0) rotate(-22deg)';
+        } else if (choice === 'turbo') {
+          swipeWrapperEl.style.transform = 'translate3d(0px, -440px, 0) scale(1.06)';
+        }
+        swipeWrapperEl.style.opacity = '0';
+      }
+
+      setTimeout(() => {
+        const current = game.activeCard;
+        if (choice === 'turbo') {
+          game.tiers.turbo.push(current);
+          game.turboRemaining = Math.max(0, game.turboRemaining - 1);
+          game.turboUsed = (game.turboUsed || 0) + 1;
+        } else if (choice === 'smash') {
+          game.tiers.smash.push(current);
+        } else {
+          game.tiers.pass.push(current);
+        }
+
+        if (game.mainDeck.length > 0) {
+          game.activeCard = game.mainDeck.pop();
+          game.activeCardSource = 'main';
+          game.isFlipped = false;
+        } else {
+          game.activeCard = null;
+          game.activeCardSource = null;
+          game.isFlipped = false;
+          game.phase = 'finished';
+          game.overviewOpen = true;
+          ROR.saveGameToHistory(game);
+        }
+
+        isAnimatingOut = false;
+        ROR.renderGameScreen(container);
+      }, 250);
+    };
+
+    // Quick action buttons below card
+    container.querySelectorAll('[data-smash-choice]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const choice = btn.getAttribute('data-smash-choice');
+        commitSmashChoice(choice);
+      });
+    });
+
+    // Pointer drag / swipe handling on the central card
+    if (swipeWrapperEl && flipCardEl) {
+      let dragging = false;
+      let pointerId = null;
+      let startX = 0;
+      let startY = 0;
+      let currentDx = 0;
+      let currentDy = 0;
+      let movedEnoughForDrag = false;
+
+      const SWIPE_THRESHOLD = 90;
+
+      const detectDominantIntent = (dx, dy) => {
+        const absX = Math.abs(dx);
+        const absY = Math.abs(dy);
+        if (dy < -40 && absY > absX * 0.85) {
+          return { dir: 'turbo', ratio: Math.min(1, absY / SWIPE_THRESHOLD) };
+        }
+        if (dx > 30 && absX >= absY * 0.7) {
+          return { dir: 'smash', ratio: Math.min(1, absX / SWIPE_THRESHOLD) };
+        }
+        if (dx < -30 && absX >= absY * 0.7) {
+          return { dir: 'pass', ratio: Math.min(1, absX / SWIPE_THRESHOLD) };
+        }
+        return { dir: null, ratio: 0 };
+      };
+
+      const updateVisualFeedback = (dx, dy) => {
+        const { dir, ratio } = detectDominantIntent(dx, dy);
+        if (stampSmash) stampSmash.style.opacity = dir === 'smash' ? String(ratio) : '0';
+        if (stampPass) stampPass.style.opacity = dir === 'pass' ? String(ratio) : '0';
+        if (stampTurbo) stampTurbo.style.opacity = dir === 'turbo' ? String(ratio) : '0';
+
+        pillSmash?.classList.toggle('is-active-target', dir === 'smash' && ratio > 0.35);
+        pillPass?.classList.toggle('is-active-target', dir === 'pass' && ratio > 0.35);
+        pillTurbo?.classList.toggle('is-active-target', dir === 'turbo' && ratio > 0.35);
+      };
+
+      const resetPositionSmoothly = () => {
+        swipeWrapperEl.classList.remove('is-dragging');
+        swipeWrapperEl.style.transition = 'transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)';
+        swipeWrapperEl.style.transform = 'translate3d(0px, 0px, 0px) rotate(0deg)';
+        updateVisualFeedback(0, 0);
+      };
+
+      swipeWrapperEl.addEventListener('pointerdown', (e) => {
+        if (isAnimatingOut || e.button !== undefined && e.button !== 0) return;
+        if (!game.isFlipped) return; // Waiting for click to flip first
+        dragging = true;
+        pointerId = e.pointerId;
+        startX = e.clientX;
+        startY = e.clientY;
+        currentDx = 0;
+        currentDy = 0;
+        movedEnoughForDrag = false;
+
+        swipeWrapperEl.classList.add('is-dragging');
+        swipeWrapperEl.style.transition = 'none';
+        try {
+          swipeWrapperEl.setPointerCapture(pointerId);
+        } catch {
+          // Ignore
+        }
+      });
+
+      swipeWrapperEl.addEventListener('pointermove', (e) => {
+        if (!dragging || e.pointerId !== pointerId) return;
+        currentDx = e.clientX - startX;
+        currentDy = e.clientY - startY;
+        if (Math.hypot(currentDx, currentDy) > 6) {
+          movedEnoughForDrag = true;
+        }
+        const rot = (currentDx * 0.055).toFixed(2);
+        swipeWrapperEl.style.transform = `translate3d(${currentDx.toFixed(1)}px, ${currentDy.toFixed(1)}px, 0) rotate(${rot}deg)`;
+        updateVisualFeedback(currentDx, currentDy);
+      });
+
+      const handlePointerEnd = (e) => {
+        if (!dragging || e.pointerId !== pointerId) return;
+        dragging = false;
+        try {
+          swipeWrapperEl.releasePointerCapture(pointerId);
+        } catch {
+          // Ignore
+        }
+        pointerId = null;
+
+        const absX = Math.abs(currentDx);
+        const absY = Math.abs(currentDy);
+
+        // Upward swipe -> Turbo Smash
+        if (currentDy < -SWIPE_THRESHOLD && absY > absX * 0.85) {
+          if (game.turboRemaining > 0) {
+            commitSmashChoice('turbo');
+            return;
+          } else {
+            flashDepletedTurbo();
+            resetPositionSmoothly();
+            return;
+          }
+        }
+
+        // Right swipe -> Smash
+        if (currentDx > SWIPE_THRESHOLD && absX >= absY * 0.7) {
+          commitSmashChoice('smash');
+          return;
+        }
+
+        // Left swipe -> Pass
+        if (currentDx < -SWIPE_THRESHOLD && absX >= absY * 0.7) {
+          commitSmashChoice('pass');
+          return;
+        }
+
+        resetPositionSmoothly();
+      };
+
+      swipeWrapperEl.addEventListener('pointerup', handlePointerEnd);
+      swipeWrapperEl.addEventListener('pointercancel', handlePointerEnd);
+
+      // Click to flip when face down
+      flipCardEl.addEventListener('click', () => {
+        if (isAnimatingOut || movedEnoughForDrag) return;
+        if (!game.isFlipped) {
+          unlockAfterFlipInPlace();
+        }
+      });
+    }
+
+    // Keyboard shortcuts: Space/Enter to flip, ArrowLeft=Pass, ArrowRight=Smash, ArrowUp=Turbo Smash
+    activeSmashKeyHandler = (e) => {
+      if (ROR.AppState.screen !== 'game' || game.mode !== 'smash' || game.overviewOpen || isAnimatingOut) return;
+      if (document.querySelector('.modal-overlay')) return;
+
+      if (!game.isFlipped) {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          unlockAfterFlipInPlace();
+        }
+        return;
+      }
+
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        commitSmashChoice('smash');
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        commitSmashChoice('pass');
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        commitSmashChoice('turbo');
+      }
+    };
+    global.addEventListener('keydown', activeSmashKeyHandler);
+  }
 })(window);

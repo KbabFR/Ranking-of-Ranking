@@ -11,7 +11,8 @@
 
     const eligibleChars = ROR.getEligibleCharacters(characters, setup.selectedLicences, setup.enabledSpecialCategories, mode);
     const availableCount = eligibleChars.length;
-    const jokerCount = ROR.computeJokerTarget(setup.targetCount, availableCount);
+    const isSmash = mode === 'smash';
+    const jokerCount = ROR.computeJokerTarget(setup.targetCount, availableCount, mode);
     const idealJokerCount = Math.max(1, Math.round(setup.targetCount * 0.2));
     const canStart = availableCount >= setup.targetCount;
 
@@ -30,15 +31,23 @@
 
     const jokerHint = container.querySelector('#joker-hint');
     if (jokerHint) {
-      const capNotice =
-        jokerCount < idealJokerCount && canStart
-          ? ` <span class="warn-inline">(plafonné par les ${availableCount} persos sélectionnés)</span>`
-          : '';
-      jokerHint.innerHTML = `
-        De 5 en 5 jusqu'à 50, puis par dizaines jusqu'à 100.
-        <br/>
-        Deck Joker (~20%) : <strong id="joker-preview">${jokerCount}</strong> carte${jokerCount > 1 ? 's' : ''} Joker${capNotice}
-      `;
+      if (isSmash) {
+        jokerHint.innerHTML = `
+          De 5 en 5 jusqu'à 50, puis par dizaines jusqu'à 100.
+          <br/>
+          Deck central (Portrait) : <strong>${setup.targetCount}</strong> cartes à retourner et swiper.
+        `;
+      } else {
+        const capNotice =
+          jokerCount < idealJokerCount && canStart
+            ? ` <span class="warn-inline">(plafonné par les ${availableCount} persos sélectionnés)</span>`
+            : '';
+        jokerHint.innerHTML = `
+          De 5 en 5 jusqu'à 50, puis par dizaines jusqu'à 100.
+          <br/>
+          Deck Joker (~20%) : <strong id="joker-preview">${jokerCount}</strong> carte${jokerCount > 1 ? 's' : ''} Joker${capNotice}
+        `;
+      }
     }
 
     const swapSlider = container.querySelector('#swap-count-slider');
@@ -55,7 +64,11 @@
 
     const swapHint = container.querySelector('#swap-hint');
     if (swapHint) {
-      swapHint.innerHTML = `Une fois toutes les cases remplies, vous pourrez échanger jusqu'à <strong>${setup.maxSwaps}</strong> paire${setup.maxSwaps > 1 ? 's' : ''} de cartes.`;
+      if (isSmash) {
+        swapHint.innerHTML = `Durant la partie, vous pourrez glisser jusqu'à <strong>${setup.maxSwaps}</strong> carte${setup.maxSwaps > 1 ? 's' : ''} vers le haut en <strong>🚀 Turbo Smash</strong>.`;
+      } else {
+        swapHint.innerHTML = `Une fois toutes les cases remplies, vous pourrez échanger jusqu'à <strong>${setup.maxSwaps}</strong> paire${setup.maxSwaps > 1 ? 's' : ''} de cartes.`;
+      }
     }
 
     // Update summary & launch button
@@ -67,7 +80,11 @@
     const availEl = container.querySelector('#available-count');
     if (availEl) availEl.textContent = String(availableCount);
     const reqEl = container.querySelector('#required-count');
-    if (reqEl) reqEl.textContent = `${setup.targetCount} + ${jokerCount} = ${setup.targetCount + jokerCount}`;
+    if (reqEl) {
+      reqEl.textContent = isSmash
+        ? `${setup.targetCount}`
+        : `${setup.targetCount} + ${jokerCount} = ${setup.targetCount + jokerCount}`;
+    }
 
     const activeSubMode = ROR.getActiveSubMode(mode, setup);
     container.querySelectorAll('[data-submode-radio]').forEach((radio) => {
@@ -83,7 +100,7 @@
         summaryMsg.className = 'summary-error';
         const diff = setup.targetCount - availableCount;
         summaryMsg.textContent = `Sélectionnez plus de licences ou réduisez le nombre de personnages (manque ${diff} perso${diff > 1 ? 's' : ''}).`;
-      } else if (mode === 'beauty' && activeSubMode === 'bg') {
+      } else if ((mode === 'beauty' || mode === 'smash') && activeSubMode === 'bg') {
         summaryMsg.className = 'summary-ok';
         summaryMsg.textContent = `Mode BG actif : les personnages avec le plus fort indice beauté (attrait & charisme) seront retenus en premier si le pool dépasse ${setup.targetCount + jokerCount}.`;
       } else {
@@ -95,7 +112,9 @@
     const launchBtn = container.querySelector('[data-action="launch-game"]');
     if (launchBtn) {
       launchBtn.disabled = !canStart;
-      launchBtn.textContent = `🎴 Lancer la partie (${setup.targetCount} rangs)`;
+      launchBtn.textContent = isSmash
+        ? `🔥 Lancer la partie (${setup.targetCount} cartes)`
+        : `🎴 Lancer la partie (${setup.targetCount} rangs)`;
     }
 
     // Update Medium & Licence checkboxes + counts in place
@@ -210,11 +229,11 @@
 
         <div class="setup-grid">
           <section class="panel setup-rules-panel">
-            <h2 class="panel-title">Règles du classement</h2>
+            <h2 class="panel-title">${mode === 'smash' ? 'Règles de la partie' : 'Règles du classement'}</h2>
 
             <div class="slider-block">
               <div class="slider-header">
-                <label for="card-count-slider" class="slider-label">Nombre de personnages à classer</label>
+                <label for="card-count-slider" class="slider-label">${mode === 'smash' ? 'Nombre de personnages à jouer' : 'Nombre de personnages à classer'}</label>
                 <span class="slider-value-badge" id="card-count-readout">${setup.targetCount}</span>
               </div>
               <input
@@ -245,7 +264,7 @@
 
             <div class="slider-block">
               <div class="slider-header">
-                <label for="swap-count-slider" class="slider-label">Échanges autorisés en fin de partie</label>
+                <label for="swap-count-slider" class="slider-label">${mode === 'smash' ? '🚀 Nombre de Turbo Smash disponibles' : 'Échanges autorisés en fin de partie'}</label>
                 <span class="slider-value-badge slider-value-amber" id="swap-count-readout">${setup.maxSwaps}</span>
               </div>
               <input
@@ -314,7 +333,7 @@
                 <strong id="available-count">0</strong>
               </div>
               <div class="summary-row">
-                <span>Cartes requises (Deck + Jokers)</span>
+                <span>${mode === 'smash' ? 'Cartes requises (Deck)' : 'Cartes requises (Deck + Jokers)'}</span>
                 <strong id="required-count">0</strong>
               </div>
               <div id="summary-message"></div>
