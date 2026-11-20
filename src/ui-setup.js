@@ -69,12 +69,23 @@
     const reqEl = container.querySelector('#required-count');
     if (reqEl) reqEl.textContent = `${setup.targetCount} + ${jokerCount} = ${setup.targetCount + jokerCount}`;
 
+    const activeSubMode = ROR.getActiveSubMode(mode, setup);
+    container.querySelectorAll('[data-submode-radio]').forEach((radio) => {
+      const val = radio.getAttribute('data-submode-radio');
+      const checked = val === activeSubMode;
+      radio.checked = checked;
+      radio.closest('.submode-option')?.classList.toggle('is-checked', checked);
+    });
+
     const summaryMsg = container.querySelector('#summary-message');
     if (summaryMsg) {
       if (!canStart) {
         summaryMsg.className = 'summary-error';
         const diff = setup.targetCount - availableCount;
         summaryMsg.textContent = `Sélectionnez plus de licences ou réduisez le nombre de personnages (manque ${diff} perso${diff > 1 ? 's' : ''}).`;
+      } else if (mode === 'beauty' && activeSubMode === 'bg') {
+        summaryMsg.className = 'summary-ok';
+        summaryMsg.textContent = `Mode BG actif : les personnages avec le plus fort indice beauté (attrait & charisme) seront retenus en premier si le pool dépasse ${setup.targetCount + jokerCount}.`;
       } else {
         summaryMsg.className = 'summary-ok';
         summaryMsg.textContent = `Les personnages les plus marquants (indice de priorité) seront sélectionnés en premier si le pool dépasse ${setup.targetCount + jokerCount}.`;
@@ -179,6 +190,7 @@
     const specialCats = ROR.getSpecialCategoriesForMode(mode);
 
     const steps = ROR.CARD_COUNT_STEPS;
+    const modeMeta = ROR.getModeMeta(mode);
     let stepIndex = steps.indexOf(setup.targetCount);
     if (stepIndex === -1) {
       stepIndex = 3; // 20
@@ -190,7 +202,7 @@
         <header class="topbar">
           <button type="button" class="btn btn-ghost" data-action="back-home">← Accueil</button>
           <div class="topbar-center">
-            <span class="mode-tag">⚡ Mode : Puissance</span>
+            <span class="mode-tag">${esc(modeMeta.setupTag)}</span>
             <h1 class="topbar-title">Paramètres de la partie</h1>
           </div>
           <div class="topbar-right"></div>
@@ -261,6 +273,41 @@
               <p class="slider-hint" id="swap-hint"></p>
             </div>
 
+            ${
+              Array.isArray(modeMeta.subModes) && modeMeta.subModes.length > 0
+                ? (() => {
+                    const activeSubMode = ROR.getActiveSubMode(mode, setup);
+                    return `
+                      <div class="submode-block">
+                        <div class="slider-label">Sous-mode (${esc(modeMeta.label)})</div>
+                        <div class="submode-radio-group" role="radiogroup" aria-label="Sous-mode ${esc(modeMeta.label)}">
+                          ${modeMeta.subModes
+                            .map((sub) => {
+                              const checked = sub.id === activeSubMode;
+                              return `
+                                <label class="submode-option ${checked ? 'is-checked' : ''}">
+                                  <input
+                                    type="radio"
+                                    name="setup-submode"
+                                    value="${esc(sub.id)}"
+                                    data-submode-radio="${esc(sub.id)}"
+                                    ${checked ? 'checked' : ''}
+                                  />
+                                  <div class="submode-option-body">
+                                    <div class="submode-option-title">${esc(sub.label)}</div>
+                                    <div class="submode-option-desc">${esc(sub.description)}</div>
+                                  </div>
+                                </label>
+                              `;
+                            })
+                            .join('')}
+                        </div>
+                      </div>
+                    `;
+                  })()
+                : ''
+            }
+
             <div class="summary-card" id="summary-card">
               <div class="summary-row">
                 <span>Personnages disponibles (licences cochées)</span>
@@ -290,7 +337,9 @@
               </div>
             </div>
 
-            <div class="special-categories-block">
+            ${
+              specialCats.length > 0
+                ? `<div class="special-categories-block">
               ${specialCats
                 .map((cat) => {
                   const charsInCat = characters.filter((c) => c.specialCategories?.[cat.id]);
@@ -338,7 +387,9 @@
                   `;
                 })
                 .join('')}
-            </div>
+            </div>`
+                : ''
+            }
 
             <div class="medium-tree">
               ${tree
@@ -421,6 +472,15 @@
       btn.addEventListener('click', () => {
         setup.maxSwaps = Number(btn.getAttribute('data-swap-val'));
         updateSetupStateUI(container, tree);
+      });
+    });
+
+    container.querySelectorAll('[data-submode-radio]').forEach((radio) => {
+      radio.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          setup.subMode = e.target.value;
+          updateSetupStateUI(container, tree);
+        }
       });
     });
 

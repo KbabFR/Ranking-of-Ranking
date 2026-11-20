@@ -43,17 +43,20 @@
               </div>
             </button>
 
-            <div class="mode-card mode-card-locked" aria-disabled="true">
+            <button type="button" class="mode-card mode-card-active mode-card-beauty" data-action="select-mode" data-mode="beauty">
               <div class="mode-card-top">
                 <span class="mode-icon">✨</span>
-                <span class="mode-badge mode-badge-soon">Bientôt</span>
+                <span class="mode-badge mode-badge-ready">Disponible</span>
               </div>
               <h3 class="mode-title">Beauté &amp; Charisme</h3>
               <p class="mode-desc">
-                Design, prestance et aura : qui mérite le trône de l'élégance ?
+                Design, prestance et aura : cartes full-art verticales sans texte, qui mérite le trône de l'élégance ?
               </p>
-              <div class="mode-cta mode-cta-locked">Prochainement</div>
-            </div>
+              <div class="mode-cta">
+                <span>Configurer la partie</span>
+                <span class="cta-arrow">→</span>
+              </div>
+            </button>
 
             <div class="mode-card mode-card-locked" aria-disabled="true">
               <div class="mode-card-top">
@@ -98,8 +101,11 @@
       </div>
     `;
 
-    container.querySelector('[data-action="select-mode"]')?.addEventListener('click', () => {
-      ROR.navigateTo('setup');
+    container.querySelectorAll('[data-action="select-mode"]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        ROR.AppState.mode = btn.getAttribute('data-mode') || 'power';
+        ROR.navigateTo('setup');
+      });
     });
 
     container.querySelector('[data-action="open-history"]')?.addEventListener('click', () => {
@@ -158,10 +164,12 @@
                         });
                         const isSelected = activeEntry && activeEntry.id === entry.id;
                         const top1 = entry.ranking[0]?.name || '—';
+                        const modeMeta = ROR.getModeMeta(entry.mode || 'power');
+                        const subSuffix = entry.mode === 'beauty' && entry.subMode === 'bg' ? ' (Mode BG)' : '';
                         return `
                           <button type="button" class="history-item ${isSelected ? 'is-selected' : ''}" data-history-id="${esc(entry.id)}">
                             <div class="history-item-top">
-                              <span class="history-mode">⚡ Puissance • ${entry.targetCount} persos</span>
+                              <span class="history-mode">${esc(modeMeta.tag + subSuffix)} • ${entry.targetCount} persos</span>
                               <span class="history-date">${esc(dateStr)}</span>
                             </div>
                             <div class="history-item-winner">🥇 ${esc(top1)}</div>
@@ -240,7 +248,8 @@
 
       overlay.querySelector('[data-copy-history]')?.addEventListener('click', async (e) => {
         if (!activeEntry) return;
-        const text = ROR.formatRankingAsText(activeEntry.ranking, 'Puissance');
+        const modeLabel = ROR.getModeMeta(activeEntry.mode || 'power').label;
+        const text = ROR.formatRankingAsText(activeEntry.ranking, modeLabel);
         try {
           await navigator.clipboard.writeText(text);
           e.currentTarget.textContent = '✓ Copié !';
@@ -302,7 +311,7 @@
           <div class="modal-header">
             <div>
               <h2 class="modal-title">📚 Base de personnages (${filtered.length}${filtered.length !== chars.length ? ` / ${chars.length}` : ''})</h2>
-              <p class="modal-subtitle">Chargée depuis <code>data/characters.json</code> — Vous pouvez aussi importer un fichier JSON ou CSV local</p>
+              <p class="modal-subtitle">Chargée depuis <code>data/characters.json</code> — Cliquez sur un personnage pour voir sa carte</p>
             </div>
             <button type="button" class="btn-icon-close" data-close>✕</button>
           </div>
@@ -330,17 +339,26 @@
 
           <div class="db-grid">
             ${filtered
-              .slice(0, 120)
+              .slice(0, 500)
               .map(
                 (c) => `
-              <div class="db-card">
+              <div
+                role="button"
+                tabindex="0"
+                class="db-card db-card-clickable"
+                data-db-inspect="${esc(c.id)}"
+                title="Cliquer pour voir la carte de ${esc(c.name)}"
+              >
                 <img class="db-thumb" src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(c))}" data-licence="${esc(c.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                 <div class="db-card-body">
                   <div class="db-card-head">
                     <strong>${ROR.renderCharNameHtml(c, { compact: true })} ${c.isCustom ? '<span class="custom-badge">Perso local</span>' : ''} ${ROR.renderSpecialBadgesHtml(c, 'power')}</strong>
-                    <span class="prio-badge" title="Indice de priorité">★ ${c.priority}</span>
+                    <span class="gen-score-badges">
+                      <span class="prio-badge" title="Indice de priorité">★ ${c.priority}</span>
+                      <span class="beauty-badge" title="Indice beauté / BG">✨ ${c.beauty ?? 5}</span>
+                    </span>
                   </div>
-                  <div class="db-card-sub">${esc(c.medium)} • ${esc(c.licence)}</div>
+                  <div class="db-card-sub">${esc(c.medium)} • ${esc(c.licence)}${c.imageLandscape ? ' • <span class="landscape-badge" title="Image paysage dédiée disponible">🖼️ Paysage</span>' : ''}</div>
                   <div class="db-card-desc">${esc(c.description)}</div>
                 </div>
               </div>
@@ -348,7 +366,7 @@
               )
               .join('')}
           </div>
-          ${filtered.length > 120 ? `<p class="muted" style="margin-top:10px;text-align:center;">Affichage limité aux 120 premiers résultats (${filtered.length} trouvés).</p>` : ''}
+          ${filtered.length > 500 ? `<p class="muted" style="margin-top:10px;text-align:center;">Affichage limité aux 500 premiers résultats (${filtered.length} trouvés).</p>` : ''}
         </div>
       `;
 
@@ -383,6 +401,29 @@
       overlay.querySelector('[data-filter-special]')?.addEventListener('change', (e) => {
         filterSpecial = e.target.value;
         render();
+      });
+
+      const openDbCard = (cardEl) => {
+        const id = cardEl.getAttribute('data-db-inspect');
+        const found = ROR.AppState.characters.find((c) => c.id === id);
+        if (found) {
+          ROR.openCharacterInspectModal(found, {
+            showModeToggle: true,
+            showScores: true,
+            showId: true,
+            mode: 'power'
+          });
+        }
+      };
+
+      overlay.querySelectorAll('[data-db-inspect]').forEach((cardEl) => {
+        cardEl.addEventListener('click', () => openDbCard(cardEl));
+        cardEl.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openDbCard(cardEl);
+          }
+        });
       });
 
       overlay.querySelector('[data-import-file]')?.addEventListener('change', async (e) => {

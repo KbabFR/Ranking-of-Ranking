@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320">
   <defs>
     <radialGradient id="bgGrad" cx="50%" cy="45%" r="65%">
-      <stop offset="0%" stop-color="#f97316" stop-opacity="0.34"/>
-      <stop offset="55%" stop-color="#090d16" stop-opacity="0.96"/>
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.36"/>
+      <stop offset="55%" stop-color="#130d26" stop-opacity="0.96"/>
       <stop offset="100%" stop-color="#05070e" stop-opacity="1"/>
     </radialGradient>
     <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.7"/>
-      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f97316"/>
-      <stop offset="100%" stop-color="#38bdf8"/>
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
     </linearGradient>
     <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
       <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
@@ -19,17 +19,12 @@
   </defs>
   <rect width="320" height="320" fill="url(#bgGrad)"/>
   <rect width="320" height="320" fill="url(#grid)"/>
-  <g transform="rotate(0 160 155)"><line x1="160" y1="155" x2="348.9591601199719" y2="174.86040802085415" stroke="#f97316" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="313.71322893124" y2="266.6791979355699" stroke="#38bdf8" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="237.27996218440205" y2="328.57363695209415" stroke="#f97316" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="140.13959197914588" y2="343.95916011997195" stroke="#38bdf8" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="48.320802064430126" y2="308.71322893124" stroke="#f97316" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-13.573636952094148" y2="232.27996218440208" stroke="#38bdf8" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-28.959160119971955" y2="135.1395919791459" stroke="#f97316" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="6.286771068759975" y2="43.320802064430126" stroke="#38bdf8" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="82.72003781559798" y2="-18.573636952094176" stroke="#f97316" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="179.86040802085407" y2="-33.959160119971955" stroke="#38bdf8" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="271.67919793556985" y2="1.2867710687599754" stroke="#f97316" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="333.57363695209415" y2="77.72003781559798" stroke="#38bdf8" stroke-width="1.2" opacity="0.14"/></g>
+  <g transform="rotate(17 160 155)"><line x1="160" y1="155" x2="350.0" y2="155.0" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="324.5" y2="250.0" stroke="#22d3ee" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="255.0" y2="319.5" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="160.0" y2="345.0" stroke="#22d3ee" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="65.0" y2="319.5" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-4.5" y2="250.0" stroke="#22d3ee" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-30.0" y2="155.0" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="-4.5" y2="60.0" stroke="#22d3ee" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="65.0" y2="-9.5" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="160.0" y2="-35.0" stroke="#22d3ee" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="255.0" y2="-9.5" stroke="#8b5cf6" stroke-width="1.2" opacity="0.14"/><line x1="160" y1="155" x2="324.5" y2="60.0" stroke="#22d3ee" stroke-width="1.2" opacity="0.14"/></g>
   <circle cx="160" cy="155" r="95" fill="url(#glow)" opacity="0.35"/>
-  
-        <g transform="rotate(-9 160 155)">
-          <polygon points="160,78 225,116 225,194 160,232 95,194 95,116" fill="none" stroke="#f97316" stroke-width="2.5" opacity="0.65"/>
-          <circle cx="160" cy="155" r="56" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6" opacity="0.75"/>
-        </g>
-      
-  <circle cx="160" cy="155" r="46" fill="#090c16" fill-opacity="0.82" stroke="url(#badgeGrad)" stroke-width="3.5"/>
+  <circle cx="160" cy="155" r="56" fill="none" stroke="#22d3ee" stroke-width="2.5" opacity="0.65"/>
+  <circle cx="160" cy="155" r="46" fill="#090c16" fill-opacity="0.85" stroke="url(#badgeGrad)" stroke-width="3.5"/>
   <text x="160" y="170" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="900" font-size="38" letter-spacing="1" fill="#ffffff">IK</text>
-  <rect x="24" y="18" width="272" height="26" rx="13" fill="#000000" fill-opacity="0.45" stroke="#f97316" stroke-opacity="0.5"/>
-  <text x="160" y="35" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="700" font-size="11" letter-spacing="1.4" fill="#38bdf8">BLEACH</text>
-  <circle cx="132" cy="264" r="3.2" fill="#38bdf8" opacity="0.9"/><circle cx="146" cy="264" r="3.2" fill="#38bdf8" opacity="0.9"/><circle cx="160" cy="264" r="3.2" fill="#38bdf8" opacity="0.9"/><circle cx="174" cy="264" r="3.2" fill="#38bdf8" opacity="0.9"/><circle cx="188" cy="264" r="3.2" fill="#38bdf8" opacity="0.9"/>
+  <rect x="24" y="18" width="272" height="26" rx="13" fill="#000000" fill-opacity="0.45" stroke="#8b5cf6" stroke-opacity="0.5"/>
+  <text x="160" y="35" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="700" font-size="11" letter-spacing="1.4" fill="#22d3ee">BLEACH</text>
+  <circle cx="132.0" cy="264" r="3.2" fill="#22d3ee" opacity="0.9"/><circle cx="146.0" cy="264" r="3.2" fill="#22d3ee" opacity="0.9"/><circle cx="160.0" cy="264" r="3.2" fill="#22d3ee" opacity="0.9"/><circle cx="174.0" cy="264" r="3.2" fill="#22d3ee" opacity="0.9"/><circle cx="188.0" cy="264" r="3.2" fill="#22d3ee" opacity="0.9"/>
 </svg>

@@ -11,6 +11,8 @@
     }
 
     const esc = ROR.escapeHtml;
+    const modeMeta = ROR.getModeMeta(game.mode);
+    const subModeLabel = game.mode === 'beauty' && game.subMode === 'bg' ? ' • Mode BG' : '';
     const placedCount = game.slots.filter(Boolean).length;
     const progressPct = Math.round((placedCount / game.targetCount) * 100);
 
@@ -25,11 +27,11 @@
     const prevOverviewScroll = prevOverview ? prevOverview.scrollTop : 0;
 
     container.innerHTML = `
-      <div class="screen screen-game">
+      <div class="screen screen-game ${modeMeta.fullArt ? 'is-fullart-mode' : ''}">
         <header class="topbar game-topbar">
           <div class="topbar-left">
             <button type="button" class="btn btn-sm btn-ghost" data-action="quit-game">✕ Quitter</button>
-            <span class="mode-tag">⚡ Puissance</span>
+            <span class="mode-tag">${esc(modeMeta.tag + subModeLabel)}</span>
           </div>
 
           <div class="game-progress-wrap">
@@ -66,7 +68,7 @@
                 <div class="deck-stack-layer layer-2"></div>
                 <div class="deck-stack-layer layer-1"></div>
                 <div class="deck-top-card">
-                  <div class="card-back-ornament">⚡</div>
+                  <div class="card-back-ornament">${esc(modeMeta.icon)}</div>
                   <div class="deck-card-title">PIOCHER</div>
                   <div class="deck-card-sub">${game.mainDeck.length} carte${game.mainDeck.length > 1 ? 's' : ''}</div>
                 </div>
@@ -132,7 +134,7 @@
                     }</p>
                   </div>
                 `
-                : renderActiveFlipCard(game.activeCard, game.activeCardSource, game.isFlipped, game.isBurning)
+                : renderActiveFlipCard(game.activeCard, game.activeCardSource, game.isFlipped, game.isBurning, game.mode)
             }
           </section>
 
@@ -203,9 +205,10 @@
     bindGameEvents(container, game);
   };
 
-  function renderActiveFlipCard(char, source, isFlipped, isBurning) {
+  function renderActiveFlipCard(char, source, isFlipped, isBurning, mode = 'power') {
     const esc = ROR.escapeHtml;
     const isJoker = source === 'joker';
+    const modeMeta = ROR.getModeMeta(mode);
 
     return `
       <div class="center-card-wrapper ${isBurning ? 'is-burning' : ''}">
@@ -220,7 +223,7 @@
         </div>
 
         <div
-          class="flip-card ${isFlipped ? 'is-flipped' : ''} ${isJoker ? 'is-joker-card' : ''}"
+          class="flip-card ${isFlipped ? 'is-flipped' : ''} ${isJoker ? 'is-joker-card' : ''} ${modeMeta.fullArt ? 'is-fullart-card' : ''}"
           data-action="flip-center-card"
           role="button"
           tabindex="0"
@@ -234,43 +237,15 @@
                 <div class="card-back-corner tr">✦</div>
                 <div class="card-back-corner bl">✦</div>
                 <div class="card-back-corner br">✦</div>
-                <div class="card-back-emblem">${isJoker ? '🃏' : '⚡'}</div>
+                <div class="card-back-emblem">${isJoker ? '🃏' : esc(modeMeta.icon)}</div>
                 <div class="card-back-title">${isJoker ? 'CARTE JOKER' : 'MYSTÈRE'}</div>
                 <div class="card-back-cta">Cliquez pour révéler</div>
               </div>
             </div>
 
             <!-- FRONT FACE (FACE VISIBLE) -->
-            <div class="flip-card-face flip-card-front">
-              <div class="char-card-header">
-                <span class="char-medium-pill">${esc(char.medium)}</span>
-                <span class="char-licence-pill">${esc(char.licence)}</span>
-                ${ROR.renderSpecialBadgesHtml(char, 'power')}
-                ${isJoker ? '<span class="char-joker-pill">🃏 JOKER</span>' : ''}
-              </div>
-
-              <div class="char-artwork-box">
-                <img
-                  class="char-artwork-img"
-                  src="${esc(char.image)}"
-                  alt="${esc(char.name)}"
-                  data-fallback="${esc(ROR.getFallbackImage(char))}"
-                  data-licence="${esc(char.licence)}"
-                  onerror="window.ROR && window.ROR.onImgError(this)"
-                />
-              </div>
-
-              <div class="char-card-body">
-                <h2 class="char-name">${ROR.renderCharNameHtml(char)}</h2>
-                <p class="char-desc">${esc(char.description)}</p>
-
-                <div class="char-abilities-block">
-                  <div class="abilities-title">Points forts &amp; Capacités</div>
-                  <ul class="abilities-list">
-                    ${char.abilities.map((ab) => `<li>${esc(ab)}</li>`).join('')}
-                  </ul>
-                </div>
-              </div>
+            <div class="flip-card-face flip-card-front ${modeMeta.fullArt ? 'is-fullart-front' : ''}">
+              ${ROR.renderCharacterCardFrontHtml(char, { mode, isJoker })}
             </div>
           </div>
         </div>
@@ -280,6 +255,7 @@
 
   function renderOverviewOverlay(game) {
     const esc = ROR.escapeHtml;
+    const modeMeta = ROR.getModeMeta(game.mode);
     const isSwapPhase = game.phase === 'postgame_swap';
     const isFinished = game.phase === 'finished';
     const isMidgame = game.phase === 'playing';
@@ -332,7 +308,7 @@
         <div class="overview-banner overview-banner-finished">
           <div>
             <div class="banner-kicker banner-kicker-gold">🏆 CLASSEMENT FINAL ENREGISTRÉ</div>
-            <h2>Top ${game.targetCount} — Mode Puissance</h2>
+            <h2>Top ${game.targetCount} — Mode ${esc(modeMeta.label)}</h2>
             <p class="muted">
               Sauvegardé automatiquement en local (${game.swapsUsed} échange${game.swapsUsed > 1 ? 's' : ''} utilisé${game.swapsUsed > 1 ? 's' : ''}, ${game.burnedCards.length} carte${game.burnedCards.length > 1 ? 's' : ''} brûlée${game.burnedCards.length > 1 ? 's' : ''}).
             </p>
@@ -351,7 +327,7 @@
         <div class="overview-container">
           ${statusBanner}
 
-          <div class="overview-grid">
+          <div class="overview-grid ${modeMeta.fullArt ? 'is-fullart-grid' : ''}">
             ${game.slots
               .map((ch, idx) => {
                 const rank = idx + 1;
@@ -372,6 +348,8 @@
                   `;
                 }
 
+                const ovImg = ROR.getCharacterImage(ch, modeMeta.fullArt ? 'portrait' : 'landscape');
+
                 return `
                   <div
                     role="button"
@@ -384,7 +362,7 @@
                       <span class="ov-licence">${esc(ch.licence)}</span>
                     </div>
                     <div class="ov-img-wrap">
-                      <img src="${esc(ch.image)}" alt="${esc(ch.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(ch))}" data-licence="${esc(ch.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
+                      <img src="${esc(ovImg)}" alt="${esc(ch.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(ch))}" data-licence="${esc(ch.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                       <button
                         type="button"
                         class="ov-inspect-btn"
@@ -606,7 +584,8 @@
     });
 
     container.querySelector('[data-action="copy-final"]')?.addEventListener('click', async (e) => {
-      const text = ROR.formatRankingAsText(game.slots, 'Puissance');
+      const modeLabel = ROR.getModeMeta(game.mode).label;
+      const text = ROR.formatRankingAsText(game.slots, modeLabel);
       try {
         await navigator.clipboard.writeText(text);
         e.currentTarget.textContent = '✓ Copié !';
@@ -628,39 +607,76 @@
     });
   }
 
-  ROR.openCharacterInspectModal = function openCharacterInspectModal(char, rank) {
+  ROR.openCharacterInspectModal = function openCharacterInspectModal(
+    char,
+    rankOrOptions,
+    modeArg = ROR.AppState.game?.mode || ROR.AppState.mode || 'power'
+  ) {
     const esc = ROR.escapeHtml;
+    const opts =
+      rankOrOptions && typeof rankOrOptions === 'object'
+        ? rankOrOptions
+        : { rank: rankOrOptions, mode: modeArg };
+    const rank = opts.rank ?? null;
+    let currentMode = opts.mode || modeArg || 'power';
+    const showModeToggle = Boolean(opts.showModeToggle);
+    const showScores = Boolean(opts.showScores);
+    const showId = Boolean(opts.showId);
+
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
-    overlay.innerHTML = `
-      <div class="modal-panel modal-panel-sm">
-        <div class="modal-header">
-          <div>
-            <span class="mode-tag">Rang #${rank}</span>
+
+    function renderInspect() {
+      const modeMeta = ROR.getModeMeta(currentMode);
+      overlay.innerHTML = `
+        <div class="modal-panel modal-panel-sm">
+          <div class="modal-header">
+            <div class="inspect-header-meta">
+              ${
+                rank !== null
+                  ? `<span class="mode-tag">Rang #${rank}</span>`
+                  : `<span class="mode-tag">Fiche carte</span>`
+              }
+              ${showId && char.id ? `<code class="inspect-id-pill" title="Identifiant pour assets/portraits/<id>">${esc(char.id)}</code>` : ''}
+              ${
+                showScores
+                  ? `<span class="gen-score-badges">
+                      <span class="prio-badge" title="Indice de priorité">★ ${char.priority}</span>
+                      <span class="beauty-badge" title="Indice beauté / BG">✨ ${char.beauty ?? 5}</span>
+                    </span>`
+                  : ''
+              }
+            </div>
+            <button type="button" class="btn-icon-close" data-close>✕</button>
           </div>
-          <button type="button" class="btn-icon-close" data-close>✕</button>
+          ${
+            showModeToggle
+              ? `<div class="gen-preview-tabs inspect-mode-tabs">
+                  <button type="button" class="btn btn-xs btn-ghost gen-preview-tab ${currentMode === 'power' ? 'is-active' : ''}" data-inspect-mode="power">
+                    ⚡ Puissance (Paysage)
+                  </button>
+                  <button type="button" class="btn btn-xs btn-ghost gen-preview-tab ${currentMode === 'beauty' ? 'is-active' : ''}" data-inspect-mode="beauty">
+                    ✨ Beauté (Full-Art Vertical)
+                  </button>
+                </div>`
+              : ''
+          }
+          <div class="inspect-card ${modeMeta.fullArt ? 'is-fullart-inspect' : ''}">
+            ${ROR.renderCharacterCardFrontHtml(char, { mode: currentMode })}
+          </div>
         </div>
-        <div class="inspect-card">
-          <div class="char-card-header">
-            <span class="char-medium-pill">${esc(char.medium)}</span>
-            <span class="char-licence-pill">${esc(char.licence)}</span>
-            ${ROR.renderSpecialBadgesHtml(char, 'power')}
-          </div>
-          <div class="char-artwork-box">
-            <img class="char-artwork-img" src="${esc(char.image)}" alt="${esc(char.name)}" data-fallback="${esc(ROR.getFallbackImage(char))}" data-licence="${esc(char.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
-          </div>
-          <h2 class="char-name">${ROR.renderCharNameHtml(char)}</h2>
-          <p class="char-desc">${esc(char.description)}</p>
-          <div class="char-abilities-block">
-            <div class="abilities-title">Points forts &amp; Capacités</div>
-            <ul class="abilities-list">
-              ${char.abilities.map((ab) => `<li>${esc(ab)}</li>`).join('')}
-            </ul>
-          </div>
-        </div>
-      </div>
-    `;
-    overlay.querySelector('[data-close]')?.addEventListener('click', () => overlay.remove());
+      `;
+
+      overlay.querySelector('[data-close]')?.addEventListener('click', () => overlay.remove());
+      overlay.querySelectorAll('[data-inspect-mode]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          currentMode = btn.getAttribute('data-inspect-mode') || 'power';
+          renderInspect();
+        });
+      });
+    }
+
+    renderInspect();
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) overlay.remove();
     });
