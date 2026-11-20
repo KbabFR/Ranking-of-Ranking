@@ -140,26 +140,29 @@
                 <span class="tier-label-title">${sec.label}</span>
                 <span class="tier-label-count">${sec.list.length}</span>
               </div>
-              <div class="tier-items">
+              <div class="tier-items overview-grid is-fullart-grid">
                 ${
                   sec.list.length === 0
                     ? '<span class="tier-empty">Aucun personnage</span>'
                     : sec.list
-                        .map(
-                          (row) => `
-                          <div class="mini-grid-card">
-                            ${
-                              row.image
-                                ? `<img class="mini-thumb" src="${esc(row.image)}" alt="${esc(row.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(row))}" data-licence="${esc(row.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>`
-                                : ''
-                            }
-                            <div class="mini-info">
-                              <div class="mini-name">${ROR.renderCharNameHtml(row, { compact: true })}</div>
-                              <div class="mini-licence">${esc(row.licence)}</div>
+                        .map((row) => {
+                          const imgSrc = row.image || ROR.getCharacterImage(row, 'portrait');
+                          return `
+                          <div class="overview-card overview-card-filled is-tier-card">
+                            <div class="ov-top">
+                              <span class="ov-licence">${esc(row.licence)}</span>
                             </div>
+                            <div class="ov-img-wrap">
+                              ${
+                                imgSrc
+                                  ? `<img src="${esc(imgSrc)}" alt="${esc(row.name)}" draggable="false" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(row))}" data-licence="${esc(row.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>`
+                                  : ''
+                              }
+                            </div>
+                            <div class="ov-name">${ROR.renderCharNameHtml(row, { compact: true })}</div>
                           </div>
-                        `
-                        )
+                        `;
+                        })
                         .join('')
                 }
               </div>
@@ -215,7 +218,11 @@
                         const isSelected = activeEntry && activeEntry.id === entry.id;
                         const modeMeta = ROR.getModeMeta(entry.mode || 'power');
                         const subSuffix =
-                          (entry.mode === 'beauty' || entry.mode === 'smash') && entry.subMode === 'bg' ? ' (Mode BG)' : '';
+                          entry.subMode === 'personne_ne_juge'
+                            ? ' (🫣 Personne ne juge)'
+                            : (entry.mode === 'beauty' || entry.mode === 'smash') && entry.subMode === 'bg'
+                              ? ' (Mode BG)'
+                              : '';
                         let winnerLine = `🥇 ${esc(entry.ranking?.[0]?.name || '—')}`;
                         if (entry.mode === 'smash' && entry.tiers) {
                           const tCount = (entry.tiers.turbo || []).length;
@@ -366,7 +373,8 @@
         if (filterMedium !== 'ALL' && c.medium !== filterMedium) return false;
         if (filterLicence !== 'ALL' && c.licence !== filterLicence) return false;
         if (filterSpecial === 'OVERCHEATE' && !c.specialCategories?.overcheate) return false;
-        if (filterSpecial === 'NORMAL' && c.specialCategories?.overcheate) return false;
+        if (filterSpecial === 'PERSONNE_NE_JUGE' && !c.specialCategories?.personneNeJuge) return false;
+        if (filterSpecial === 'NORMAL' && (c.specialCategories?.overcheate || c.specialCategories?.personneNeJuge)) return false;
         if (!q) return true;
         return (
           c.name.toLowerCase().includes(q) ||
@@ -400,6 +408,7 @@
               <option value="ALL">Toutes catégories</option>
               <option value="NORMAL" ${filterSpecial === 'NORMAL' ? 'selected' : ''}>Classiques uniquement</option>
               <option value="OVERCHEATE" ${filterSpecial === 'OVERCHEATE' ? 'selected' : ''}>♾️ Overcheaté uniquement</option>
+              <option value="PERSONNE_NE_JUGE" ${filterSpecial === 'PERSONNE_NE_JUGE' ? 'selected' : ''}>🫣 Personne ne juge uniquement</option>
             </select>
             <label class="btn btn-sm btn-secondary db-upload-label">
               📂 Importer JSON / CSV
@@ -422,7 +431,7 @@
                 <img class="db-thumb" src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(c))}" data-licence="${esc(c.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                 <div class="db-card-body">
                   <div class="db-card-head">
-                    <strong>${ROR.renderCharNameHtml(c, { compact: true })} ${c.isCustom ? '<span class="custom-badge">Perso local</span>' : ''} ${ROR.renderSpecialBadgesHtml(c, 'power')}</strong>
+                    <strong>${ROR.renderCharNameHtml(c, { compact: true })} ${c.isCustom ? '<span class="custom-badge">Perso local</span>' : ''} ${ROR.renderSpecialBadgesHtml(c, 'all')}</strong>
                     <span class="gen-score-badges">
                       <span class="prio-badge" title="Indice de priorité">★ ${c.priority}</span>
                       <span class="beauty-badge" title="Indice beauté / BG">✨ ${c.beauty ?? 5}</span>

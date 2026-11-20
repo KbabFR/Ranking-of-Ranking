@@ -87,6 +87,14 @@
     }
 
     const activeSubMode = ROR.getActiveSubMode(mode, setup);
+    if (mode === 'smash') {
+      if (activeSubMode === 'personne_ne_juge') {
+        setup.enabledSpecialCategories.add('personneNeJuge');
+      } else {
+        setup.enabledSpecialCategories.delete('personneNeJuge');
+      }
+    }
+
     container.querySelectorAll('[data-submode-radio]').forEach((radio) => {
       const val = radio.getAttribute('data-submode-radio');
       const checked = val === activeSubMode;
@@ -100,6 +108,9 @@
         summaryMsg.className = 'summary-error';
         const diff = setup.targetCount - availableCount;
         summaryMsg.textContent = `Sélectionnez plus de licences ou réduisez le nombre de personnages (manque ${diff} perso${diff > 1 ? 's' : ''}).`;
+      } else if (mode === 'smash' && activeSubMode === 'personne_ne_juge') {
+        summaryMsg.className = 'summary-ok';
+        summaryMsg.textContent = `🫣 Mode Personne ne juge actif : seuls les personnages immondes, grotesques, boss monstrueux ou créatures improbables (${availableCount} éligibles) seront sélectionnés !`;
       } else if ((mode === 'beauty' || mode === 'smash') && activeSubMode === 'bg') {
         summaryMsg.className = 'summary-ok';
         summaryMsg.textContent = `Mode BG actif : les personnages avec le plus fort indice beauté (attrait & charisme) seront retenus en premier si le pool dépasse ${setup.targetCount + jokerCount}.`;
@@ -182,10 +193,17 @@
       if (collapseBtn) collapseBtn.textContent = isCollapsed ? '▸' : '▾';
 
       const badge = catEl.querySelector('.special-cat-badge');
+      const isOnlyMode = cat.filterType === 'only_when_enabled';
       if (badge) {
-        badge.textContent = catEnabled
-          ? `Activée • ${activeLicCount}/${charsInCat.length} inclus`
-          : `Désactivée • ${charsInCat.length} exclus`;
+        if (isOnlyMode) {
+          badge.textContent = catEnabled
+            ? `Activée • ${activeLicCount}/${charsInCat.length} sélectionnés uniquement`
+            : `Optionnelle • ${charsInCat.length} persos disponibles`;
+        } else {
+          badge.textContent = catEnabled
+            ? `Activée • ${activeLicCount}/${charsInCat.length} inclus`
+            : `Désactivée • ${charsInCat.length} exclus`;
+        }
       }
 
       catEl.querySelectorAll('.special-char-row').forEach((row) => {
@@ -196,7 +214,11 @@
         row.classList.toggle('is-active-in-pool', catEnabled && licOn);
         const statusEl = row.querySelector('.special-char-status');
         if (statusEl) {
-          statusEl.textContent = !catEnabled ? 'Exclu' : licOn ? 'Inclus' : 'Licence décochée';
+          if (isOnlyMode) {
+            statusEl.textContent = !catEnabled ? 'Mode standard' : licOn ? 'Retenu' : 'Licence décochée';
+          } else {
+            statusEl.textContent = !catEnabled ? 'Exclu' : licOn ? 'Inclus' : 'Licence décochée';
+          }
         }
       });
     }
@@ -498,6 +520,13 @@
       radio.addEventListener('change', (e) => {
         if (e.target.checked) {
           setup.subMode = e.target.value;
+          if (mode === 'smash') {
+            if (setup.subMode === 'personne_ne_juge') {
+              setup.enabledSpecialCategories.add('personneNeJuge');
+            } else {
+              setup.enabledSpecialCategories.delete('personneNeJuge');
+            }
+          }
           updateSetupStateUI(container, tree);
         }
       });
@@ -542,8 +571,14 @@
         const catId = e.target.getAttribute('data-special-check');
         if (e.target.checked) {
           setup.enabledSpecialCategories.add(catId);
+          if (catId === 'personneNeJuge' && mode === 'smash') {
+            setup.subMode = 'personne_ne_juge';
+          }
         } else {
           setup.enabledSpecialCategories.delete(catId);
+          if (catId === 'personneNeJuge' && mode === 'smash' && setup.subMode === 'personne_ne_juge') {
+            setup.subMode = 'default';
+          }
         }
         updateSetupStateUI(container, tree);
       });

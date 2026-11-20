@@ -55,6 +55,11 @@
           id: 'bg',
           label: 'Mode BG',
           description: 'Priorise les personnages les plus attirants et charismatiques (indice beauté).'
+        },
+        {
+          id: 'personne_ne_juge',
+          label: '🫣 Personne ne juge',
+          description: 'Ne sélectionne que les personnages immondes, grotesques, monstres ou créatures improbables !'
         }
       ],
       defaultSubMode: 'default'
@@ -84,10 +89,21 @@
     {
       id: 'overcheate',
       mode: 'power',
+      filterType: 'exclude_unless_enabled',
       label: 'Overcheaté',
       emoji: '♾️',
       description:
         'Puissance absolue, méta-narrative, volontairement sans plafond ou impossible à argumenter en 1v1 inter-univers (ex : Saitama).',
+      defaultEnabled: false
+    },
+    {
+      id: 'personneNeJuge',
+      mode: 'smash',
+      filterType: 'only_when_enabled',
+      label: 'Personne ne juge',
+      emoji: '🫣',
+      description:
+        'Mode sans tabou : une fois activé, ne sélectionne QUE les personnages immondes, grotesques, boss monstrueux ou créatures improbables !',
       defaultEnabled: false
     }
   ];
@@ -106,7 +122,7 @@
       selectedLicences: new Set(),
       collapsedMediums: new Set(),
       enabledSpecialCategories: new Set(),
-      collapsedSpecialCategories: new Set(['overcheate'])
+      collapsedSpecialCategories: new Set(['overcheate', 'personneNeJuge'])
     },
 
     game: null
@@ -140,6 +156,7 @@
   };
 
   ROR.getSpecialCategoriesForMode = function getSpecialCategoriesForMode(mode = ROR.AppState.mode || 'power') {
+    if (mode === 'all') return ROR.SPECIAL_CATEGORIES;
     return ROR.SPECIAL_CATEGORIES.filter((cat) => cat.mode === mode);
   };
 
@@ -155,8 +172,14 @@
         : new Set();
     const cats = char.specialCategories || {};
     for (const cat of ROR.getSpecialCategoriesForMode(mode)) {
-      if (cats[cat.id] && !enabledSet.has(cat.id)) {
-        return false;
+      if (cat.filterType === 'only_when_enabled') {
+        if (enabledSet.has(cat.id) && !cats[cat.id]) {
+          return false;
+        }
+      } else {
+        if (cats[cat.id] && !enabledSet.has(cat.id)) {
+          return false;
+        }
       }
     }
     return true;
@@ -555,6 +578,7 @@
     const iPrio = idxOf(['priority', 'priorite', 'priorité']);
     const iBeauty = idxOf(['beauty', 'beaute', 'beauté', 'bg', 'charisme']);
     const iOver = idxOf(['overcheate', 'overcheated', 'overcheaté']);
+    const iPnj = idxOf(['personne_ne_juge', 'personnenejuge', 'immonde', 'grotesque']);
 
     const parseBoolCell = (val) => /^(1|true|oui|yes|x)$/i.test(String(val || '').trim());
 
@@ -576,7 +600,8 @@
         priority: iPrio >= 0 ? Number(row[iPrio]) || 5 : 5,
         beauty: iBeauty >= 0 ? Number(row[iBeauty]) || 5 : 5,
         specialCategories: {
-          overcheate: iOver >= 0 ? parseBoolCell(row[iOver]) : false
+          overcheate: iOver >= 0 ? parseBoolCell(row[iOver]) : false,
+          personneNeJuge: iPnj >= 0 ? parseBoolCell(row[iPnj]) : false
         }
       });
     }
@@ -654,6 +679,7 @@
             src="${esc(src)}"
             alt=""
             aria-hidden="true"
+            draggable="false"
             data-fallback="${esc(fallback)}"
             data-licence="${esc(licence)}"
             onerror="window.ROR && window.ROR.onImgError(this)"
@@ -663,6 +689,7 @@
             class="char-artwork-img"
             src="${esc(src)}"
             alt="${esc(name)}"
+            draggable="false"
             data-fallback="${esc(fallback)}"
             data-licence="${esc(licence)}"
             onerror="window.ROR && window.ROR.onImgError(this)"
@@ -677,6 +704,7 @@
           class="char-artwork-img ${hasDedicated ? 'is-landscape-fill' : ''}"
           src="${esc(src)}"
           alt="${esc(name)}"
+          draggable="false"
           data-fallback="${esc(fallback)}"
           data-licence="${esc(licence)}"
           onerror="window.ROR && window.ROR.onImgError(this)"
@@ -702,6 +730,7 @@
             class="char-fullart-img"
             src="${esc(portraitSrc)}"
             alt="${esc(char?.name || 'Personnage')}"
+            draggable="false"
             data-fallback="${esc(fallback)}"
             data-licence="${esc(char?.licence || '')}"
             onerror="window.ROR && window.ROR.onImgError(this)"
@@ -712,6 +741,7 @@
         <div class="char-card-header is-fullart-header">
           <span class="char-medium-pill">${esc(char?.medium || '')}</span>
           <span class="char-licence-pill">${esc(char?.licence || '')}</span>
+          ${ROR.renderSpecialBadgesHtml(char, mode)}
           ${isJoker ? '<span class="char-joker-pill">🃏 JOKER</span>' : ''}
           ${showPriority ? `<span class="beauty-badge" style="margin-left:auto;">✨ ${char?.beauty ?? 5}</span>` : ''}
         </div>

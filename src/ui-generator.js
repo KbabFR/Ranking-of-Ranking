@@ -20,7 +20,8 @@
     priority: 8,
     beauty: 7,
     specialCategories: {
-      overcheate: false
+      overcheate: false,
+      personneNeJuge: false
     }
   });
 
@@ -302,7 +303,7 @@
               </div>
 
               <div class="field-group">
-                <span class="field-label">Catégories spéciales (Mode Puissance)</span>
+                <span class="field-label">Catégories spéciales (Overcheaté / Personne ne juge)</span>
                 <div class="gen-special-list">
                   ${ROR.SPECIAL_CATEGORIES.map((cat) => {
                     const checked = Boolean(draft.specialCategories?.[cat.id]);
@@ -399,7 +400,7 @@
                             <img class="gen-char-thumb" src="${esc(ch.image || ROR.generateInlinePortraitSvg(ch.name, ch.licence))}" alt="${esc(ch.name)}" data-fallback="${esc(ROR.getFallbackImage(ch))}" data-licence="${esc(ch.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                             <div class="gen-char-info">
                               <div class="gen-char-top">
-                                <strong>${ROR.renderCharNameHtml(ch, { compact: true })} ${ROR.renderSpecialBadgesHtml(ch, 'power')}</strong>
+                                <strong>${ROR.renderCharNameHtml(ch, { compact: true })} ${ROR.renderSpecialBadgesHtml(ch, 'all')}</strong>
                                 <span class="gen-score-badges">
                                   <span class="prio-badge" title="Indice de priorité">★ ${ch.priority}</span>
                                   <span class="beauty-badge" title="Indice beauté / BG">✨ ${ch.beauty ?? 5}</span>

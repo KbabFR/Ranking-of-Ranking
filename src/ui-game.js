@@ -740,7 +740,12 @@
   function renderSmashGameScreen(container, game) {
     const esc = ROR.escapeHtml;
     const modeMeta = ROR.getModeMeta(game.mode);
-    const subModeLabel = game.subMode === 'bg' ? ' • Mode BG' : '';
+    const subModeLabel =
+      game.subMode === 'personne_ne_juge'
+        ? ' • 🫣 Personne ne juge'
+        : game.subMode === 'bg'
+          ? ' • Mode BG'
+          : '';
 
     const turboList = game.tiers?.turbo || [];
     const smashList = game.tiers?.smash || [];
@@ -777,7 +782,7 @@
           </div>
         </header>
 
-        <main class="smash-arena">
+        <main class="smash-arena" style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;margin:0 auto;">
           <!-- TOP COUNTERS & DIRECTION REMINDERS -->
           <div class="smash-hud-bar">
             <div class="smash-hud-pill smash-hud-pass" data-smash-pill="pass">
@@ -809,7 +814,7 @@
           </div>
 
           <!-- CENTER: LARGE PORTRAIT DECK & SWIPEABLE CARD -->
-          <section class="smash-stage">
+          <section class="smash-stage" style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;margin:0 auto;">
             <div class="center-action-banner smash-action-banner ${game.isFlipped ? 'is-revealed' : ''}" id="smash-banner">
               ${
                 !game.activeCard
@@ -902,7 +907,7 @@
     const deckBehind = game.mainDeck.length;
 
     return `
-      <div class="smash-deck-stack">
+      <div class="smash-deck-stack" style="margin:0 auto;">
         ${deckBehind >= 3 ? '<div class="smash-stack-card stack-depth-3" aria-hidden="true"></div>' : ''}
         ${deckBehind >= 2 ? '<div class="smash-stack-card stack-depth-2" aria-hidden="true"></div>' : ''}
         ${deckBehind >= 1 ? '<div class="smash-stack-card stack-depth-1" aria-hidden="true"></div>' : ''}
@@ -1033,7 +1038,7 @@
                       <span class="tier-label-sub">${sec.subtitle}</span>
                       <span class="tier-label-count">${sec.items.length} perso${sec.items.length > 1 ? 's' : ''}</span>
                     </div>
-                    <div class="tier-items">
+                    <div class="tier-items overview-grid is-fullart-grid">
                       ${
                         sec.items.length === 0
                           ? `<div class="tier-empty">Aucun personnage dans cette catégorie</div>`
@@ -1052,7 +1057,7 @@
                                       <span class="ov-licence">${esc(ch.licence)}</span>
                                     </div>
                                     <div class="ov-img-wrap">
-                                      <img src="${esc(ovImg)}" alt="${esc(ch.name)}" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(ch))}" data-licence="${esc(ch.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
+                                      <img src="${esc(ovImg)}" alt="${esc(ch.name)}" draggable="false" loading="lazy" data-fallback="${esc(ROR.getFallbackImage(ch))}" data-licence="${esc(ch.licence)}" onerror="window.ROR && window.ROR.onImgError(this)"/>
                                       <button
                                         type="button"
                                         class="ov-inspect-btn"
@@ -1312,9 +1317,12 @@
         updateVisualFeedback(0, 0);
       };
 
+      swipeWrapperEl.addEventListener('dragstart', (e) => e.preventDefault());
+
       swipeWrapperEl.addEventListener('pointerdown', (e) => {
-        if (isAnimatingOut || e.button !== undefined && e.button !== 0) return;
+        if (isAnimatingOut || (e.button !== undefined && e.button !== 0)) return;
         if (!game.isFlipped) return; // Waiting for click to flip first
+        e.preventDefault();
         dragging = true;
         pointerId = e.pointerId;
         startX = e.clientX;

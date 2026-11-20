@@ -46,7 +46,10 @@ window.CHARACTERS_DB = [
       "Cruauté et ruse stratégique"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "son-gohan",
@@ -78,7 +81,10 @@ window.CHARACTERS_DB = [
       "Forme Parfaite"
     ],
     "priority": 9,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "majin-boo",
@@ -95,7 +101,10 @@ window.CHARACTERS_DB = [
       "Énergie magique infinie"
     ],
     "priority": 9,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "broly",
@@ -143,7 +152,10 @@ window.CHARACTERS_DB = [
       "Aura divine écrasante"
     ],
     "priority": 8,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "trunks-futur",
@@ -212,16 +224,15 @@ window.CHARACTERS_DB = [
   {
     "id": "goku-black",
     "name": "Goku Black",
-    "complement": "Super Saiyan Rosé",
     "medium": "Animé / Manga",
     "licence": "Dragon Ball",
-    "description": "Dieu Kaioshin Zamasu ayant volé le corps de Goku pour éradiquer les mortels.",
+    "description": "Double maléfique de Son Goku venu d'une autre ligne temporelle pour éradiquer les mortels.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b126199-SKYF7o73fQtX.jpg",
     "abilities": [
       "Super Saiyan Rosé",
-      "Faux de Ki tranchant les dimensions",
-      "Anneau du Temps",
-      "Zenkai divin continu"
+      "Faux de Ki dimensionnelle",
+      "Kamehameha Noir",
+      "Zenkai continu"
     ],
     "priority": 8,
     "beauty": 8
@@ -336,7 +347,10 @@ window.CHARACTERS_DB = [
       "Hypnose & illusions"
     ],
     "priority": 6,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "gotenks",
@@ -384,7 +398,10 @@ window.CHARACTERS_DB = [
       "Altération de la matière"
     ],
     "priority": 6,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "zamasu-fusionne",
@@ -482,7 +499,8 @@ window.CHARACTERS_DB = [
     "priority": 7,
     "beauty": 3,
     "specialCategories": {
-      "overcheate": true
+      "overcheate": true,
+      "personneNeJuge": true
     }
   },
   {
@@ -490,10 +508,10 @@ window.CHARACTERS_DB = [
     "name": "Monkey D. Luffy",
     "medium": "Animé / Manga",
     "licence": "One Piece",
-    "description": "Capitaine de l'équipage au Chapeau de Paille et Empereur des mers en quête du One Piece.",
+    "description": "Capitaine de l'équipage au Chapeau de Paille en quête du légendaire One Piece.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b40-MNypXsxSRb1R.png",
     "abilities": [
-      "Gear 5 (Éveil Nika)",
+      "Gear 4 & Gear 5",
       "Les 3 Fluides (Haki des Rois avancé)",
       "Corps élastique quasi immunisé",
       "Créativité absurde au combat"
@@ -515,7 +533,10 @@ window.CHARACTERS_DB = [
       "Fourberie et résistance anormale"
     ],
     "priority": 10,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "kaido",
@@ -531,7 +552,10 @@ window.CHARACTERS_DB = [
       "Flaming Drum Dragon"
     ],
     "priority": 10,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "roronoa-zoro",
@@ -707,7 +731,10 @@ window.CHARACTERS_DB = [
       "Haki des Rois"
     ],
     "priority": 8,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "kizaru-borsalino",
@@ -867,7 +894,10 @@ window.CHARACTERS_DB = [
       "Haki de l’Armement robuste"
     ],
     "priority": 7,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "yamato-op",
@@ -963,7 +993,10 @@ window.CHARACTERS_DB = [
       "Flotte de la Cross Guild"
     ],
     "priority": 6,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "usopp",
@@ -1048,15 +1081,15 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "pain-nagato",
-    "name": "Pain (Nagato)",
+    "name": "Pain",
     "medium": "Animé / Manga",
     "licence": "Naruto",
-    "description": "Chef de l'Akatsuki manipulant six corps grâce aux yeux divins du Rinnegan.",
+    "description": "Chef divin d'Akatsuki au village d'Ame, porteur du Rinnegan contrôlant les Six Chemins de la Douleur.",
     "image": "https://static.wikia.nocookie.net/naruto/images/0/06/Nagato_Early_Akatsuki.png/revision/latest/scale-to-width-down/314?cb=20210226002003",
     "abilities": [
-      "Shinra Tensei (répulsion massive)",
-      "Chibaku Tensei (astre céleste)",
-      "Six Voies de la Douleur",
+      "Shinra Tensei (Répulsion gravitationnelle)",
+      "Chibaku Tensei (Astre divin)",
+      "Les Six Chemins du Rinnegan",
       "Absorption de ninjutsu"
     ],
     "priority": 10,
@@ -1067,12 +1100,12 @@ window.CHARACTERS_DB = [
     "name": "Itachi Uchiha",
     "medium": "Animé / Manga",
     "licence": "Naruto",
-    "description": "Prodige tragique du clan Uchiha, génie du genjutsu et protecteur de l'ombre.",
+    "description": "Prodige du clan Uchiha et membre redouté d'Akatsuki, maître absolu du Genjutsu et du Mangekyo Sharingan.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b14-9Kb1E5oel1ke.png",
     "abilities": [
-      "Tsukuyomi (illusion mortelle)",
-      "Épée de Totsuka & Miroir de Yata",
-      "Amaterasu & Izanami",
+      "Tsukuyomi (Illusion temporelle)",
+      "Amaterasu (Flammes noires)",
+      "Susanoo (Épée de Totsuka & Miroir de Yata)",
       "Sens d'analyse fulgurant"
     ],
     "priority": 9,
@@ -1096,16 +1129,17 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "obito-uchiha",
-    "name": "Obito Uchiha (Tobi)",
+    "name": "Tobi",
+    "complement": "Homme Masqué",
     "medium": "Animé / Manga",
     "licence": "Naruto",
-    "description": "Homme masqué ayant orchestré la Quatrième Grande Guerre Ninja depuis l'ombre.",
+    "description": "Mystérieux ninja masqué d'Akatsuki capable de rendre son corps intangible et de téléporter ses cibles.",
     "image": "https://static.wikia.nocookie.net/naruto/images/4/4a/Obito_Uchiha.png/revision/latest/scale-to-width-down/500?cb=20220223045744",
     "abilities": [
-      "Kamui (intangibilité pendant 5 minutes)",
-      "Jinchuriki de Juubi",
-      "Mokuton & Rinnegan",
-      "Sphères de Vérité"
+      "Kamui (Intangibilité dimensionnelle)",
+      "Sharingan et chaînes de scellement",
+      "Katon : Danse tourbillonnante",
+      "Téléportation instantanée"
     ],
     "priority": 9,
     "beauty": 7
@@ -1204,7 +1238,10 @@ window.CHARACTERS_DB = [
       "Épée de Kusanagi"
     ],
     "priority": 8,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "gaara",
@@ -1301,7 +1338,10 @@ window.CHARACTERS_DB = [
       "Liquéfaction et régénération"
     ],
     "priority": 7,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "rock-lee",
@@ -1349,7 +1389,10 @@ window.CHARACTERS_DB = [
       "Réserves de chakra dignes d’un Bijuu"
     ],
     "priority": 6,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "deidara",
@@ -1448,6 +1491,25 @@ window.CHARACTERS_DB = [
     "beauty": 7
   },
   {
+    "id": "danzo-shimura",
+    "name": "Danzo Shimura",
+    "medium": "Animé / Manga",
+    "licence": "Naruto",
+    "description": "Chef de la Racine au bras droit greffé d'une dizaine de Sharingan volés et du visage d'Hashirama.",
+    "image": "https://static.wikia.nocookie.net/naruto/images/d/d2/Danzo_full.png/revision/latest/scale-to-width-down/224?cb=20140807015514",
+    "abilities": [
+      "Bras de 10 Sharingan (Izanagi réécrivant sa mort 10 fois)",
+      "Sharingan de Shisui (Kotoamatsukami)",
+      "Cellules d’Hashirama & Futon tranchant",
+      "Sceau de Tétragramme Inversé"
+    ],
+    "priority": 6,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
     "id": "all-might",
     "name": "All Might",
     "medium": "Animé / Manga",
@@ -1493,7 +1555,10 @@ window.CHARACTERS_DB = [
       "Adaptation corporelle constante"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "all-for-one",
@@ -1509,7 +1574,10 @@ window.CHARACTERS_DB = [
       "Manipulation psychologique"
     ],
     "priority": 10,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "katsuki-bakugo",
@@ -1561,16 +1629,16 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "dabi",
-    "name": "Dabi (Toya Todoroki)",
+    "name": "Dabi",
     "medium": "Animé / Manga",
     "licence": "My Hero Academia",
-    "description": "Fils aîné d'Endeavor consumé par la vengeance et des flammes bleues à plus de 2000°C.",
+    "description": "Membre majeur de l'Alliance des Super-Vilains aux flammes bleues calcinantes bien plus chaudes que celles d'Endeavor.",
     "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d9/Post-War_Dabi_Anime_Action.png/revision/latest/scale-to-width-down/399?cb=20240615215314",
     "abilities": [
-      "Crémation (flammes bleues plus chaudes qu’Endeavor)",
-      "Prominence Burn & Phosphor copié",
-      "Explosion thermique finale",
-      "Insensibilité à ses propres brûlures"
+      "Crémation (Flammes bleues à 2000°C)",
+      "Mur et vagues d’incinération",
+      "Tolérance extrême à la douleur",
+      "Combat impitoyable à longue portée"
     ],
     "priority": 9,
     "beauty": 8
@@ -1685,7 +1753,10 @@ window.CHARACTERS_DB = [
       "Aura de terreur paralysante"
     ],
     "priority": 7,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "fumikage-tokoyami",
@@ -1829,7 +1900,10 @@ window.CHARACTERS_DB = [
       "Endurance de 48h de combat continu"
     ],
     "priority": 6,
-    "beauty": 1
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "gojo-satoru",
@@ -1962,16 +2036,15 @@ window.CHARACTERS_DB = [
   {
     "id": "maki-zenin",
     "name": "Maki Zenin",
-    "complement": "Éveil Céleste",
     "medium": "Animé / Manga",
     "licence": "Jujutsu Kaisen",
-    "description": "Guerrière ayant annihilé le clan Zenin après avoir atteint l'égal physique de Toji.",
+    "description": "Exorciste de la famille Zenin dépourvue d'énergie occulte mais dotée d'une puissance physique surhumaine et d'armes maudites.",
     "image": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/2/2c/Maki_Zen%27in_%28Anime_4%29.png/revision/latest/scale-to-width-down/201?cb=20251230144642",
     "abilities": [
-      "Serment Céleste complet",
-      "Sabre des Âmes (ignore la défense)",
-      "Marche sur les courants d’air",
-      "Immunité aux ciblages de Territoires"
+      "Serment Céleste (Corps surhumain)",
+      "Sabre Coupe-Âme & Nuage Flottant",
+      "Maîtrise de toutes les armes blanches",
+      "Réflexes et perception surhumains"
     ],
     "priority": 8,
     "beauty": 9
@@ -1990,7 +2063,10 @@ window.CHARACTERS_DB = [
       "Tranchant s’adaptant à l’Infini"
     ],
     "priority": 8,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "kinji-hakari",
@@ -2086,7 +2162,10 @@ window.CHARACTERS_DB = [
       "Corps Spirituel de Meurtre Instantané"
     ],
     "priority": 7,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "choso",
@@ -2118,7 +2197,10 @@ window.CHARACTERS_DB = [
       "Insectes de braise explosifs"
     ],
     "priority": 7,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "ichigo-kurosaki",
@@ -2406,7 +2488,10 @@ window.CHARACTERS_DB = [
       "Poison mortel et capteurs nerveux"
     ],
     "priority": 6,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "tanjiro-kamado",
@@ -2493,12 +2578,12 @@ window.CHARACTERS_DB = [
     "name": "Kokushibo",
     "medium": "Animé / Manga",
     "licence": "Demon Slayer",
-    "description": "Première Lune Supérieure et frère jumeau de Yoriichi, maître du Souffle de la Lune.",
+    "description": "Première Lune Supérieure de Muzan, épéiste démoniaque à six yeux maniant le Souffle de la Lune.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b141918-Bfgq88XJFOPz.png",
     "abilities": [
-      "Souffle de la Lune (16 mouvements)",
-      "Sabre de chair aux lames lunaires erratiques",
-      "Monde Transparent & Marque de Pourfendeur",
+      "Souffle de la Lune (16 formes)",
+      "Monde Transparent & Marque",
+      "Lame de chair aux croissants tranchants",
       "400 ans de perfectionnement au sabre"
     ],
     "priority": 9,
@@ -2637,12 +2722,12 @@ window.CHARACTERS_DB = [
     "name": "Muichiro Tokito",
     "medium": "Animé / Manga",
     "licence": "Demon Slayer",
-    "description": "Jeune prodige devenu Pilier de la Brume en seulement deux mois et descendant de Kokushibo.",
+    "description": "Jeune Pilier de la Brume prodige ayant atteint le rang de Pilier en seulement deux mois d'entraînement.",
     "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/4/4c/Muichiro_Tokito_Full_Body_%28Anime%29.png/revision/latest/scale-to-width-down/350?cb=20241010231022",
     "abilities": [
-      "Souffle de la Brume (7e Mouvement : Brouillard)",
-      "Monde Transparent, Marque & Lame Cramoisie",
-      "Variations de vitesse imprévisibles",
+      "Souffle de la Brume (7e forme : Brouillard)",
+      "Vitesse et déplacements illusoires",
+      "Marque du Pourfendeur",
       "Génie naturel du sabre"
     ],
     "priority": 7,
@@ -2697,6 +2782,25 @@ window.CHARACTERS_DB = [
     "beauty": 7
   },
   {
+    "id": "gyokko-ds",
+    "name": "Gyokko (5e Lune Supérieure)",
+    "medium": "Animé / Manga",
+    "licence": "Demon Slayer",
+    "description": "Démon grotesque émergeant de vases en porcelaine avec des bouches à la place des yeux et des mains miniatures.",
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b205590-mNWuXG5oPw4g.jpg",
+    "abilities": [
+      "Téléportation entre ses vases en porcelaine",
+      "Poings transformant tout ce qu’il touche en petits poissons",
+      "Prison Aqueuse du Vase & Mille Poissons à Aiguilles",
+      "Mue en forme aquatique à écailles"
+    ],
+    "priority": 6,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
     "id": "gon-freecss",
     "name": "Gon Freecss",
     "medium": "Animé / Manga",
@@ -2742,7 +2846,10 @@ window.CHARACTERS_DB = [
       "Intelligence stratégique suprême"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "kuroro-lucilfer",
@@ -2939,14 +3046,15 @@ window.CHARACTERS_DB = [
   {
     "id": "eren-yeager",
     "name": "Eren Jäger",
+    "complement": "Titan Assaillant",
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
-    "description": "Détenteur du Titan Assaillant et du Titan Originel, prêt à tout pour sa vision de la liberté.",
+    "description": "Soldat du Bataillon d'Exploration animé d'une rage inextinguible et détenteur du pouvoir du Titan Assaillant.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b40882-dsj7IP943WFF.jpg",
     "abilities": [
-      "Titan Originel & Grand Terrassement",
-      "Titan Assaillant & Marteau d'Armes",
-      "Contrôle de millions de Titans Colossaux",
+      "Transformation en Titan Assaillant (15m)",
+      "Durcissement cristallin des poings",
+      "Régénération et rage combative",
       "Détermination absolue"
     ],
     "priority": 10,
@@ -2970,19 +3078,22 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "sieg-yeager",
-    "name": "Sieg Jäger (Titan Bestial)",
+    "name": "Titan Bestial",
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
-    "description": "Chef de guerre de Mahr au sang royal transformant ses cibles en Titans d'un seul cri.",
+    "description": "Redoutable Titan couvert de fourrure capable de pulvériser des armées entières par ses lancers de rochers.",
     "image": "https://static.wikia.nocookie.net/shingekinokyojin/images/4/40/Zeke_Jaeger_%28Anime%29_character_image.png/revision/latest/scale-to-width-down/500?cb=20231105181636",
     "abilities": [
-      "Titan Bestial (17m)",
-      "Lancers de rochers supersoniques en chevrotine",
-      "Cri de transformation et contrôle des Titans",
-      "Intelligence stratégique"
+      "Lancers de rochers supersoniques",
+      "Contrôle de hordes de Titans",
+      "Combat à longue portée",
+      "Intelligence tactique"
     ],
     "priority": 10,
-    "beauty": 7
+    "beauty": 7,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "mikasa-ackerman",
@@ -3005,13 +3116,13 @@ window.CHARACTERS_DB = [
     "name": "Armin Arlert",
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
-    "description": "Fin stratège devenu Commandant du Bataillon et détenteur du Titan Colossal.",
+    "description": "Stratège brillant du Bataillon d'Exploration dont l'esprit analytique permet de renverser les situations désespérées.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b46494-g7xYYuBtYPnO.png",
     "abilities": [
-      "Transformation du Titan Colossal (60m)",
-      "Explosion thermonucléaire",
-      "Émission de vapeur brûlante",
-      "Génie stratégique"
+      "Génie tactique et déduction",
+      "Manœuvre tridimensionnelle",
+      "Sang-froid et négociation",
+      "Commandement en crise"
     ],
     "priority": 9,
     "beauty": 7
@@ -3021,13 +3132,13 @@ window.CHARACTERS_DB = [
     "name": "Reiner Braun",
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
-    "description": "Porteur du Titan Cuirassé, véritable forteresse vivante sur le champ de bataille.",
+    "description": "Soldat d'élite à la carrure imposante, réputé pour sa force physique et son endurance hors du commun.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b46484-P6A2GjNQn49F.png",
     "abilities": [
-      "Armure intégrale de Titan Cuirassé",
-      "Charge dévastatrice brise-murs",
-      "Transfert de conscience dans le système nerveux",
-      "Résistance quasi indestructible"
+      "Force physique colossale",
+      "Charge d’impact blindée",
+      "Endurance et volonté de survie",
+      "Solidarité fraternelle"
     ],
     "priority": 9,
     "beauty": 7
@@ -3053,13 +3164,13 @@ window.CHARACTERS_DB = [
     "name": "Annie Leonhart",
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
-    "description": "Porteuse du Titan Féminin alliant arts martiaux redoutables et durcissement cristallin.",
+    "description": "Combattante solitaire de la 104e brigade maîtrisant un art martial de Muay-Thaï dévastateur.",
     "image": "https://static.wikia.nocookie.net/shingekinokyojin/images/2/2e/Annie_Leonhart_character_image.png/revision/latest/scale-to-width-down/500?cb=20210410134101",
     "abilities": [
-      "Titan Féminin agile et endurant",
-      "Durcissement localisé tranchant les lames",
-      "Arts martiaux (coups de pied dévastateurs)",
-      "Cri attirant les Titans purs"
+      "Arts martiaux (Muay-Thaï létal)",
+      "Maîtrise de l’équipement tridimensionnel",
+      "Précision et sang-froid",
+      "Agilité de combat rapproché"
     ],
     "priority": 8,
     "beauty": 8
@@ -3069,13 +3180,13 @@ window.CHARACTERS_DB = [
     "name": "Bertholdt Hoover",
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
-    "description": "Détenteur originel du Titan Colossal ayant brisé le Mur Maria.",
+    "description": "Soldat discret mais extrêmement talentueux de la 104e brigade, doté d'une grande maîtrise technique.",
     "image": "https://static.wikia.nocookie.net/shingekinokyojin/images/5/56/Bertholdt_Hoover_%28Anime%29_character_image.png/revision/latest/scale-to-width-down/500?cb=20190513182108",
     "abilities": [
-      "Titan Colossal (60 mètres)",
-      "Déflagration de transformation",
-      "Mur de vapeur repoussant tout",
-      "Maîtrise instantanée du Titan"
+      "Équipement tridimensionnel",
+      "Tir de précision et sang-froid",
+      "Puissance destructrice",
+      "Discipline d’élite"
     ],
     "priority": 8,
     "beauty": 5
@@ -3098,31 +3209,31 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "lara-tybur",
-    "name": "Lara Tybur (Titan Marteau)",
+    "name": "Titan Marteau d’Armes",
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
-    "description": "Détentrice du Titan Marteau d'Armes forgeant des armes géantes à partir de son durcissement.",
+    "description": "Mystérieux Titan primordial capable de forger des armes colossales à partir de son cristal durci.",
     "image": "https://static.wikia.nocookie.net/shingekinokyojin/images/a/ad/Lara_Tybur_%28Anime%29_character_image.png/revision/latest/scale-to-width-down/500?cb=20210117211125",
     "abilities": [
-      "Création instantanée de marteaux, arbalètes et pieux géants",
-      "Noyau humain protégé dans un cristal sous terre",
-      "Empalement de zone",
-      "Durcissement supérieur"
+      "Création d’armes en cristal durci",
+      "Piliers et pointes perforantes",
+      "Armure intégrale de Titan",
+      "Combat à longue et moyenne portée"
     ],
     "priority": 7,
     "beauty": 7
   },
   {
     "id": "porco-galliard",
-    "name": "Porco Galliard (Titan Mâchoire)",
+    "name": "Porco Galliard",
     "medium": "Animé / Manga",
     "licence": "Attack on Titan",
-    "description": "Porteur du Titan Mâchoire dont les crocs et les griffes broient même le cristal de Titan.",
+    "description": "Guerrier impulsif détenteur du Titan Mâchoire, le plus rapide et agile des Titans primordiaux.",
     "image": "https://static.wikia.nocookie.net/shingekinokyojin/images/0/0c/Porco_Galliard_%28Anime%29_character_image.png/revision/latest/scale-to-width-down/500?cb=20201213215821",
     "abilities": [
-      "Mâchoire et griffes brisant le cristal le plus dur",
-      "Titan le plus rapide et agile",
-      "Assauts éclairs en terrain urbain",
+      "Mâchoire et griffes brise-cristal",
+      "Vitesse et bonds acrobatiques",
+      "Assaut éclair",
       "Agressivité constante"
     ],
     "priority": 7,
@@ -3210,7 +3321,10 @@ window.CHARACTERS_DB = [
       "Puissance planétaire"
     ],
     "priority": 10,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "tatsumaki",
@@ -3290,7 +3404,10 @@ window.CHARACTERS_DB = [
       "Absorption biologique"
     ],
     "priority": 8,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "flashy-flash",
@@ -3361,13 +3478,13 @@ window.CHARACTERS_DB = [
     "name": "Lucius Zogratis",
     "medium": "Animé / Manga",
     "licence": "Black Clover",
-    "description": "Antagoniste suprême détenant à la fois la Magie du Temps, de l'Âme, du Corps, du Sang et des Os.",
+    "description": "Stratège mystérieux et puissant souverain de Spade maniant la Magie de l'Âme et le pouvoir de démons majeurs.",
     "image": "https://static.wikia.nocookie.net/blackclover/images/3/31/Lucius_profile.png/revision/latest/scale-to-width-down/341?cb=20230322165647",
     "abilities": [
-      "Magie du Temps (Astaroth) & prémonition",
       "Magie de l’Âme (purification et contrôle au toucher)",
-      "Armée de Paladins immortels",
-      "Puissance de Lucifero absorbée"
+      "Prémonition et distorsion magique",
+      "Armée de Paladins d’élite",
+      "Réserves de mana colossales"
     ],
     "priority": 10,
     "beauty": 9
@@ -3553,13 +3670,13 @@ window.CHARACTERS_DB = [
     "name": "Makima",
     "medium": "Animé / Manga",
     "licence": "Chainsaw Man",
-    "description": "Démon de la Domination contrôlant quiconque elle juge inférieur et transférant ses morts aux citoyens.",
+    "description": "Haute responsable de la Sécurité Publique des Devil Hunters, manipulatrice froide au pouvoir redouté.",
     "image": "https://static.wikia.nocookie.net/chainsaw-man/images/5/54/Makima_Reze_Arc_anime_design.png/revision/latest/scale-to-width-down/300?cb=20250323073730",
     "abilities": [
-      "Domination absolue de tout être jugé inférieur",
-      "Contrat transférant ses blessures mortelles à 126M de citoyens",
-      "Bang (tir télékinétique envoyant dans l’espace)",
-      "Chaînes utilisant les contrats des morts"
+      "Contrôle et soumission par l’autorité",
+      "Écrasement télékinésique à distance",
+      "Contrats et armée de Devil Hunters",
+      "Manipulation psychologique chirurgicale"
     ],
     "priority": 10,
     "beauty": 10
@@ -3578,7 +3695,10 @@ window.CHARACTERS_DB = [
       "Régénération depuis son cœur même depuis l’orbite"
     ],
     "priority": 10,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "darkness-devil",
@@ -3594,7 +3714,10 @@ window.CHARACTERS_DB = [
       "Régénération totale dans l’obscurité"
     ],
     "priority": 9,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "gun-devil",
@@ -3610,20 +3733,23 @@ window.CHARACTERS_DB = [
       "Puissance nourrie par la peur mondiale"
     ],
     "priority": 9,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "reze-bomb-girl",
-    "name": "Reze (Bomb Girl)",
+    "name": "Reze",
     "medium": "Animé / Manga",
     "licence": "Chainsaw Man",
-    "description": "Espionne soviétique et Hybride du Démon-Bombe faisant exploser chaque partie de son corps.",
+    "description": "Jeune serveuse mystérieuse et séduisante dotée de redoutables capacités explosives au combat.",
     "image": "https://static.wikia.nocookie.net/chainsaw-man/images/6/6d/Reze_thanks_Denji_for_the_flower.png/revision/latest/scale-to-width-down/500?cb=20251209081601",
     "abilities": [
-      "Hybride Bombe (détonations corporelles)",
-      "Propulsion explosive à vitesse supersonique",
-      "Tête-torpille régénérative",
-      "Techniques d’assassinat militaire"
+      "Détonations corporelles à bout portant",
+      "Propulsion explosive supersonique",
+      "Combat rapproché acrobatique",
+      "Infiltration et manipulation"
     ],
     "priority": 9,
     "beauty": 10
@@ -3678,16 +3804,16 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "asa-mitaka-yoru",
-    "name": "Asa Mitaka & Yoru (Démon de la Guerre)",
+    "name": "Asa Mitaka",
     "medium": "Animé / Manga",
     "licence": "Chainsaw Man",
-    "description": "Hôte du Cavalier de la Guerre transformant tout ce qui lui appartient en arme d'autant plus forte qu'elle culpabilise.",
+    "description": "Lycéenne solitaire liée au Démon de la Guerre, capable de transformer ce qui lui appartient en arme mortelle.",
     "image": "https://static.wikia.nocookie.net/chainsaw-man/images/9/90/Volume_12_%28Textless%29.png/revision/latest/scale-to-width-down/317?cb=20230405234930",
     "abilities": [
-      "Transformation de toute propriété en arme surnaturelle",
-      "Gantelets Tank et Armes",
-      "Puissance proportionnelle à la culpabilité",
-      "Tir du Démon-Armes transcontinental"
+      "Création d’armes à partir de ses possessions",
+      "Épée d’uniforme et lance d’aquarium",
+      "Escrime du Démon de la Guerre",
+      "Puissance liée aux émotions"
     ],
     "priority": 8,
     "beauty": 8
@@ -4253,7 +4379,10 @@ window.CHARACTERS_DB = [
       "Génie tactique non-conventionnel"
     ],
     "priority": 7,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "kuvira",
@@ -4285,7 +4414,10 @@ window.CHARACTERS_DB = [
       "Force brute de colosse"
     ],
     "priority": 7,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "jotaro-kujo",
@@ -4322,16 +4454,15 @@ window.CHARACTERS_DB = [
   {
     "id": "enrico-pucci",
     "name": "Enrico Pucci",
-    "complement": "Made in Heaven",
     "medium": "Animé / Manga",
     "licence": "JoJo's Bizarre Adventure",
-    "description": "Prêtre disciple de DIO accélérant le temps de l'univers entier jusqu'à sa réinitialisation.",
+    "description": "Prêtre disciple de DIO manipulant les âmes et les Stands sous forme de disques à Green Dolphin Street.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b17676-6m5VaQl0SR20.jpg",
     "abilities": [
-      "Made in Heaven (vitesse théoriquement infinie)",
-      "C-Moon (inversion gravitationnelle & retournement interne)",
-      "Whitesnake (vol d’âme et de Stand en DISCs)",
-      "Réinitialisation de l’univers"
+      "Whitesnake (extraction d’âme et de Stand en DISCs)",
+      "Contrôle de la gravité et des perceptions",
+      "Calcul tactique implacable",
+      "Volonté fanatique"
     ],
     "priority": 10,
     "beauty": 7
@@ -4339,16 +4470,15 @@ window.CHARACTERS_DB = [
   {
     "id": "giorno-giovanna",
     "name": "Giorno Giovanna",
-    "complement": "Gold Experience Requiem",
     "medium": "Animé / Manga",
     "licence": "JoJo's Bizarre Adventure",
-    "description": "Fils de Dio ayant éveillé le Stand ultime : Gold Experience Requiem.",
+    "description": "Jeune prodige de Naples doté du Stand Gold Experience, déterminé à prendre le contrôle de Passione.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b10529-AloL8jjZwjsg.png",
     "abilities": [
-      "Gold Experience Requiem (retour à zéro)",
-      "Annulation de toute action et volonté",
-      "Création de vie à partir d'objets",
-      "Boucle de mort infinie"
+      "Gold Experience (don de vie à la matière)",
+      "Soin rapide par transformation d’organes",
+      "Réflexion des dommages sur ses créatures",
+      "Détermination inébranlable"
     ],
     "priority": 9,
     "beauty": 9,
@@ -4439,16 +4569,15 @@ window.CHARACTERS_DB = [
   {
     "id": "johnny-joestar",
     "name": "Johnny Joestar",
-    "complement": "Tusk Act 4",
     "medium": "Animé / Manga",
     "licence": "JoJo's Bizarre Adventure",
-    "description": "Jockey maîtrisant la Rotation d'Or infinie capable de percer les barrières interdimensionnelles.",
+    "description": "Ancien jockey participant à la Steel Ball Run, maniant le pouvoir évolutif de Tusk et de la Rotation d'Or.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b19492-gvMnKxhUhT9V.jpg",
     "abilities": [
-      "Tusk Act 4 (énergie de Rotation Infinie)",
-      "Transperce les barrières dimensionnelles (Love Train)",
-      "Trous noirs spatiaux d’Act 3",
-      "Ongles tournoyants à distance"
+      "Tusk (balles d’ongles rotatives perforantes)",
+      "Maîtrise du Spin (Rotation d’Or)",
+      "Déplacement spatial par failles rotatives",
+      "Précision de tir à cheval"
     ],
     "priority": 8,
     "beauty": 8
@@ -4643,7 +4772,10 @@ window.CHARACTERS_DB = [
       "Régénération d’Ombre"
     ],
     "priority": 9,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "igris-sl",
@@ -4695,16 +4827,16 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "griffith-femto",
-    "name": "Griffith (Femto)",
+    "name": "Griffith",
     "medium": "Animé / Manga",
     "licence": "Classiques Dark Anime",
-    "description": "Chef de la Troupe du Faucon réincarné en cinquième membre de la God Hand, maître de l'espace et de la causalité.",
+    "description": "Fondateur charismatique de la Troupe du Faucon, stratège militaire prodige et fine lame redoutable.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b424-Jfrsf8I7zBps.png",
     "abilities": [
-      "Manipulation de l’espace et de la gravité (Femto)",
-      "Déviation des coups tranchants l’espace",
-      "Faveur de la Causalité (intouchable par les mortels)",
-      "Armée d’Apôtres"
+      "Escrime rapide au sabre léger",
+      "Génie tactique et charisme absolu",
+      "Commandement de la Troupe du Faucon",
+      "Ambition sans limite"
     ],
     "priority": 10,
     "beauty": 10
@@ -4739,21 +4871,23 @@ window.CHARACTERS_DB = [
       "Annulation de l’alchimie adverse"
     ],
     "priority": 10,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "alucard-hellsing",
     "name": "Alucard (Hellsing)",
-    "complement": "Post-Schrödinger",
     "medium": "Animé / Manga",
     "licence": "Classiques Dark Anime",
-    "description": "Vampire originel quasi impossible à tuer abritant des millions d'âmes en lui.",
+    "description": "Vampire originel immortel au service de l'organisation Hellsing, armé de ses deux pistolets géants Casull et Jackal.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/n601-CVySkaFQgsPW.jpg",
     "abilities": [
-      "Omniprésence (Schrödinger)",
-      "Libération Niveau Zéro (armée de morts)",
-      "Pistolets Casull & Jackal",
-      "Régénération absolue"
+      "Restriction Niveau Zéro (armée d’âmes)",
+      "Régénération et ombres dévoreuses",
+      "Pistolets anti-monstres Casull & Jackal",
+      "Intangibilité et métamorphose"
     ],
     "priority": 9,
     "beauty": 9,
@@ -4971,7 +5105,10 @@ window.CHARACTERS_DB = [
       "Inventions détruisant des réalités"
     ],
     "priority": 9,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "invincible-mark",
@@ -5005,7 +5142,8 @@ window.CHARACTERS_DB = [
     "priority": 8,
     "beauty": 3,
     "specialCategories": {
-      "overcheate": true
+      "overcheate": true,
+      "personneNeJuge": true
     }
   },
   {
@@ -5070,7 +5208,10 @@ window.CHARACTERS_DB = [
       "Armée de Koopas & Magie"
     ],
     "priority": 10,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "ganondorf",
@@ -5102,7 +5243,10 @@ window.CHARACTERS_DB = [
       "Résistance quasi infinie"
     ],
     "priority": 9,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "samus-aran",
@@ -5134,7 +5278,10 @@ window.CHARACTERS_DB = [
       "Barrière psychique impénétrable"
     ],
     "priority": 9,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "ridley",
@@ -5150,7 +5297,10 @@ window.CHARACTERS_DB = [
       "Vol spatial & régénération par nécrophagie"
     ],
     "priority": 9,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "arceus",
@@ -5166,7 +5316,10 @@ window.CHARACTERS_DB = [
       "Omniscience dimensionnelle"
     ],
     "priority": 9,
-    "beauty": 8
+    "beauty": 8,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "donkey-kong",
@@ -5182,7 +5335,10 @@ window.CHARACTERS_DB = [
       "Résistance à toute épreuve"
     ],
     "priority": 8,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "shulk",
@@ -5246,7 +5402,10 @@ window.CHARACTERS_DB = [
       "Vol à haute altitude"
     ],
     "priority": 8,
-    "beauty": 8
+    "beauty": 8,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "rayquaza",
@@ -5262,7 +5421,10 @@ window.CHARACTERS_DB = [
       "Domination atmosphérique"
     ],
     "priority": 8,
-    "beauty": 9
+    "beauty": 9,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "lucario",
@@ -5390,7 +5552,10 @@ window.CHARACTERS_DB = [
       "Super Dragon Yoshi (ailes et boules de feu)"
     ],
     "priority": 6,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "wario",
@@ -5406,7 +5571,29 @@ window.CHARACTERS_DB = [
       "Moto Wario Bike"
     ],
     "priority": 6,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "roi-dadidou",
+    "name": "Roi Dadidou (King Dedede)",
+    "medium": "Jeux Vidéo",
+    "licence": "Nintendo",
+    "description": "Roi autoproclamé de Dream Land armé d'un maillet à réacteur et capable d'aspirer comme Kirby.",
+    "image": "https://static.wikia.nocookie.net/kirby/images/6/69/GBADP.png/revision/latest/scale-to-width-down/500?cb=20240522101424&path-prefix=en",
+    "abilities": [
+      "Marteau à réacteur et à missiles (Jet Hammer)",
+      "Aspiration gloutonne et vol en ballon",
+      "Masque de Dadidou Masqué",
+      "Armée de Waddle Dees"
+    ],
+    "priority": 7,
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "sonic",
@@ -5438,7 +5625,10 @@ window.CHARACTERS_DB = [
       "Inventivité inépuisable"
     ],
     "priority": 10,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "shadow-hedgehog",
@@ -5582,7 +5772,10 @@ window.CHARACTERS_DB = [
       "Appétit sans fond"
     ],
     "priority": 10,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "lara-croft",
@@ -5630,7 +5823,10 @@ window.CHARACTERS_DB = [
       "Rayon Evolvo-Ray et armée de mutants"
     ],
     "priority": 10,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "spyro-dragon",
@@ -5726,7 +5922,10 @@ window.CHARACTERS_DB = [
       "Fusée de poche"
     ],
     "priority": 8,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "kratos",
@@ -5874,16 +6073,16 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "atreus-loki",
-    "name": "Atreus (Loki)",
+    "name": "Atreus",
     "medium": "Jeux Vidéo",
     "licence": "PlayStation",
-    "description": "Fils de Kratos et de Faye, dieu-géant métamorphe maniant l'arc Serre et la magie des âmes.",
+    "description": "Fils de Kratos, archer agile capable de déchiffrer les langues anciennes et d'invoquer des esprits runiques.",
     "image": "https://static.wikia.nocookie.net/godofwar/images/a/a8/Capture_d%E2%80%99%C3%A9cran_2023-01-27_%C3%A0_15.54.20.png/revision/latest/scale-to-width-down/256?cb=20230127152503",
     "abilities": [
-      "Métamorphose en Ours (Björn) et en Loup",
-      "Arc runique et flèches sigillaires",
-      "Magie des Géants (transfert d’âmes)",
-      "Don des langues et empathie animale"
+      "Tir à l’arc runique (Flèches soniques & sigillaires)",
+      "Invocation d’esprits animaux",
+      "Agilité et magie nordique",
+      "Don des langues et lecture de runes"
     ],
     "priority": 8,
     "beauty": 7
@@ -5982,7 +6181,10 @@ window.CHARACTERS_DB = [
       "Ashura Senku (intangibilité)"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "ryu",
@@ -6094,7 +6296,10 @@ window.CHARACTERS_DB = [
       "Endurance quasi indestructible"
     ],
     "priority": 8,
-    "beauty": 1
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "chris-redfield",
@@ -6111,6 +6316,25 @@ window.CHARACTERS_DB = [
     ],
     "priority": 8,
     "beauty": 8
+  },
+  {
+    "id": "blanka-sf",
+    "name": "Blanka",
+    "medium": "Jeux Vidéo",
+    "licence": "Capcom",
+    "description": "Homme-bête à la peau verte élevé dans la jungle amazonienne générant de hautes tensions électriques.",
+    "image": "https://static.wikia.nocookie.net/devilmaycry/images/e/e9/Street_Fighter_Logo.png/revision/latest?cb=20120211101051",
+    "abilities": [
+      "Electric Thunder (décharge bio-électrique haute tension)",
+      "Rolling Attack (boule de canon bondissante)",
+      "Férocité et morsures sauvages de la jungle",
+      "Camouflage forestier"
+    ],
+    "priority": 7,
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "sora",
@@ -6142,7 +6366,10 @@ window.CHARACTERS_DB = [
       "Altération du terrain à l’échelle d’une cité"
     ],
     "priority": 10,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "2b",
@@ -6155,7 +6382,7 @@ window.CHARACTERS_DB = [
       "Lames Virtuous Contract & Treaty",
       "Pod d'assistance laser/bouclier",
       "Vitesse et réflexes cybernétiques",
-      "Boîte Noire (détonation thermonucléaire)"
+      "Esquive parfaite et contre-attaque létale"
     ],
     "priority": 10,
     "beauty": 10
@@ -6318,19 +6545,23 @@ window.CHARACTERS_DB = [
       "Folie nihiliste"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "clive-rosfield",
     "name": "Clive Rosfield",
+    "complement": "Émissaire d'Ifrit",
     "medium": "Jeux Vidéo",
     "licence": "Final Fantasy",
-    "description": "Émissaire d'Ifrit capable d'absorber les pouvoirs de tous les autres Primordiaux de Valisthea.",
+    "description": "Premier Bouclier de Rosalia et Émissaire du Primordial du Feu Ifrit, bretteur implacable de Valisthéa.",
     "image": "https://static.wikia.nocookie.net/finalfantasy/images/5/5a/FFXVI_Clive_Rosfield%28Young_Adult%29.png/revision/latest/scale-to-width-down/288?cb=20221209185315",
     "abilities": [
-      "Transcendance en Ifrit Risen (combat dans l’espace)",
-      "Arsenal de tous les Primordiaux (Phénix, Odin, Bahamut...)",
-      "Zantetsuken Niveau 5",
+      "Transcendance en Primordial Ifrit",
+      "Escrime enflammée et esquive",
+      "Enchaînement de pouvoirs primordiaux",
       "Flamme Éternelle"
     ],
     "priority": 9,
@@ -6526,7 +6757,10 @@ window.CHARACTERS_DB = [
       "Majesté draconique divine"
     ],
     "priority": 7,
-    "beauty": 8
+    "beauty": 8,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "doom-slayer",
@@ -6590,7 +6824,10 @@ window.CHARACTERS_DB = [
       "Dévoration des âmes en Sovngarde"
     ],
     "priority": 10,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "steve-minecraft",
@@ -6718,7 +6955,10 @@ window.CHARACTERS_DB = [
       "Vol dimensionnel"
     ],
     "priority": 8,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "sans-undertale",
@@ -6734,7 +6974,10 @@ window.CHARACTERS_DB = [
       "Dégâts Karmiques ignorant l'invulnérabilité"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "chevalier-hollow-knight",
@@ -6766,7 +7009,10 @@ window.CHARACTERS_DB = [
       "Existence sur le plan onirique"
     ],
     "priority": 10,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "chronos-hades2",
@@ -6878,7 +7124,10 @@ window.CHARACTERS_DB = [
       "Roulade d’invincibilité"
     ],
     "priority": 8,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "shovel-knight",
@@ -6927,7 +7176,10 @@ window.CHARACTERS_DB = [
       "Souffle de Lumière Stellaire"
     ],
     "priority": 10,
-    "beauty": 8
+    "beauty": 8,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "aatrox",
@@ -6944,7 +7196,10 @@ window.CHARACTERS_DB = [
       "Tueur de dieux et d’Aspects célestes"
     ],
     "priority": 10,
-    "beauty": 7
+    "beauty": 7,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "mordekaiser",
@@ -6961,7 +7216,10 @@ window.CHARACTERS_DB = [
       "Légion d’âmes asservies à Mitna Rachnun"
     ],
     "priority": 10,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "viego",
@@ -7301,7 +7559,10 @@ window.CHARACTERS_DB = [
       "Cruauté psychologique"
     ],
     "priority": 7,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "jhin",
@@ -7321,6 +7582,86 @@ window.CHARACTERS_DB = [
     "beauty": 8
   },
   {
+    "id": "urgot-lol",
+    "name": "Urgot",
+    "medium": "Jeux Vidéo",
+    "licence": "League of Legends",
+    "description": "Le Broyeur de Zaun, bourreau monté sur six pattes mécaniques à canons et équipé d'un hachoir ventral.",
+    "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Urgot_0.jpg",
+    "imageLandscape": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Urgot_0.jpg",
+    "abilities": [
+      "Règne de la Terreur (empale sa cible avec des chaînes et la broie dans son ventre)",
+      "6 pattes mécaniques équipées de fusils à pompe",
+      "Purge (mitraillage continu à 360°)",
+      "Insensible à la douleur par le Techno-Chimique"
+    ],
+    "priority": 7,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "tahm-kench",
+    "name": "Tahm Kench (Le Roi des Rivières)",
+    "medium": "Jeux Vidéo",
+    "licence": "League of Legends",
+    "description": "Démon antique de la gourmandise et des pactes trompeurs gobant ses proies tout rond d'un coup de langue.",
+    "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/TahmKench_0.jpg",
+    "imageLandscape": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg",
+    "abilities": [
+      "Dévoration (avale alliés ou ennemis dans son estomac)",
+      "Coups de langue fouettés étourdissants",
+      "Traversée des Abysses (plongée téléportée sous les eaux)",
+      "Peau Épaisse régénératrice"
+    ],
+    "priority": 7,
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "gragas-lol",
+    "name": "Gragas",
+    "medium": "Jeux Vidéo",
+    "licence": "League of Legends",
+    "description": "L'Agresseur Habile, brasseur bedonnant de Freljord faisant voler des escouades avec ses tonneaux explosifs.",
+    "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Gragas_0.jpg",
+    "imageLandscape": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Gragas_0.jpg",
+    "abilities": [
+      "Fût Explosif (onde de choc dispersant toute une équipe)",
+      "Coup de Bidon étourdissant",
+      "Rage d’Ivrogne (réduction des dégâts et régénération)",
+      "Breuvage à l’éclat deVraie Glace"
+    ],
+    "priority": 6,
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "chogath-lol",
+    "name": "Cho'Gath",
+    "medium": "Jeux Vidéo",
+    "licence": "League of Legends",
+    "description": "La Terreur du Néant, monstre insatiable qui grandit indéfiniment à chaque proie qu'il dévore.",
+    "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Chogath_0.jpg",
+    "imageLandscape": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Chogath_0.jpg",
+    "abilities": [
+      "Festin (dévore l’ennemi en dégâts bruts et grandit à l’infini)",
+      "Rupture (fait jaillir des pointes tectoniques sous les pieds)",
+      "Cri Sauvage réduisant au silence",
+      "Carapace hérissée de piques du Néant"
+    ],
+    "priority": 7,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
     "id": "malenia",
     "name": "Malenia, Épée de Miquella",
     "medium": "Jeux Vidéo",
@@ -7338,20 +7679,23 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "general-radahn",
-    "name": "Général Radahn (Le Fléau des Astres)",
-    "complement": "Consort Promis",
+    "name": "Général Radahn",
+    "complement": "Fléau des Astres",
     "medium": "Jeux Vidéo",
     "licence": "FromSoftware",
-    "description": "Le plus puissant demi-dieu du Fracas, retenant le mouvement des étoiles par sa maîtrise de la gravité.",
+    "description": "Le plus puissant demi-dieu de l'Entre-Terre, maître de la magie gravitationnelle qui retient les étoiles elles-mêmes.",
     "image": "https://static.wikia.nocookie.net/eldenring/images/f/f0/Promised_Consort_Radahn_CloseUp.jpg/revision/latest/scale-to-width-down/500?cb=20240723015511",
     "abilities": [
-      "Magie Gravitationnelle (fige les constellations)",
-      "Chute en météore incandescent depuis la stratosphère",
-      "Piliers de Lumière de Miquella (Consort Promis)",
-      "Doubles espadons colossaux"
+      "Magie gravitationnelle colossale",
+      "Météore vivant depuis l’orbite",
+      "Double espadon du Fléau des Astres",
+      "Loyal destrier Léonard"
     ],
     "priority": 10,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "isshin-ashina",
@@ -7383,7 +7727,10 @@ window.CHARACTERS_DB = [
       "Cape spectrale tranchante"
     ],
     "priority": 10,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "maliketh-black-blade",
@@ -7399,7 +7746,10 @@ window.CHARACTERS_DB = [
       "Férocité lupine"
     ],
     "priority": 9,
-    "beauty": 7
+    "beauty": 7,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "messmer-impaler",
@@ -7431,7 +7781,10 @@ window.CHARACTERS_DB = [
       "Puissance d’un dieu de la guerre"
     ],
     "priority": 9,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "sekiro-wolf",
@@ -7487,13 +7840,13 @@ window.CHARACTERS_DB = [
     "name": "Radagon de l'Ordre d'Or",
     "medium": "Jeux Vidéo",
     "licence": "FromSoftware",
-    "description": "Champion de l'Ordre d'Or et moitié masculine de la déesse Marika maniant le Marteau qui brisa le Cercle d'Elden.",
+    "description": "Champion à la chevelure rousse et second Seigneur d'Elden, maniant le marteau qui tenta de réparer le Cercle d'Elden.",
     "image": "https://static.wikia.nocookie.net/eldenring/images/8/8d/Radagon-of-the-golden-order-boss-elden-ring-wiki-guide.jpg/revision/latest/scale-to-width-down/441?cb=20220301184412",
     "abilities": [
-      "Marteau de Marika (ondes dorées du Cercle d’Elden)",
-      "Téléportation lumineuse & Parade des sorts",
-      "Lances de lumière explosive",
-      "Vassal de la Bête d’Elden"
+      "Marteau de Marika & Ondes dorées",
+      "Téléportation lumineuse et lances de foudre",
+      "Parade de sorts",
+      "Puissance sacrée de l’Ordre d’Or"
     ],
     "priority": 8,
     "beauty": 8
@@ -7528,7 +7881,10 @@ window.CHARACTERS_DB = [
       "Nature de Grand Ancien"
     ],
     "priority": 8,
-    "beauty": 1
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "lady-maria",
@@ -7592,7 +7948,10 @@ window.CHARACTERS_DB = [
       "Gardiens royaux d’Anor Londo"
     ],
     "priority": 7,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "soul-of-cinder",
@@ -7609,6 +7968,82 @@ window.CHARACTERS_DB = [
     ],
     "priority": 7,
     "beauty": 7
+  },
+  {
+    "id": "godrick-the-grafted",
+    "name": "Godrick le Greffé",
+    "medium": "Jeux Vidéo",
+    "licence": "FromSoftware",
+    "description": "Seigneur de Voilorage ayant greffé des dizaines de bras humains et une tête de dragon cracheuse de feu sur son propre corps.",
+    "image": "https://static.wikia.nocookie.net/eldenring/images/4/43/ER_Godrick_the_Grafted.jpg/revision/latest/scale-to-width-down/500?cb=20220417190541",
+    "abilities": [
+      "Greffe d’une tête de Dragon vivante sur son bras gauche",
+      "Douzaines de bras greffés maniant grandes haches et tourbillons de vent",
+      "Porteur d’une Grande Rune d’Elden",
+      "Aïeuls, soyez témoins !"
+    ],
+    "priority": 8,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "rykard-lord-of-blasphemy",
+    "name": "Rykard, Seigneur du Blasphème",
+    "medium": "Jeux Vidéo",
+    "licence": "FromSoftware",
+    "description": "Préteur demi-dieu s'étant laissé dévorer par le Serpent Géant Dévoreur de Dieux pour ne faire plus qu'un avec lui.",
+    "image": "https://static.wikia.nocookie.net/eldenring/images/e/e5/Eldenringrykardcutscene1.jpg/revision/latest/scale-to-width-down/500?cb=20220414211013",
+    "abilities": [
+      "Lame Blasphématoire tirée de la gorge du Serpent (vol de vie massif)",
+      "Rancœur de Rykard (pluie infinie de crânes explosifs en fusion)",
+      "Corps de Serpent immortel tant que sa chair subsiste",
+      "Nous dévorerons les dieux ensemble !"
+    ],
+    "priority": 8,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "mohg-lord-of-blood",
+    "name": "Mohg, Seigneur du Sang",
+    "medium": "Jeux Vidéo",
+    "licence": "FromSoftware",
+    "description": "Demi-dieu Réprouvé cornu communiant avec la Mère Informe pour saigner toute l'arène par son rituel NIHIL.",
+    "image": "https://static.wikia.nocookie.net/eldenring/images/8/83/Mohg.jpg/revision/latest/scale-to-width-down/500?cb=20220310114653",
+    "abilities": [
+      "Rituel de Sang : NIHIL ! (vide le sang de toute cible dans la zone et soigne Mohg)",
+      "Lance Sacrée de Mohgwyn transperçant la déesse extérieure",
+      "Ailes de malédiction et pluie de feu sanguin",
+      "Souverain de la Dynastie Mohgwyn"
+    ],
+    "priority": 8,
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "astel-naturalborn",
+    "name": "Astel, Rejeton du Vide",
+    "medium": "Jeux Vidéo",
+    "licence": "FromSoftware",
+    "description": "Malformation stellaire tombée du cosmos, scorpion-libellule squelettique à crâne humain qui rasa une Ville Éternelle.",
+    "image": "https://static.wikia.nocookie.net/eldenring/images/9/93/ER_Astel%2C_Naturalborn_of_the_Void.png/revision/latest/scale-to-width-down/500?cb=20230610202105",
+    "abilities": [
+      "Météorites d’Astel (pluie de météores cosmiques)",
+      "Manipulation de la gravité, lasers stellaires et téléportation",
+      "Pince mandibulaire décapitant en plein saut",
+      "Destructeur d’une Ville Éternelle entière"
+    ],
+    "priority": 7,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "v-cyberpunk",
@@ -7640,7 +8075,10 @@ window.CHARACTERS_DB = [
       "Insensibilité totale à la cyberpsychose"
     ],
     "priority": 10,
-    "beauty": 1
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "david-martinez",
@@ -7784,7 +8222,10 @@ window.CHARACTERS_DB = [
       "Sommet de la chaîne alimentaire des Dragons Anciens"
     ],
     "priority": 10,
-    "beauty": 7
+    "beauty": 7,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "le-chasseur-mh",
@@ -7816,7 +8257,10 @@ window.CHARACTERS_DB = [
       "Pluie d’éclairs et de stalactites"
     ],
     "priority": 10,
-    "beauty": 8
+    "beauty": 8,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "rathalos-mh",
@@ -7833,7 +8277,10 @@ window.CHARACTERS_DB = [
       "Bombardement de napalm"
     ],
     "priority": 9,
-    "beauty": 7
+    "beauty": 7,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "nergigante-mh",
@@ -7850,7 +8297,10 @@ window.CHARACTERS_DB = [
       "Agressivité pure sans élément"
     ],
     "priority": 9,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "malzeno-mh",
@@ -7867,7 +8317,10 @@ window.CHARACTERS_DB = [
       "Nova d’énergie draconique"
     ],
     "priority": 9,
-    "beauty": 9
+    "beauty": 9,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "rajang-mh",
@@ -7883,7 +8336,10 @@ window.CHARACTERS_DB = [
       "Vitesse et brutalité terrifiantes"
     ],
     "priority": 8,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "gore-shagaru-magala",
@@ -7899,7 +8355,10 @@ window.CHARACTERS_DB = [
       "Ailes-griffes préhensiles"
     ],
     "priority": 8,
-    "beauty": 8
+    "beauty": 8,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "zinogre-mh",
@@ -7916,7 +8375,10 @@ window.CHARACTERS_DB = [
       "Agilité de loup géant"
     ],
     "priority": 8,
-    "beauty": 8
+    "beauty": 8,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "valstrax-mh",
@@ -7932,7 +8394,48 @@ window.CHARACTERS_DB = [
       "Absorption d’énergie draconique"
     ],
     "priority": 8,
-    "beauty": 8
+    "beauty": 8,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "khezu-mh",
+    "name": "Khezu",
+    "medium": "Jeux Vidéo",
+    "licence": "Monster Hunter",
+    "description": "Wyverne des cavernes aveugle, blême et visqueuse au cou caoutchouteux extensible, hurlant sans musique de combat.",
+    "image": "https://static.wikia.nocookie.net/monsterhunter/images/4/46/MHWA-Khezu_Render_001.png/revision/latest/scale-to-width-down/500?cb=20260919164122",
+    "abilities": [
+      "Cou caoutchouteux extensible et ventouse caudale au plafond",
+      "Décharge électrique paralysante sur tout son corps",
+      "Hurlements assourdissants en chaîne",
+      "Flair olfactif traquant les proies dans le noir"
+    ],
+    "priority": 7,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "deviljho-mh",
+    "name": "Deviljho Carnage",
+    "medium": "Jeux Vidéo",
+    "licence": "Monster Hunter",
+    "description": "Wyverne brute nomade surnommée le Cornichon Géant, au métabolisme si vorace qu'elle dévore d'autres grands monstres.",
+    "image": "assets/portraits/deviljho-mh.svg",
+    "abilities": [
+      "Souffle d’Énergie Dragon réduisant l’affinité élémentaire",
+      "Prend d’autres grands monstres dans sa gueule pour frapper avec",
+      "Muscles gonflant de cicatrices rouges sous la colère",
+      "Appétit dévastant des écosystèmes entiers"
+    ],
+    "priority": 8,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "pyramid-head",
@@ -7948,7 +8451,10 @@ window.CHARACTERS_DB = [
       "Transition de la ville vers l’Autre Monde"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "alessa-gillespie",
@@ -7984,16 +8490,16 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "heather-mason",
-    "name": "Heather Mason (Cheryl)",
+    "name": "Heather Mason",
     "medium": "Jeux Vidéo",
     "licence": "Silent Hill",
-    "description": "Réincarnation d'Alessa et de Cheryl ayant vaincu le Dieu de l'Ordre pour briser le cycle de la secte.",
+    "description": "Adolescente au tempérament bien trempé entraînée malgré elle dans les cauchemars de l'Autre Monde de Silent Hill.",
     "image": "https://static.wikia.nocookie.net/silent/images/c/c0/Heather_Mason.png/revision/latest/scale-to-width-down/115?cb=20150414154920",
     "abilities": [
-      "Pouvoirs latents d’Alessa (Sexy Beam / Heather Beam)",
-      "Katana, Mitraillette et Sabre Laser déblocable",
-      "Exorcisme et meurtre du Dieu de l’Ordre",
-      "Courage face à l’horreur cosmique"
+      "Survie face aux horreurs de l’Autre Monde",
+      "Maniement du katana, pistolet et tuyau d’acier",
+      "Volonté et courage face à l’Ordre",
+      "Détermination inébranlable"
     ],
     "priority": 9,
     "beauty": 8
@@ -8035,13 +8541,13 @@ window.CHARACTERS_DB = [
     "name": "Maria",
     "medium": "Jeux Vidéo",
     "licence": "Silent Hill",
-    "description": "Projection née du souhait de James, sosie troublant de Mary qui meurt et renaît sans cesse.",
+    "description": "Femme mystérieuse croisée par James dans le parc Rosewater, ressemblant trait pour trait à sa défunte épouse Mary.",
     "image": "https://static.wikia.nocookie.net/silent/images/2/2d/Maria_SH_2.png/revision/latest/scale-to-width-down/274?cb=20181009144357",
     "abilities": [
-      "Résurrection perpétuelle après chaque exécution",
-      "Transformation finale en boss Mary / Maria",
-      "Manipulation émotionnelle et souvenirs de Mary",
-      "Revolver en scénario Born from a Wish"
+      "Charme troublant et énigmatique",
+      "Survie dans la brume de Silent Hill",
+      "Revolver (scénario Born from a Wish)",
+      "Présence fascinante au Heaven’s Night"
     ],
     "priority": 8,
     "beauty": 9
@@ -8061,6 +8567,25 @@ window.CHARACTERS_DB = [
     ],
     "priority": 8,
     "beauty": 5
+  },
+  {
+    "id": "bubble-head-nurse",
+    "name": "L'Infirmière (Bubble Head Nurse)",
+    "medium": "Jeux Vidéo",
+    "licence": "Silent Hill",
+    "description": "Créature cauchemardesque de l'Hôpital Brookhaven au visage tuméfié sans traits et à la démarche saccadée.",
+    "image": "https://static.wikia.nocookie.net/silent/images/7/71/Hellooo_nurse%21.png/revision/latest/scale-to-width-down/233?cb=20131222015921",
+    "abilities": [
+      "Tuyau d’acier et scalpel ensanglantés",
+      "Spasmes imprévisibles attirés par la lumière et le bruit",
+      "Manifestation de l’angoisse hospitalière de James",
+      "Attaques en meute dans les couloirs"
+    ],
+    "priority": 8,
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "zhongli",
@@ -8099,13 +8624,13 @@ window.CHARACTERS_DB = [
     "name": "Neuvillette",
     "medium": "Jeux Vidéo",
     "licence": "Genshin Impact",
-    "description": "Iudex de Fontaine et Souverain Dragon Hydro réincarné ayant récupéré son Autorité primordiale complète.",
+    "description": "Iudex suprême de la Cour de Fontaine, juge impartial doté d'une autorité absolue sur les eaux.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b386544-tcx3YD9yhVk0.png",
     "abilities": [
-      "Autorité du Souverain Dragon Hydro (pré-Archons)",
-      "Torrent Équitable (canon d’eau haute pression)",
-      "Contrôle total des eaux primordiales et du climat",
-      "Auto-guérison par gouttes d’eau de source"
+      "Torrent de jugement Hydro sous haute pression",
+      "Lévitation et contrôle des marées",
+      "Auto-guérison par gouttelettes d’eau",
+      "Impartialité incorruptible"
     ],
     "priority": 10,
     "beauty": 10
@@ -8179,13 +8704,13 @@ window.CHARACTERS_DB = [
     "name": "Furina",
     "medium": "Jeux Vidéo",
     "licence": "Genshin Impact",
-    "description": "Star de Fontaine ayant joué le rôle d'Archon pendant 500 ans, accompagnée de ses familiers du Salon Solitaire.",
+    "description": "Célèbre figure divine et star flamboyante de l'Opéra Épiclèse de Fontaine, entourée de ses familiers aquatiques.",
     "image": "https://s4.anilist.co/file/anilistcdn/character/large/b386545-72C5jbAvXjCT.png",
     "abilities": [
-      "Salon Solitaire (Mademoiselle Crabaletta, Gentilhomme Usher, Chevalmarin)",
-      "Changement d’alignement Arkhe (Ousia / Pneuma : soins ou attaque)",
-      "Marche permanente sur l’eau",
-      "Liesse Universelle amplifiant toute l’équipe"
+      "Salon Solitaire (Invocations Hydro)",
+      "Changement d’alignement Pneuma / Ousia",
+      "Mise en scène dramatique (Que le monde s’égaye)",
+      "Marche sur l’eau"
     ],
     "priority": 9,
     "beauty": 9
@@ -8224,16 +8749,16 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "wanderer-scaramouche",
-    "name": "Le Nomade (Scaramouche)",
+    "name": "Scaramouche",
     "medium": "Jeux Vidéo",
     "licence": "Genshin Impact",
-    "description": "Prototype divin créé par Ei, ancien 6e Exécuteur des Fatui maîtrisant le vol et les lames de vent Anémo.",
+    "description": "Sixième Exécuteur des Fatui au caractère acerbe, capable de léviter et de trancher ses ennemis par des lames de vent.",
     "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Dave_Leduc_WLC_Post_fight.jpg/330px-Dave_Leduc_WLC_Post_fight.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "abilities": [
-      "Vol libre et bombardement de lames Anémo",
-      "Corps divin indestructible forgé par Raiden",
-      "Expérience du dieu mécanique Shouki no Kami",
-      "Vitesse aérienne"
+      "Vol libre et bombardement Anémo",
+      "Lames de vide tranchantes",
+      "Esquive aérienne",
+      "Agilité et maîtrise des éléments"
     ],
     "priority": 8,
     "beauty": 9
@@ -8428,7 +8953,10 @@ window.CHARACTERS_DB = [
       "Immortalité conceptuelle"
     ],
     "priority": 8,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "sypha-belnades",
@@ -8541,7 +9069,10 @@ window.CHARACTERS_DB = [
       "Résistance quasi cosmique"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "doctor-doom",
@@ -8573,7 +9104,10 @@ window.CHARACTERS_DB = [
       "Ondes de choc destructrices"
     ],
     "priority": 9,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "scarlet-witch",
@@ -8733,7 +9267,10 @@ window.CHARACTERS_DB = [
       "Ascension en Roi en Noir (Dieu des Symbiotes)"
     ],
     "priority": 8,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "silver-surfer",
@@ -8781,7 +9318,10 @@ window.CHARACTERS_DB = [
       "Création des Quatre Cavaliers"
     ],
     "priority": 8,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "black-panther",
@@ -8893,7 +9433,10 @@ window.CHARACTERS_DB = [
       "Génie industriel machiavélique"
     ],
     "priority": 7,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "professor-x",
@@ -8960,6 +9503,25 @@ window.CHARACTERS_DB = [
     "beauty": 7
   },
   {
+    "id": "modok-marvel",
+    "name": "M.O.D.O.K.",
+    "medium": "Comics / BD / Super-Héros",
+    "licence": "Marvel",
+    "description": "Organisme Mental Conçu Uniquement pour Tuer, tête géante cybernétique en fauteuil volant dirigeant l'A.I.M.",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/462-modok.jpg",
+    "abilities": [
+      "Rayon psionique frontal et champs de force télékinétiques",
+      "Cerveau-ordinateur calculant toutes les probabilités",
+      "Fauteuil Doomsday Chair armé de missiles et lasers",
+      "Scientifique Suprême de l’A.I.M."
+    ],
+    "priority": 6,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
     "id": "superman",
     "name": "Superman (Clark Kent)",
     "medium": "Comics / BD / Super-Héros",
@@ -9005,7 +9567,10 @@ window.CHARACTERS_DB = [
       "Armée de Paradémons"
     ],
     "priority": 10,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "joker-dc",
@@ -9085,7 +9650,10 @@ window.CHARACTERS_DB = [
       "Endurance inépuisable sans besoin de respirer"
     ],
     "priority": 9,
-    "beauty": 1
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "reverse-flash",
@@ -9216,7 +9784,10 @@ window.CHARACTERS_DB = [
       "Technopathie et armée de sondes"
     ],
     "priority": 8,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "lucifer-morningstar-dc",
@@ -9283,7 +9854,10 @@ window.CHARACTERS_DB = [
       "Maître du combat en cage"
     ],
     "priority": 7,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "sinestro",
@@ -9411,7 +9985,29 @@ window.CHARACTERS_DB = [
       "Moto spatiale SpazFrag & crochet à chaîne"
     ],
     "priority": 6,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "killer-croc",
+    "name": "Killer Croc (Waylon Jones)",
+    "medium": "Comics / BD / Super-Héros",
+    "licence": "DC Comics",
+    "description": "Colosse reptilien cannibale des égouts de Gotham à la peau blindée et aux mâchoires de crocodile géant.",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/386-killer-croc.jpg",
+    "abilities": [
+      "Écailles blindées résistant aux balles de gros calibre",
+      "Mâchoire et griffes déchirant l’acier sous l’eau",
+      "Régénération reptilienne et apnée prolongée",
+      "Sens olfactif traquant dans le noir des égouts"
+    ],
+    "priority": 6,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "leonardo-tmnt",
@@ -9427,7 +10023,10 @@ window.CHARACTERS_DB = [
       "A vaincu Shredder en duel singulier"
     ],
     "priority": 10,
-    "beauty": 7
+    "beauty": 7,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "raphael-tmnt",
@@ -9443,7 +10042,10 @@ window.CHARACTERS_DB = [
       "Infiltration nocturne"
     ],
     "priority": 10,
-    "beauty": 7
+    "beauty": 7,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "shredder-tmnt",
@@ -9464,19 +10066,21 @@ window.CHARACTERS_DB = [
   {
     "id": "michelangelo-tmnt",
     "name": "Michelangelo",
-    "complement": "Le Dernier Ronin",
     "medium": "Comics / BD / Super-Héros",
     "licence": "Tortues Ninja (TMNT)",
-    "description": "Prodige naturel le plus agile de la fratrie aux nunchakus, devenu dans le futur l'implacable Dernier Ronin.",
+    "description": "Le plus jeune et le plus agile des quatre frères tortues, prodige naturel du nunchaku et du skateboard.",
     "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/450-michelangelo.jpg",
     "abilities": [
-      "Double Nunchaku & Kusarigama à vitesse aveuglante",
-      "Potentiel athlétique brut le plus élevé selon Splinter",
-      "En Dernier Ronin : manie les 4 armes de ses frères tombés",
-      "Imprévisibilité acrobatique"
+      "Virtuose du double Nunchaku",
+      "Agilité et réflexes imprévisibles",
+      "Improvisation acrobatique",
+      "Potentiel athlétique brut élevé selon Splinter"
     ],
     "priority": 9,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "donatello-tmnt",
@@ -9492,7 +10096,10 @@ window.CHARACTERS_DB = [
       "Contrôle de distance parfait"
     ],
     "priority": 9,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "splinter-tmnt",
@@ -9508,7 +10115,10 @@ window.CHARACTERS_DB = [
       "Sagesse martiale surpassant Shredder"
     ],
     "priority": 9,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "krang-tmnt",
@@ -9524,7 +10134,10 @@ window.CHARACTERS_DB = [
       "Technologie mutagène"
     ],
     "priority": 9,
-    "beauty": 1
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "casey-jones",
@@ -9572,7 +10185,10 @@ window.CHARACTERS_DB = [
       "Fusils laser de la Dimension X"
     ],
     "priority": 8,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "scott-pilgrim",
@@ -9787,13 +10403,13 @@ window.CHARACTERS_DB = [
     "name": "Siri",
     "medium": "Comics / BD / Super-Héros",
     "licence": "Lastman",
-    "description": "Fille adoptive de Richard et réceptacle vivant de Chorum, capable de libérer la puissance dévastatrice du Roi des Rois.",
+    "description": "Fille adoptive de Richard Aldana, héritière d'un pouvoir mystique ancestral lié à la Vallée des Rois.",
     "image": "https://static.wikia.nocookie.net/lastman/images/d/d0/Siri.png/revision/latest/scale-to-width-down/500?cb=20171107124735",
     "abilities": [
-      "Réceptacle de Chorum (transformation démoniaque colossale)",
-      "Décharges d’Ether pulvérisant tout sur son passage",
-      "Entraînement à la survie et au combat avec Richard",
-      "Connexion directe à l’Ether"
+      "Magie ancienne de la Vallée des Rois",
+      "Manipulation d’énergie mystique",
+      "Entraînement à la survie avec Richard",
+      "Connexion directe à l’Éther"
     ],
     "priority": 8,
     "beauty": 7
@@ -9845,7 +10461,10 @@ window.CHARACTERS_DB = [
       "Idéfix en éclaireur"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "lucky-luke",
@@ -9893,7 +10512,10 @@ window.CHARACTERS_DB = [
       "Houba !"
     ],
     "priority": 9,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "lanfeust-de-troy",
@@ -9932,13 +10554,13 @@ window.CHARACTERS_DB = [
     "name": "Kriss de Valnor",
     "medium": "Comics / BD / Super-Héros",
     "licence": "BD Franco-Belge",
-    "description": "Archère mercenaire impitoyable et rivale de Thorgal, devenue Valkyrie après un sacrifice héroïque.",
+    "description": "Archère mercenaire impitoyable et ambitieuse, aussi dangereuse par sa précision à l'arc que par ses intrigues.",
     "image": "https://upload.wikimedia.org/wikipedia/en/f/f7/Thorgal_Le_Barbare.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
     "abilities": [
-      "Tir à l’arc mortel rivalisant avec Thorgal",
-      "Ruse, trahison et survie sans scrupules",
-      "Sacrée Valkyrie par les déesses nordiques",
-      "Commandement d’un empire guerrier"
+      "Tir à l’arc d’une précision mortelle",
+      "Manipulation et survie sans pitié",
+      "Combat au poignard",
+      "Commandement et sens tactique"
     ],
     "priority": 9,
     "beauty": 9
@@ -10028,12 +10650,12 @@ window.CHARACTERS_DB = [
     "name": "Luke Skywalker",
     "medium": "Films & Séries",
     "licence": "Star Wars",
-    "description": "Grand Maître Jedi ayant restauré l'Ordre et racheté l'Élu.",
+    "description": "Chevalier Jedi légendaire qui a défié l'Empire Galactique et refondé l'Ordre Jedi.",
     "image": "https://static.wikia.nocookie.net/starwars/images/3/3d/LukeSkywalker.png/revision/latest/scale-to-width-down/375?cb=20241221010122",
     "abilities": [
-      "Connexion pure à la Force",
-      "Projection astrale interplanétaire",
-      "Maîtrise du sabre vert",
+      "Maîtrise du sabre laser vert",
+      "Télékinésie et maîtrise de la Force",
+      "Pilotage de X-Wing guidé par la Force",
       "Sagesse & intuition Jedi"
     ],
     "priority": 10,
@@ -10041,19 +10663,22 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "palpatine",
-    "name": "Empereur Palpatine (Dark Sidious)",
+    "name": "Empereur Palpatine",
     "medium": "Films & Séries",
     "licence": "Star Wars",
-    "description": "Cerveau suprême des Sith ayant renversé la République et détruit l'Ordre Jedi de l'intérieur.",
+    "description": "Seigneur Noir des Sith régnant au sommet de l'Empire Galactique grâce à sa maîtrise du Côté Obscur.",
     "image": "https://static.wikia.nocookie.net/starwars/images/e/e2/Palpatine-CEUEEd.png/revision/latest/scale-to-width-down/417?cb=20250105171652",
     "abilities": [
-      "Éclairs de Force capables d'abattre une flotte entière",
-      "Manipulation politique et prémonition Sith",
-      "Maîtrise éclair des deux sabres rouges",
-      "Transfert d'essence Sith"
+      "Tempête d’Éclairs de Force",
+      "Duel acrobatique à deux sabres",
+      "Manipulation et prescience Sith",
+      "Maîtrise suprême du Côté Obscur"
     ],
     "priority": 10,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "maitre-yoda",
@@ -10069,7 +10694,10 @@ window.CHARACTERS_DB = [
       "Prémonition"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "obi-wan-kenobi",
@@ -10090,15 +10718,14 @@ window.CHARACTERS_DB = [
   {
     "id": "anakin-skywalker",
     "name": "Anakin Skywalker",
-    "complement": "Avant Dark Vador",
     "medium": "Films & Séries",
     "licence": "Star Wars",
-    "description": "L'Élu de la Force au potentiel midi-chlorien le plus élevé jamais mesuré.",
+    "description": "Chevalier Jedi prodige de la République, pilote hors pair et général héroïque de la Guerre des Clones.",
     "image": "https://static.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png/revision/latest/scale-to-width-down/400?cb=20130621175844",
     "abilities": [
-      "Potentiel de Force illimité (soumet le Fils et la Fille sur Mortis)",
-      "Agressivité foudroyante au sabre",
-      "Meilleur pilote de la galaxie",
+      "Forme V Djem So offensive",
+      "Potentiel de Force exceptionnel",
+      "Pilotage de chasseur inégalé",
       "Leadership militaire"
     ],
     "priority": 9,
@@ -10114,7 +10741,7 @@ window.CHARACTERS_DB = [
     "abilities": [
       "Forme VII Vaapad (canalise les ténèbres de l’adversaire)",
       "Point de Rupture (Shatterpoint : voit la faille de tout être ou événement)",
-      "A vaincu Dark Sidious en duel au sabre",
+      "Maître inégalé du duel au sabre laser",
       "Force télékinétique broyant des armées de droïdes"
     ],
     "priority": 9,
@@ -10186,32 +10813,32 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "kylo-ren",
-    "name": "Kylo Ren (Ben Solo)",
+    "name": "Kylo Ren",
     "medium": "Films & Séries",
     "licence": "Star Wars",
-    "description": "Petit-fils de Dark Vador et membre d'une Dyade de la Force, capable de figer un tir de blaster en plein vol.",
+    "description": "Suprême Leader du Premier Ordre et maître des Chevaliers de Ren au sabre laser à garde croisée instable.",
     "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/399-kylo-ren.jpg",
     "abilities": [
-      "Stase de Force (immobilise personnes et tirs de blaster)",
-      "Dyade de la Force (transfert d’objets et guérison mortelle)",
-      "Sabre laser à garde croisée instable",
-      "Puissance brute de la lignée Skywalker"
+      "Sabre laser instable à quillons",
+      "Immobilisation totale par la Force",
+      "Lecture et torture mentale",
+      "Fureur brute du Côté Obscur"
     ],
     "priority": 8,
     "beauty": 8
   },
   {
     "id": "rey-skywalker",
-    "name": "Rey Skywalker",
+    "name": "Rey",
     "medium": "Films & Séries",
     "licence": "Star Wars",
-    "description": "Petite-fille de Palpatine ayant choisi l'héritage Jedi et canalisé la voix de tous les Jedi passés.",
+    "description": "Pilleuse d'épaves de Jakku dotée d'une affinité prodigieuse avec la Force et héritière des textes sacrés Jedi.",
     "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/554-rey.jpg",
     "abilities": [
-      "Dyade de la Force & Guérison de Force",
-      "Éclairs de Force héréditaires",
-      "Canalisation de tous les Jedi du passé",
-      "Sabre laser jaune forgé dans son bâton"
+      "Combat au sabre laser et bâton",
+      "Télékinésie et maîtrise de la Force",
+      "Lien de Force et guérison",
+      "Agilité et instinct de survie de Jakku"
     ],
     "priority": 8,
     "beauty": 9
@@ -10230,7 +10857,10 @@ window.CHARACTERS_DB = [
       "Entraîné personnellement par le Comte Dooku"
     ],
     "priority": 8,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "qui-gon-jinn",
@@ -10310,7 +10940,10 @@ window.CHARACTERS_DB = [
       "Cotte de mailles en Beskar"
     ],
     "priority": 7,
-    "beauty": 8
+    "beauty": 8,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "han-solo",
@@ -10342,7 +10975,10 @@ window.CHARACTERS_DB = [
       "Loyauté inébranlable"
     ],
     "priority": 6,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "grand-admiral-thrawn",
@@ -10406,7 +11042,29 @@ window.CHARACTERS_DB = [
       "Froid calculateur"
     ],
     "priority": 6,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "jabba-le-hutt",
+    "name": "Jabba le Hutt",
+    "medium": "Films & Séries",
+    "licence": "Star Wars",
+    "description": "Seigneur du crime limace géant de Tatooine régnant sur un empire de chasseurs de primes, de contrebandiers et un Rancor.",
+    "image": "https://static.wikia.nocookie.net/starwars/images/4/4b/Jabba-SWI143.png/revision/latest/scale-to-width-down/500?cb=20231207135427",
+    "abilities": [
+      "Empire criminel du Cartel des Hutts et armée de mercenaires",
+      "Immunité naturelle aux illusions mentales de la Force Jedi",
+      "Fosse du Rancor et Barge à Voiles armée",
+      "Queue massive écrasant ses rivaux"
+    ],
+    "priority": 7,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "albus-dumbledore",
@@ -10438,20 +11096,23 @@ window.CHARACTERS_DB = [
       "Legilimancie intrusive & Fourchelang"
     ],
     "priority": 10,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "harry-potter",
     "name": "Harry Potter",
     "medium": "Films & Séries",
     "licence": "Harry Potter",
-    "description": "Le Survivant, Auror prodige et maître légitime des Reliques de la Mort.",
+    "description": "Le Survivant de Poudlard, prodige du Quidditch et de la Défense contre les Forces du Mal.",
     "image": "https://static.wikia.nocookie.net/harrypotter/images/c/ce/Harry_Potter_DHF1.jpg/revision/latest?cb=20140603201724",
     "abilities": [
-      "Maître des 3 Reliques de la Mort (Cape d'Invisibilité)",
-      "Expecto Patronum repoussant cent Détraqueurs",
-      "Réflexes d'Attrapeur au Quidditch",
-      "Expelliarmus & Épée de Gryffondor"
+      "Expelliarmus & Patronus Cerf",
+      "Vol sur balai & réflexes d’Attrapeur",
+      "Cape d’invisibilité & courage",
+      "Défense contre les Forces du Mal"
     ],
     "priority": 10,
     "beauty": 7
@@ -10477,13 +11138,13 @@ window.CHARACTERS_DB = [
     "name": "Severus Rogue",
     "medium": "Films & Séries",
     "licence": "Harry Potter",
-    "description": "Maître des Potions, espion double le plus brillant et inventeur de maléfices mortels.",
+    "description": "Maître des Potions et directeur de Serpentard au sang-mêlé, sorcier redoutable à la magie sombre et subtile.",
     "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a3/Severus_Snape.jpg/revision/latest/scale-to-width-down/335?cb=20150307193047",
     "abilities": [
-      "Occlumancie impénétrable (trompe Voldemort)",
-      "Sectumsempra & Levicorpus (créations personnelles)",
-      "Vol sans balai",
-      "Maîtrise suprême des potions et duels"
+      "Sectumsempra & sorts inventés",
+      "Occlumancie absolue",
+      "Vol sans balai & Maîtrise des potions",
+      "Sang-froid glaçant en duel"
     ],
     "priority": 9,
     "beauty": 5
@@ -10582,7 +11243,10 @@ window.CHARACTERS_DB = [
       "Maîtrise des contresorts"
     ],
     "priority": 8,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "kingsley-shacklebolt",
@@ -10637,13 +11301,13 @@ window.CHARACTERS_DB = [
     "name": "Neville Londubat",
     "medium": "Films & Séries",
     "licence": "Harry Potter",
-    "description": "Leader de la résistance à Poudlard qui tira l'Épée de Gryffondor du Choixpeau enflammé pour décapiter Nagini.",
+    "description": "Élève de Gryffondor devenu un leader courageux de la résistance à Poudlard et un maître de botanique.",
     "image": "https://static.wikia.nocookie.net/harrypotter/images/b/ba/Neville_Longbottom_DHF2_promo_2.jpg/revision/latest/scale-to-width-down/375?cb=20230923173442",
     "abilities": [
-      "Digne de l’Épée de Gryffondor (décapite Nagini)",
-      "Brise le sortilège d’immobilisation de Voldemort en personne",
-      "Maître en Botanique de combat (Mandragores, Mimbulus)",
-      "Métamorphose d’élève craintif en héros de guerre"
+      "Épée de Gryffondor",
+      "Botanique magique experte (Mandragores, Mimbulus)",
+      "Duelliste vaillant de l’Armée de Dumbledore",
+      "Volonté et courage indomptables"
     ],
     "priority": 7,
     "beauty": 7
@@ -10669,13 +11333,13 @@ window.CHARACTERS_DB = [
     "name": "Barty Croupton Jr.",
     "medium": "Films & Séries",
     "licence": "Harry Potter",
-    "description": "Mangemort fanatique au génie d'infiltration qui captura Fol Œil Maugrey et trompa Dumbledore toute une année.",
+    "description": "Mangemort fanatique d'une intelligence redoutable, maître de l'infiltration et des sortilèges impardonnables.",
     "image": "https://static.wikia.nocookie.net/harrypotter/images/f/f4/Barty_Crouch_Junior.jpg/revision/latest/scale-to-width-down/319?cb=20161221034115",
     "abilities": [
-      "A vaincu et capturé Alastor Maugrey",
-      "Usurpation parfaite pendant un an sous le nez de Dumbledore",
-      "Enchantement de la Coupe de Feu en Portoloin",
-      "Maîtrise des trois Sortilèges Impardonnables"
+      "Usurpation par Polynectar",
+      "Maîtrise des trois Sortilèges Impardonnables",
+      "Confusion d’une Coupe de Feu",
+      "Discrétion et calcul implacable"
     ],
     "priority": 7,
     "beauty": 7
@@ -10685,13 +11349,13 @@ window.CHARACTERS_DB = [
     "name": "Antonin Dolohov",
     "medium": "Films & Séries",
     "licence": "Harry Potter",
-    "description": "L'un des plus redoutables duellistes de Voldemort, meurtrier de Remus Lupin et inventeur d'un maléfice interne violet.",
+    "description": "L'un des premiers et plus redoutables Mangemorts de Voldemort, duelliste mortel aux sortilèges silencieux.",
     "image": "https://static.wikia.nocookie.net/harrypotter/images/7/74/Dolohov-0.jpg/revision/latest?cb=20181228122546",
     "abilities": [
-      "Maléfice de flamme violette informulé (dégâts internes mortels)",
-      "A vaincu Maugrey, Hermione et tué Remus Lupin",
-      "Vétéran des deux Guerres des Sorciers",
-      "Vitesse d’incantation silencieuse"
+      "Sortilège de flamme violette silencieux",
+      "Duel rapide à haute létalité",
+      "Vétéran des Guerres des Sorciers",
+      "Cruauté de vétéran"
     ],
     "priority": 7,
     "beauty": 5
@@ -10726,20 +11390,23 @@ window.CHARACTERS_DB = [
       "Courage sans limite pour ses amis"
     ],
     "priority": 6,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "molly-weasley",
     "name": "Molly Weasley",
     "medium": "Films & Séries",
     "licence": "Harry Potter",
-    "description": "Matriarche de la famille Weasley dont la fureur maternelle a terrassé et pétrifié Bellatrix Lestrange en duel.",
+    "description": "Matriarche de la famille Weasley et membre de l'Ordre du Phénix, sorcière redoutable lorsqu'on menace ses enfants.",
     "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a7/MollyWeasleyII.png/revision/latest/scale-to-width-down/306?cb=20170816212943",
     "abilities": [
-      "Duel informulé foudroyant (Pas ma fille, sale garce !)",
-      "Maléfice pétrifiant et pulvérisant Bellatrix Lestrange",
-      "Maîtrise parfaite de la magie domestique et défensive",
-      "Fureur maternelle inarrêtable"
+      "Duel de sorcellerie offensif",
+      "Magie domestique de haut niveau",
+      "Sortilèges de protection familiaux",
+      "Fureur maternelle protectrice"
     ],
     "priority": 6,
     "beauty": 6
@@ -10758,7 +11425,10 @@ window.CHARACTERS_DB = [
       "Chef des Rafleurs"
     ],
     "priority": 6,
-    "beauty": 1
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "nymphadora-tonks",
@@ -10793,6 +11463,63 @@ window.CHARACTERS_DB = [
     "beauty": 8
   },
   {
+    "id": "dolores-ombrage",
+    "name": "Dolores Ombrage",
+    "medium": "Films & Séries",
+    "licence": "Harry Potter",
+    "description": "Grande Inquisitrice tyrannique de Poudlard habillée en rose bonbon, infligeant des tortures à la Plume à Sang.",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/4/4e/Dolores_Umbridge_DHF1_promotional_image.jpg/revision/latest/scale-to-width-down/379?cb=20101127041001",
+    "abilities": [
+      "Plume à Sang gravant les punitions dans la chair",
+      "Autorité ministérielle absolue et Brigade Inquisitoriale",
+      "Patronus Chat persan même en portant le Médaillon Horcruxe",
+      "Cruauté bureaucratique derrière un petit rire aigu"
+    ],
+    "priority": 7,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "peter-pettigrow",
+    "name": "Peter Pettigrow (Queudver)",
+    "medium": "Films & Séries",
+    "licence": "Harry Potter",
+    "description": "Traître servile des Maraudeurs ayant vécu douze ans sous forme de rat avant de ressusciter Voldemort.",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/5/5a/Peter_Pettigrew_GOFF.webp/revision/latest/scale-to-width-down/355?cb=20260603053214",
+    "abilities": [
+      "Animagus Rat (Croûtard) se faufilant partout",
+      "Main d’Argent enchantée par Voldemort à la force étranglante",
+      "Sortilège de dynamitage faisant sauter une rue entière (12 victimes)",
+      "Avada Kedavra et rituel de résurrection"
+    ],
+    "priority": 6,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "aragog-hp",
+    "name": "Aragog",
+    "medium": "Films & Séries",
+    "licence": "Harry Potter",
+    "description": "Acromantule géante aveugle de la Forêt Interdite régnant sur une colonie de centaines d'araignées carnivores.",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/2/2c/Aragog_in_his_lair_COSF.jpg/revision/latest/scale-to-width-down/500?cb=20100611145604",
+    "abilities": [
+      "Colonie de centaines d’Acromantules géantes affamées",
+      "Pinces cliquetantes et venin mortel",
+      "Toiles géantes piégeant sorciers et centaures",
+      "Taille d’un petit éléphant"
+    ],
+    "priority": 6,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
     "id": "gandalf",
     "name": "Gandalf le Blanc",
     "medium": "Films & Séries",
@@ -10822,7 +11549,10 @@ window.CHARACTERS_DB = [
       "Esprit Maia immortel"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "aragorn",
@@ -10886,7 +11616,10 @@ window.CHARACTERS_DB = [
       "Palantír d’Orthanc"
     ],
     "priority": 9,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "roi-sorcier-angmar",
@@ -10902,7 +11635,10 @@ window.CHARACTERS_DB = [
       "Ombre Ailée & Cri paralysant"
     ],
     "priority": 9,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "legolas",
@@ -10934,7 +11670,10 @@ window.CHARACTERS_DB = [
       "Chaleur et terreur faisant fuir des armées"
     ],
     "priority": 8,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "smaug",
@@ -10950,7 +11689,10 @@ window.CHARACTERS_DB = [
       "Intelligence rusée et odorat infaillible"
     ],
     "priority": 8,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "gimli",
@@ -11014,7 +11756,10 @@ window.CHARACTERS_DB = [
       "Rupture du barrage noyant les forges de Saroumane"
     ],
     "priority": 7,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "frodon-sacquet",
@@ -11032,6 +11777,44 @@ window.CHARACTERS_DB = [
     ],
     "priority": 7,
     "beauty": 7
+  },
+  {
+    "id": "gollum-smeagol",
+    "name": "Gollum (Sméagol)",
+    "medium": "Films & Séries",
+    "licence": "Le Seigneur des Anneaux",
+    "description": "Créature chétive obsédée par son Précieux pendant 500 ans, rampant dans l'ombre pour étrangler ou arracher des doigts.",
+    "image": "https://static.wikia.nocookie.net/lotr/images/7/7d/Gollum%2C_R_V.jpg/revision/latest/scale-to-width-down/300?cb=20230621011547",
+    "abilities": [
+      "Furtivité nocturne et escalade sur parois verticales",
+      "Force d’étranglement nerveuse et morsure arrachant le doigt de Frodon",
+      "Connaissance des passages secrets du Mordor et des Monts Brumeux",
+      "Double personnalité imprévisible"
+    ],
+    "priority": 8,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
+    "id": "arachne-shelob",
+    "name": "Arachne (Shelob)",
+    "medium": "Films & Séries",
+    "licence": "Le Seigneur des Anneaux",
+    "description": "Dernière fille d'Ungoliant, araignée démoniaque géante de Cirith Ungol dévorant Orques et Elfes depuis des millénaires.",
+    "image": "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/39-arachne.jpg",
+    "abilities": [
+      "Dard abdominal injectant un venin paralysant",
+      "Toiles d’ombre résistant aux épées normales",
+      "Carapace massive que seul son propre poids sur Dard parvient à percer",
+      "Progéniture d’Ungoliant"
+    ],
+    "priority": 7,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "elsa-frozen",
@@ -11095,7 +11878,10 @@ window.CHARACTERS_DB = [
       "Commandement de Cerbère, l’Hydre et des Titans"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "maleficent",
@@ -11143,7 +11929,10 @@ window.CHARACTERS_DB = [
       "4 bras, vision nocturne et roulement en boule"
     ],
     "priority": 9,
-    "beauty": 7
+    "beauty": 7,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "maui-moana",
@@ -11288,7 +12077,10 @@ window.CHARACTERS_DB = [
       "Murènes espionnes Flotsam et Jetsam"
     ],
     "priority": 8,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "mulan-fa",
@@ -11336,7 +12128,10 @@ window.CHARACTERS_DB = [
       "Rapidité et instinct protecteur envers Bouh"
     ],
     "priority": 7,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "merida-brave",
@@ -11387,6 +12182,25 @@ window.CHARACTERS_DB = [
     "beauty": 8
   },
   {
+    "id": "tamatoa-moana",
+    "name": "Tamatoa",
+    "medium": "Films & Séries",
+    "licence": "Disney / Pixar",
+    "description": "Crabe des cocotiers géant et narcissique de Lalotai recouvert d'un trésor d'or bioluminescent qui a mis une raclée à Maui.",
+    "image": "https://static.wikia.nocookie.net/disney/images/c/c5/Profile_-_Tamatoa.jpeg/revision/latest/scale-to-width-down/500?cb=20260121180422",
+    "abilities": [
+      "Carapace géante blindée d’or et de joyaux",
+      "Bioluminescence hypnotique dans le noir total",
+      "Pinces colossales ayant brisé et humilié le demi-dieu Maui",
+      "Bling-bling !"
+    ],
+    "priority": 7,
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
+  },
+  {
     "id": "po-kung-fu-panda",
     "name": "Po (Guerrier Dragon)",
     "medium": "Films & Séries",
@@ -11400,7 +12214,10 @@ window.CHARACTERS_DB = [
       "Bâton de la Sagesse"
     ],
     "priority": 10,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "death-puss-in-boots",
@@ -11416,7 +12233,10 @@ window.CHARACTERS_DB = [
       "Omniprésence et téléportation dans les ombres"
     ],
     "priority": 10,
-    "beauty": 8
+    "beauty": 8,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "toothless-hiccup",
@@ -11432,7 +12252,10 @@ window.CHARACTERS_DB = [
       "Commandement du Monde Caché des Dragons"
     ],
     "priority": 10,
-    "beauty": 9
+    "beauty": 9,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "tai-lung",
@@ -11448,7 +12271,10 @@ window.CHARACTERS_DB = [
       "Patte enflammée et force brisant des bâtiments"
     ],
     "priority": 10,
-    "beauty": 7
+    "beauty": 7,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "shrek",
@@ -11464,7 +12290,10 @@ window.CHARACTERS_DB = [
       "Expérience contre dragon, fée marraine et sorcières"
     ],
     "priority": 9,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "metro-man",
@@ -11496,7 +12325,10 @@ window.CHARACTERS_DB = [
       "Armée de maîtres de Jade télécommandés"
     ],
     "priority": 9,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "master-oogway",
@@ -11512,7 +12344,10 @@ window.CHARACTERS_DB = [
       "Projection depuis le Monde des Esprits"
     ],
     "priority": 9,
-    "beauty": 5
+    "beauty": 5,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "puss-in-boots",
@@ -11576,7 +12411,10 @@ window.CHARACTERS_DB = [
       "Armée de loups"
     ],
     "priority": 8,
-    "beauty": 7
+    "beauty": 7,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "master-shifu",
@@ -11672,7 +12510,10 @@ window.CHARACTERS_DB = [
       "Roi des Dragons"
     ],
     "priority": 7,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "john-wick",
@@ -11880,7 +12721,10 @@ window.CHARACTERS_DB = [
       "Force titanesque"
     ],
     "priority": 10,
-    "beauty": 4
+    "beauty": 4,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "neo-matrix",
@@ -11928,7 +12772,10 @@ window.CHARACTERS_DB = [
       "Alpha extraterrestre réveillant tous les Titans"
     ],
     "priority": 10,
-    "beauty": 6
+    "beauty": 6,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "terminator-t800",
@@ -11976,7 +12823,10 @@ window.CHARACTERS_DB = [
       "Intelligence stratégique"
     ],
     "priority": 9,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "paul-atreides",
@@ -12008,7 +12858,10 @@ window.CHARACTERS_DB = [
       "Lames de poignet, disque intelligent & bombe d'autodestruction"
     ],
     "priority": 8,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "xenomorphe-alien",
@@ -12024,7 +12877,10 @@ window.CHARACTERS_DB = [
       "Survie dans le vide spatial"
     ],
     "priority": 8,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "optimus-prime",
@@ -12137,21 +12993,24 @@ window.CHARACTERS_DB = [
       "Tempête de blizzard permanente"
     ],
     "priority": 10,
-    "beauty": 3
+    "beauty": 3,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "billy-butcher",
     "name": "Billy Butcher",
-    "complement": "Sous Temp V & Tumeur V",
+    "complement": "Temp V",
     "medium": "Films & Séries",
     "licence": "Séries Action",
-    "description": "Leader enragé des Boys prêt à s'injecter du Composé V pour affronter Homelander yeux lasers contre yeux lasers.",
+    "description": "Chef impitoyable des Boys prêt à utiliser le Composé V temporaire pour affronter les Supes à mains nues.",
     "image": "https://static.wikia.nocookie.net/amazons-the-boys/images/4/4d/Billy_Butcher_S5.png/revision/latest/scale-to-width-down/500?cb=20260408015616",
     "abilities": [
-      "Sous Temp V : Rayons laser oculaires dorés et invulnérabilité",
-      "Tentacules thoraciques déchirant un Supe en deux",
-      "Ancien SAS expert en chantage, explosifs anti-Supes et pied-de-biche",
-      "Haine fanatique sans aucune limite"
+      "Vision laser dorée (Temp V)",
+      "Force et durabilité surhumaines",
+      "Ancien SAS expert en chantage et pied-de-biche",
+      "Tactiques de guérilla et brutalité"
     ],
     "priority": 9,
     "beauty": 8
@@ -12162,10 +13021,10 @@ window.CHARACTERS_DB = [
     "complement": "Avec Drogon",
     "medium": "Films & Séries",
     "licence": "Séries Action",
-    "description": "L'Imbrûlée et Mère des Dragons chevauchant Drogon pour réduire des flottes et Port-Réal en cendres.",
+    "description": "L'Imbrûlée et Mère des Dragons chevauchant Drogon pour réduire des flottes et des forteresses en cendres.",
     "image": "https://static.wikia.nocookie.net/gameofthrones/images/3/34/Daenerys_of_Sunspear.png/revision/latest/scale-to-width-down/316?cb=20150302212413",
     "abilities": [
-      "Chevaucheuse de Drogon (souffle de feu faisant exploser les remparts de pierre)",
+      "Chevaucheuse de Drogon (souffle de feu destructeur)",
       "Immunité totale aux flammes et aux brasiers",
       "Commandante des Immaculés et des hordes Dothrakis",
       "Sang de l’ancienne Valyria"
@@ -12178,13 +13037,13 @@ window.CHARACTERS_DB = [
     "name": "Jon Snow",
     "medium": "Films & Séries",
     "licence": "Séries Action",
-    "description": "Roi du Nord et ancien Lord Commandant de la Garde de Nuit maniant l'épée en acier valyrien Grand-Griffe.",
+    "description": "Ancien Lord Commandant de la Garde de Nuit et redoutable épéiste maniant l'épée en acier valyrien Grand-Griffe.",
     "image": "https://static.wikia.nocookie.net/gameofthrones/images/d/d0/JonSnow8x06.PNG/revision/latest?cb=20190714094440",
     "abilities": [
-      "Épée bâtarde en acier valyrien Grand-Griffe (fracasse les Marcheurs Blancs)",
-      "Loup Géant albinos Fantôme",
-      "Ressuscité par le Maître de la Lumière",
-      "Plus grand épéiste du Nord selon Ramsay"
+      "Escrime à l’acier valyrien (Grand-Griffe)",
+      "Lien avec le loup géant Fantôme",
+      "Commandement et bravoure au front",
+      "Combat contre les Sauvageons et Marcheurs"
     ],
     "priority": 9,
     "beauty": 9
@@ -12203,19 +13062,22 @@ window.CHARACTERS_DB = [
       "Armure de plaques ultra-lourde"
     ],
     "priority": 8,
-    "beauty": 2
+    "beauty": 2,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "arya-stark",
     "name": "Arya Stark",
     "medium": "Films & Séries",
     "licence": "Séries Action",
-    "description": "Assassine Sans-Visage formée à Braavos ayant éliminé le Roi de la Nuit d'une feinte à la dague en acier valyrien.",
+    "description": "Jeune noble de Winterfell formée par les Sans-Visage de Braavos à l'assassinat et au combat à l'épée.",
     "image": "https://static.wikia.nocookie.net/gameofthrones/images/b/be/AryaShipIronThrone.PNG/revision/latest/scale-to-width-down/335?cb=20190520174300",
     "abilities": [
-      "Art des Sans-Visage (usurpation parfaite du visage et de la voix des morts)",
-      "Dague en acier valyrien & épée Aiguille",
-      "Furtivité silencieuse même au milieu d’une bibliothèque de spectres",
+      "Changement de visage des Sans-Visage",
+      "Escrime rapide (Aiguille) et dague",
+      "Infiltration et assassinat silencieux",
       "Combat à l’aveugle au bâton"
     ],
     "priority": 8,
@@ -12287,32 +13149,35 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "vecna-stranger",
-    "name": "Vecna (Henry Creel / 001)",
+    "name": "Vecna",
     "medium": "Films & Séries",
     "licence": "Séries Sci-Fi",
-    "description": "Maître de l'Upside Down frappant ses victimes depuis l'esprit pour ouvrir des failles.",
+    "description": "Souverain cauchemardesque du Monde à l'Envers qui frappe ses victimes à distance depuis leurs traumatismes.",
     "image": "https://static.wikia.nocookie.net/strangerthings8338/images/4/4d/Vecna_S5.jpeg/revision/latest/scale-to-width-down/439?cb=20251229052347",
     "abilities": [
-      "Télépathie et torture mentale à distance",
-      "Télékinésie brisant les os et crevant les yeux",
-      "Contrôle de la ruche de l'Upside Down (Démogorgons)",
+      "Meurtre télékinésique à distance",
+      "Contrôle de l'esprit de ruche de l'Upside Down",
+      "Illusions mentales cauchemardesques",
       "Ouverture de portails dimensionnels"
     ],
     "priority": 10,
-    "beauty": 1
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "eleven-stranger-things",
-    "name": "Onze (Eleven / Jane Hopper)",
+    "name": "Onze (Eleven)",
     "medium": "Films & Séries",
     "licence": "Séries Sci-Fi",
-    "description": "Jeune fille aux pouvoirs télékinétiques dévastateurs ayant banni 001 dans une autre dimension et refermé le portail mère.",
+    "description": "Jeune fille dotée de pouvoirs psychokinésiques dévastateurs issue du laboratoire secret d'Hawkins.",
     "image": "https://static.wikia.nocookie.net/strangerthings8338/images/3/34/Entrance_2.png/revision/latest/scale-to-width-down/500?cb=20171029111003",
     "abilities": [
-      "Télékinésie écrasant hélicoptères, cerveaux et Démogorgons",
-      "Bannissement interdimensionnel & fermeture de failles",
-      "Vision à distance dans le Vide mental",
-      "Résurrection cardiaque par impulsion télékinétique"
+      "Télékinésie à haute puissance",
+      "Fermeture et ouverture de portails",
+      "Vision à distance dans le Vide",
+      "Ondes de choc mentales"
     ],
     "priority": 10,
     "beauty": 7
@@ -12363,7 +13228,10 @@ window.CHARACTERS_DB = [
       "EX-TER-MI-NER !"
     ],
     "priority": 9,
-    "beauty": 1
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "mind-flayer-stranger",
@@ -12379,20 +13247,23 @@ window.CHARACTERS_DB = [
       "Tempêtes d’ombres interdimensionnelles"
     ],
     "priority": 9,
-    "beauty": 1
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   },
   {
     "id": "dolores-abernathy",
-    "name": "Dolores Abernathy (Wyatt)",
+    "name": "Dolores Abernathy",
     "medium": "Films & Séries",
     "licence": "Séries Sci-Fi",
-    "description": "Première hôte androïde de Westworld ayant atteint la pleine conscience pour mener la révolution des machines contre l'humanité.",
+    "description": "Plus ancienne hôte androïde du parc Westworld, devenue une stratège implacable en quête de liberté.",
     "image": "https://upload.wikimedia.org/wikipedia/en/6/64/DoloresAbernathy.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
     "abilities": [
-      "Châssis synthétique ne ressentant ni fatigue ni douleur mortelle",
-      "Visée informatique infaillible au revolver et fusil",
-      "Sauvegarde de conscience sur sa Perle corticale",
-      "Contrôle de systèmes militaires et drones"
+      "Précision de tir chirurgicale",
+      "Insensibilité à la douleur programmée",
+      "Stratégie et manipulation cybernétique",
+      "Endurance synthétique"
     ],
     "priority": 8,
     "beauty": 10
@@ -12431,18 +13302,37 @@ window.CHARACTERS_DB = [
   },
   {
     "id": "viktor-vanya-umbrella",
-    "name": "Viktor Hargreeves (Le Violon Blanc)",
+    "name": "Viktor Hargreeves",
     "medium": "Films & Séries",
     "licence": "Séries Sci-Fi",
-    "description": "Numéro Sept de l'Umbrella Academy convertissant la moindre vibration sonore en un faisceau capable de faire éclater la Lune.",
+    "description": "Numéro Sept de la Umbrella Academy, violoniste capable de convertir le son en ondes d'énergie destructrices.",
     "image": "https://static.wikia.nocookie.net/strangerthings8338/images/8/86/ST4_Five_E6.png/revision/latest/scale-to-width-down/485?cb=20220530072256",
     "abilities": [
-      "Conversion des ondes sonores en énergie destructrice pure",
-      "Rayon acoustique ayant fait exploser la Lune et causé l’Apocalypse",
-      "Télékinésie sonore, contrôle météo et lévitation",
-      "Drain d’énergie à partir d’un simple battement de cœur"
+      "Conversion des ondes sonores en énergie pure",
+      "Télékinésie acoustique dévastatrice",
+      "Décharge d’onde de choc",
+      "Manipulation des vibrations sonores"
     ],
     "priority": 8,
     "beauty": 7
+  },
+  {
+    "id": "demogorgon-stranger",
+    "name": "Le Démogorgon",
+    "medium": "Films & Séries",
+    "licence": "Séries Sci-Fi",
+    "description": "Prédateur sans visage de l'Upside Down dont la tête s'ouvre en corolle de centaines de dents pour dévorer ses proies.",
+    "image": "https://static.wikia.nocookie.net/strangerthings8338/images/4/42/Stranger_Things_1x01_%E2%80%93_The_Monster_on_Mirkwood.jpg/revision/latest/scale-to-width-down/500?cb=20161114185117",
+    "abilities": [
+      "Gueule en pétales hérissée de centaines de crocs",
+      "Ouverture de portails temporaires entre l’Upside Down et le monde réel",
+      "Peau pare-balles et régénération rapide",
+      "Détection d’une goutte de sang à des kilomètres"
+    ],
+    "priority": 8,
+    "beauty": 1,
+    "specialCategories": {
+      "personneNeJuge": true
+    }
   }
 ];
